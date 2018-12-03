@@ -12,6 +12,8 @@ namespace PhPPTGen.phSocket {
         private Thread t = null;
         private Byte[] bytes = new Byte[1024];
 
+        private DateTime last_msg = DateTime.Now;
+
         public PhThreadClientHandler(TcpClient c, NetworkStream n) {
             this.client = c;
             this.ns = n;
@@ -24,6 +26,7 @@ namespace PhPPTGen.phSocket {
         }
 
         public void StopClientHandler() {
+            Console.WriteLine("Close Client Handler!!");
             ns.Close();
             client.Close();
             isRunning = false;
@@ -32,11 +35,22 @@ namespace PhPPTGen.phSocket {
         public void HandleClient() {
 
             while (isRunning) {
-                // TODO: 接受数据
-                if (client.Available == 0) {
+
+                if (!client.Connected) {
                     StopClientHandler();
                     break;
                 }
+
+                if (client.Available == 0) {
+                    TimeSpan span = DateTime.Now - last_msg;
+                    if (span.TotalMinutes > 5) {
+                        client.Close();
+                    }
+                    Thread.Sleep(500);
+                    continue;
+                }
+
+                last_msg = DateTime.Now;
 
                 try {
                     Array.Clear(bytes, 0, 1024);

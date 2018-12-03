@@ -34,6 +34,7 @@ namespace PhPPTGen.phCommon {
         public void CheckingHandler() {
             
             while (isRunning) {
+                Thread.Sleep(500);
                 lock(locker) {
                     if (lst.Count > 0) {
                         List<phMsgDefine.PhMsgContent>.Enumerator iterator = lst.GetEnumerator();

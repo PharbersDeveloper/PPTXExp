@@ -12,8 +12,6 @@ namespace PhPPTGen.phCommand {
 
 
         public override Object Exec(params Object[] parameters) {
-
-            // TODO: Windows 才能使用，我去
             Console.WriteLine("PPTExp PhCommand: Create a new PPTX, with the UUID name!");
             var req = (phModel.PhRequest)parameters[0];
             var file_name = req.file_name;

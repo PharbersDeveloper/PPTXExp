@@ -1,5 +1,5 @@
 ﻿using System;
-namespace PPTXExp.phCommand {
+namespace PhPPTGen.phCommand {
     public abstract class PhCommand {
         public virtual Object Exec(params Object[] parameters) {
             Console.WriteLine("something should be exec!");

@@ -4,7 +4,7 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Text;
 
-namespace PPTXExp.phSocket {
+namespace PhPPTGen.phSocket {
     public class PhThreadClientHandler {
         private TcpClient client = null;
         private NetworkStream ns = null;

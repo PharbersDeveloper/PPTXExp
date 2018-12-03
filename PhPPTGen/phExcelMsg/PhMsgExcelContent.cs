@@ -1,5 +1,5 @@
 ﻿using System;
-namespace PPTXExp.phExcelMsg {
+namespace PhPPTGen.phExcelMsg {
     public class PhMsgExcelContent {
         public PhMsgExcelContent() {
         }

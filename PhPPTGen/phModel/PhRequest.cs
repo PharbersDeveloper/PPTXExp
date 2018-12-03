@@ -1,5 +1,5 @@
 ﻿using System;
-namespace PPTXExp.phModel {
+namespace PhPPTGen.phModel {
     public class PhRequest {
         //public PhRequest() {
         //}

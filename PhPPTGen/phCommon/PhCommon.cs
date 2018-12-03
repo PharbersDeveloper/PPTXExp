@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using JsonApiSerializer;
 
-namespace PPTXExp.phCommon {
+namespace PhPPTGen.phCommon {
     public class PhCommon {
         public static string UUID() {
             return Guid.NewGuid().ToString();

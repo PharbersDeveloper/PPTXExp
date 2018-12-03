@@ -3,7 +3,7 @@ using System.Net;
 using System.Threading;
 using System.Collections.Generic;
 
-namespace PPTXExp.phCommon {
+namespace PhPPTGen.phCommon {
     public class PhMsgLst {
         private Object locker = new Object();
         private List<phMsgDefine.PhMsgContent> lst = new List<phMsgDefine.PhMsgContent>();

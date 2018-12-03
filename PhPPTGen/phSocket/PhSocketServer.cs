@@ -1,17 +1,19 @@
 ﻿using System;
+using System.Threading;
 using System.Net;
 using System.Net.Sockets;
 using System.Collections.Generic;
 
-namespace PPTXExp.phSocket {
+namespace PhPPTGen.phSocket {
     public class PhSocketServer {
         private bool done = false;
         private int portNum = 9999;
-        private TcpListener listener = null;
+        //private TcpListener listener = null;
         private Dictionary<string, PhThreadClientHandler> clients = new Dictionary<string, PhThreadClientHandler>();
 
         public void StartListeningData() {
-            TcpListener listener = new TcpListener(this.portNum);
+            IPAddress localAddr = IPAddress.Parse("192.168.100.195");
+            TcpListener listener = new TcpListener(localAddr, this.portNum);
             listener.Start();
 
             while (!done) {
@@ -20,6 +22,7 @@ namespace PPTXExp.phSocket {
 
                 Console.WriteLine("Connection accepted.");
                 NetworkStream ns = client.GetStream();
+                Thread.Sleep(1000);
 
                 PhThreadClientHandler handler = new PhThreadClientHandler(client, ns);
                 handler.StartClientHandler();

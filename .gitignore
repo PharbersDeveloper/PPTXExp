@@ -1,5 +1,7 @@
-Debug
-obj
+PhPPTGen/bin
+PhPPTGen/obj
+.vs
+packages
+*.cache
 *.dll
-
 *.pdb

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace PPTXExp.phSocket {
+namespace PhPPTGen.phSocket {
     public class PhThreadSocketServ {
         PhSocketServer serv = new PhSocketServer();
 

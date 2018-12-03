@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace PPTXExp.phCommandFactory {
+namespace PhPPTGen.phCommandFactory {
     public class PhCommandFactory {
         private Dictionary<string, string> dic = new Dictionary<string, string>();
 
@@ -32,7 +32,7 @@ namespace PPTXExp.phCommandFactory {
             try {
                 return dic[name];
             } catch(Exception ex) {
-                //Console.Write(ex.StackTrace);
+                Console.Write(ex.StackTrace);
                 return null;
             }
         }

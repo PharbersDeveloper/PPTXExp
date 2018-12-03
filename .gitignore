@@ -1,0 +1,5 @@
+Debug
+obj
+*.dll
+
+*.pdb

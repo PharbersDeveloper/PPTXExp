@@ -1,13 +1,10 @@
-﻿using System;
+﻿
 namespace PhPPTGen.phModel {
     public class PhRequest {
-        //public PhRequest() {
-        //}
         public string id { get; set; }
-        public string res { get; set; }
-        public string command { get; set; }
-        public string file_name { get; set; }
-        public int slider_idx { get; set; }
-        public int table_idx { get; set; }
+        public PhProcessStep step { get; set; }
+        public PhExcelPush push { get; set; }
+        public PhExcel2PPT e2p { get; set; }
+        public PhExportPPT exp { get; set; }
     }
 }

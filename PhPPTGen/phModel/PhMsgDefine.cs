@@ -5,5 +5,19 @@ namespace PhPPTGen.phModel {
         public static string Ph_Msg_ExcelPush = "ExcelPush";
         public static string Ph_Msg_Excel2PPT = "Excel2PPT";
         public static string Ph_Msg_ExportPPT = "ExportPPT";
+
+        public static string PhCommand2Cls(string cmd) {
+            if (cmd == Ph_Msg_GenPPT) {
+                return "PhPPTGen.phCommand.PhGenPPTCommand";
+            } else if (cmd == Ph_Msg_ExcelPush) {
+                return "PhPPTGen.phCommand.PhGenPPTCommand";
+            } else if (cmd == Ph_Msg_Excel2PPT) {
+                return "PhPPTGen.phCommand.PhGenPPTCommand";
+            } else if (cmd == Ph_Msg_ExportPPT) {
+                return "PhPPTGen.phCommand.PhGenPPTCommand";
+            } else {
+                throw new System.Exception("Can not handler message");
+            }
+        }
     }
 }

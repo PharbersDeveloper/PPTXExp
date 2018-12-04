@@ -97,12 +97,15 @@
     <Compile Include="phCommandFactory\PhCommandFactory.cs" />
     <Compile Include="phCommand\PhCommand.cs" />
     <Compile Include="phCommand\PhCreatePPTCommand.cs" />
+    <Compile Include="phCommand\PhGenPPTCommand.cs" />
     <Compile Include="phCommon\PhCommon.cs" />
-    <Compile Include="phCommon\phMsgDefine\PhMsg.cs" />
-    <Compile Include="phCommon\phMsgDefine\PhMsgContent.cs" />
-    <Compile Include="phCommon\phMsgDefine\PhMsgHeader.cs" />
+    <Compile Include="phCommon\PhMsgContent.cs" />
     <Compile Include="phCommon\PhMsgLst.cs" />
     <Compile Include="phExcelMsg\PhMsgExcelContent.cs" />
+    <Compile Include="phModel\PhExcel2PPT.cs" />
+    <Compile Include="phModel\PhExcelPush.cs" />
+    <Compile Include="phModel\PhExportPPT.cs" />
+    <Compile Include="phModel\PhMsgDefine.cs" />
     <Compile Include="phModel\PhRequest.cs" />
     <Compile Include="phSocket\PhSocketServer.cs" />
     <Compile Include="phSocket\PhThreadClientHandler.cs" />
@@ -113,6 +116,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="phCommand\phExcel\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

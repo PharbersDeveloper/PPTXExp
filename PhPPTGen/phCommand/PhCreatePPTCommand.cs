@@ -14,12 +14,12 @@ namespace PhPPTGen.phCommand {
         public override Object Exec(params Object[] parameters) {
             Console.WriteLine("PPTExp PhCommand: Create a new PPTX, with the UUID name!");
             var req = (phModel.PhRequest)parameters[0];
-            var file_name = req.file_name;
-            Console.WriteLine("get file with name");
-            var fct = phCommandFactory.PhCommandFactory.GetInstance();
-            var pptx = fct.GetHandledPPTX(file_name);
+            //var file_name = req.file_name;
+            //Console.WriteLine("get file with name");
+            //var fct = phCommandFactory.PhCommandFactory.GetInstance();
+            //var pptx = fct.GetHandledPPTX(file_name);
 
-            if (pptx == null) {
+            //if (pptx == null) {
                 Workbook book = new Workbook();
                 book.LoadFromFile(@"D:\\pptresult\data2.xls");
                 Image image = book.Worksheets[0].SaveToImage(1, 1, 5, 4);
@@ -37,7 +37,7 @@ namespace PhPPTGen.phCommand {
                     oleObject.ProgId = "Excel.Sheet.8";
                 }
                 ppt.SaveToFile(@"D:\\pptresult\InsertOle.pptx", Spire.Presentation.FileFormat.Pptx2010);
-            }
+            //}
 
             //this.TestPPT();
             //this.TestWithExcel();

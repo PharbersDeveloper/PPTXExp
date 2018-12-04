@@ -29,12 +29,15 @@ namespace PhPPTGen.phCommandFactory {
         }
 
         public string GetHandledPPTX(string name) {
-            try {
+            if (dic.ContainsKey(name)) {
                 return dic[name];
-            } catch(Exception ex) {
-                Console.Write(ex.StackTrace);
+            } else {
                 return null;
             }
+        }
+
+        public string GetTmpDictionary() {
+            return @"D:\\pptresult\";
         }
     }
 }

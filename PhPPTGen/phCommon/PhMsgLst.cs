@@ -41,8 +41,11 @@ namespace PhPPTGen.phCommon {
                         if (iterator.MoveNext()) {
                             phMsgDefine.PhMsgContent current = iterator.Current;
                             phModel.PhRequest req = PhCommon.Content2Object<phModel.PhRequest>(current);
+                            Console.WriteLine("Current Command is :");
+                            Console.WriteLine(req.command);
+                            string cls = phModel.PhMsgDefine.PhCommand2Cls(req.command);
                             phCommandFactory.PhCommandFactory fct = phCommandFactory.PhCommandFactory.GetInstance();
-                            fct.CreateCommandInstance(req.command, req);
+                            fct.CreateCommandInstance(cls, req);
                             lst.Remove(current);
                         }
                     }

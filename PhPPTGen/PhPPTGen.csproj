@@ -96,7 +96,7 @@
   <ItemGroup>
     <Compile Include="phCommandFactory\PhCommandFactory.cs" />
     <Compile Include="phCommand\PhCommand.cs" />
-    <Compile Include="phCommand\PhCreatePPTCommand.cs" />
+    <Compile Include="phCommand\phPpt\PhCreatePPTCommand.cs" />
     <Compile Include="phCommand\phExcel\PhUpdateXlsCommand.cs" />
     <Compile Include="phCommand\PhGenPPTCommand.cs" />
     <Compile Include="phCommon\PhCommon.cs" />

@@ -27,6 +27,11 @@ namespace PhPPTGen.phCommand {
                 throw new Exception("Can not generate ppt working path twice");
             }
 
+            /**
+             * 2. create final result pptx
+             */
+            fct.CreateCommandInstance("PhPPTGen.phCommand.PhCreatePPTCommand", req);
+
             return null;
         }
     }

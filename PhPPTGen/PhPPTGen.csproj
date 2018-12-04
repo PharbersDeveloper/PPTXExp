@@ -99,6 +99,7 @@
     <Compile Include="phCommand\phPpt\PhCreatePPTCommand.cs" />
     <Compile Include="phCommand\phExcel\PhUpdateXlsCommand.cs" />
     <Compile Include="phCommand\PhGenPPTCommand.cs" />
+    <Compile Include="phCommand\phPpt\PhPPTImportXlsCommand.cs" />
     <Compile Include="phCommon\PhCommon.cs" />
     <Compile Include="phCommon\PhMsgContent.cs" />
     <Compile Include="phCommon\PhMsgLst.cs" />

@@ -4,7 +4,6 @@ namespace PhPPTGen.phModel {
         public string id { get; set; }
         public string name { get; set; }
         public int[] pos { get; set; }
-        public int col { get; set; }
-        public int row { get; set; }
+        public int slider { get; set; }
     }
 }

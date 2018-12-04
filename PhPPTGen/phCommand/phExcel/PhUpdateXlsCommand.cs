@@ -19,7 +19,7 @@ namespace PhPPTGen.phCommand.phExcel {
              */
             var fct = phCommandFactory.PhCommandFactory.GetInstance();
             var tmpDir = fct.GetTmpDictionary();
-            var workingPath = tmpDir + jobid;
+            var workingPath = tmpDir + "\\" + jobid;
 
             /**
              * 2. query excel xls file in the working dir

@@ -19,7 +19,7 @@ namespace PhPPTGen.phCommand {
              */
             var fct = phCommandFactory.PhCommandFactory.GetInstance();
             var tmpDir = fct.GetTmpDictionary();
-            var workingPath = tmpDir + jobid;
+            var workingPath = tmpDir + "\\" + jobid;
             
             if (!Directory.Exists(workingPath)) {
                 Directory.CreateDirectory(workingPath);

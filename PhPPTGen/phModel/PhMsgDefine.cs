@@ -12,7 +12,7 @@ namespace PhPPTGen.phModel {
             } else if (cmd == Ph_Msg_ExcelPush) {
                 return "PhPPTGen.phCommand.phExcel.PhUpdateXlsCommand";
             } else if (cmd == Ph_Msg_Excel2PPT) {
-                return "PhPPTGen.phCommand.PhGenPPTCommand";
+                return "PhPPTGen.phCommand.phPpt.PhPPTImportXlsCommand";
             } else if (cmd == Ph_Msg_ExportPPT) {
                 return "PhPPTGen.phCommand.PhGenPPTCommand";
             } else {

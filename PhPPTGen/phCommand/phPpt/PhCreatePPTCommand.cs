@@ -1,9 +1,5 @@
 ﻿using System;
-using System.IO;
 using Spire.Presentation;
-using Spire.Xls;
-using System.Drawing;
-using Spire.Presentation.Drawing;
 
 namespace PhPPTGen.phCommand {
     public class PhCreatePPTCommand : PhCommand {

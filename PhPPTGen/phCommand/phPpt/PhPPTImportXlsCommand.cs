@@ -45,6 +45,11 @@ namespace PhPPTGen.phCommand.phPpt {
 
             Presentation ppt = new Presentation();
             ppt.LoadFromFile(ppt_path);
+
+            while (ppt.Slides.Count <= e2p.slider) {
+                ppt.Slides.Append();
+            }
+
             Image image = book.Worksheets[0].SaveToImage(1, 1, row, col);
 
             IImageData oleImage = ppt.Images.Append(image);

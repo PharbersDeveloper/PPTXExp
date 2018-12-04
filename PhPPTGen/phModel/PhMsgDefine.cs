@@ -5,6 +5,7 @@ namespace PhPPTGen.phModel {
         public static string Ph_Msg_ExcelPush = "ExcelPush";
         public static string Ph_Msg_Excel2PPT = "Excel2PPT";
         public static string Ph_Msg_ExportPPT = "ExportPPT";
+        public static string Ph_Msg_PushText = "PushText";
 
         public static string PhCommand2Cls(string cmd) {
             if (cmd == Ph_Msg_GenPPT) {
@@ -13,6 +14,8 @@ namespace PhPPTGen.phModel {
                 return "PhPPTGen.phCommand.phExcel.PhUpdateXlsCommand";
             } else if (cmd == Ph_Msg_Excel2PPT) {
                 return "PhPPTGen.phCommand.phPpt.PhPPTImportXlsCommand";
+            } else if (cmd == Ph_Msg_PushText) {
+                return "PhPPTGen.phCommand.phText.PhTextContentCommand";
             } else if (cmd == Ph_Msg_ExportPPT) {
                 return "PhPPTGen.phCommand.PhGenPPTCommand";
             } else {

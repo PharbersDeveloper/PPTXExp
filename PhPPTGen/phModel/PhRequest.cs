@@ -13,5 +13,6 @@ namespace PhPPTGen.phModel {
         // Shape
 
         // Text
+        public PhTextSetContent text { get; set; }
     }
 }

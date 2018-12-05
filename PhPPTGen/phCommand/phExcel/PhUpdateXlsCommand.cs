@@ -49,7 +49,7 @@ namespace PhPPTGen.phCommand.phExcel {
             Console.WriteLine("File not exist, should create one");
             Workbook workbook = new Workbook();
             Worksheet sheet = workbook.Worksheets[0];
-            sheet.Range["A1"].Text = "Hello,World!";
+            //sheet.Range["A1"].Text = "Hello,World!";
             workbook.SaveToFile(path);
         }
 

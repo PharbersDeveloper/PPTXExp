@@ -33,13 +33,13 @@ namespace PhPPTGen.phCommand.phText {
             }
 
             //append new shape
-            IAutoShape shape = presentation.Slides[text.slider].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(50, 70, 450, 150));
+            IAutoShape shape = presentation.Slides[text.slider].Shapes.AppendShape(ShapeType.Rectangle, new RectangleF(text.pos[0], text.pos[1], text.pos[2], text.pos[3]));
             shape.Fill.FillType = Spire.Presentation.Drawing.FillFormatType.None;
             shape.ShapeStyle.LineColor.Color = Color.White;
 
-            shape.TextFrame.Paragraphs[0].Alignment = TextAlignmentType.Left;
-            shape.TextFrame.Paragraphs[0].Indent = 50;
-            shape.TextFrame.Paragraphs[0].LineSpacing = 150;
+            shape.TextFrame.Paragraphs[0].Alignment = TextAlignmentType.Center;
+            //shape.TextFrame.Paragraphs[0].Indent = 50;
+            //shape.TextFrame.Paragraphs[0].LineSpacing = 150;
             shape.TextFrame.Text = text.content;
 
             shape.TextFrame.Paragraphs[0].TextRanges[0].LatinFont = new TextFont("Arial Rounded MT Bold");

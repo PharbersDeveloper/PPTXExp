@@ -62,11 +62,15 @@ namespace PhPPTGen.phCommand.phExcel {
                 sheet.Range[p.cell].Merge();
             }
 
+            sheet.Range[p.cell].Style.VerticalAlignment = VerticalAlignType.Center;
+            sheet.Range[p.cell].Style.HorizontalAlignment = HorizontalAlignType.Center;
+
             if (p.cate == "String") {
                 sheet.Range[p.cell].Text = p.value;
             } else {
                 double tmp = 0.0;
                 double.TryParse(p.value, out tmp);
+                sheet.Range[p.cell].NumberFormat = "#,##0.00";
                 sheet.Range[p.cell].NumberValue = tmp;
             }
 

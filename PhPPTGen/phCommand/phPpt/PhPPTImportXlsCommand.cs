@@ -53,7 +53,14 @@ namespace PhPPTGen.phCommand.phPpt {
             Image image = book.Worksheets[0].SaveToImage(1, 1, row, col);
 
             IImageData oleImage = ppt.Images.Append(image);
-            Rectangle rec = new Rectangle(e2p.pos[0], e2p.pos[1], image.Width, image.Height);
+            var width = image.Width;
+            var height = image.Height;
+            if (e2p.pos.Length == 4) {
+                width = e2p.pos[2];
+                height = e2p.pos[3];
+            }
+            //Rectangle rec = new Rectangle(e2p.pos[0], e2p.pos[1], image.Width, image.Height);
+            Rectangle rec = new Rectangle(e2p.pos[0], e2p.pos[1], width, height);
             using (MemoryStream ms = new MemoryStream()) {
                 book.SaveToStream(ms);
                 ms.Position = 0;

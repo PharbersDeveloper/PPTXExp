@@ -16,7 +16,7 @@ namespace PhPPTGen.phCommand.phExcel {
 		public override object Exec(params object[] parameters) {
 			css = (PhExcelCss)parameters[0];
 			Sheet = (Worksheet)parameters[1];
-			
+			SetCss();
 			return null;
 		}
 
@@ -71,6 +71,10 @@ namespace PhPPTGen.phCommand.phExcel {
 						break;
 				}
 			}
+		}
+
+		protected void SetCellBordersColor() {
+			Sheet.Range[css.cell].Borders.Color = System.Drawing.ColorTranslator.FromHtml(css.cellBordersColor);
 		}
 	}
 }

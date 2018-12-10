@@ -12,7 +12,7 @@ namespace PhPPTGen.phSocket {
         //private Dictionary<string, PhThreadClientHandler> clients = new Dictionary<string, PhThreadClientHandler>();
 
         public void StartListeningData() {
-            IPAddress localAddr = IPAddress.Parse("192.168.100.117");
+            IPAddress localAddr = IPAddress.Parse("192.168.100.141");
             TcpListener listener = new TcpListener(localAddr, this.portNum);
             listener.Start();
 

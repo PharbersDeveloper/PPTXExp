@@ -77,31 +77,5 @@ namespace PhPPTGen.phCommand.phExcel {
 			fct.CreateCommandInstance(p.css.factory, p.css, sheet);
 			workbook.SaveToFile(path);
         }
-
-		private void SetCss(Worksheet sheet, PhExcelPush p) {
-			var col = sheet.Columns.Length;
-			var row = sheet.Rows.Length;
-			/**
-			 * test
-			 * 设置行高列宽
-			 * 设置字体字号颜色
-			 * 设置背景色
-			 * 设置边框
-			 */
-			for (int i = 1; i <= row; i++) {
-				sheet.SetRowHeight(i, 13.5);
-			}
-			sheet.SetColumnWidth(1, 23);
-			for (int i = 2; i <= col; i++) {
-				sheet.SetColumnWidth(i, 10);
-			}
-			sheet.Rows[0].Style.Font.FontName = "华文琥珀";
-			sheet.Rows[0].Style.Font.Size = 15;
-			sheet.Rows[0].Style.Font.Color = Color.Red;
-			sheet.Rows[0].Style.Color = Color.Yellow;
-			sheet.Rows[0].Borders[BordersLineType.EdgeTop].LineStyle = LineStyleType.Thin;
-			sheet.Rows[0].Borders[BordersLineType.EdgeBottom].LineStyle = LineStyleType.Thin;
-			sheet.Range["D1:D7"].Borders[BordersLineType.EdgeRight].LineStyle = LineStyleType.Thin;
-		}
     }
 }

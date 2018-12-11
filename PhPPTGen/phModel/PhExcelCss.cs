@@ -16,5 +16,8 @@ namespace PhPPTGen.phModel {
 		public string cellColor { get; set; } = "#FFFFFF";
 		public string[] cellBorders { get; set; }
 		public string cellBordersColor { get; set; } = "#FFFFFF";
+		public string cellHeight { get; set; } = "10";
+		public string cellWidth { get; set; } = "16";
+
 	}
 }

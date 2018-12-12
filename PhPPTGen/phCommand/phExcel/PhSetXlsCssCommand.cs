@@ -26,8 +26,12 @@ namespace PhPPTGen.phCommand.phExcel {
 			SetFontName();
 			SetFontStyle();
 			SetCellColor();
-			SetCellBorders();
-		}
+            SetCellBorders();
+            SetCellBordersColor();
+            SetHeight();
+            SetWidth();
+
+        }
 
 		protected void SetFontSize() {
 			Sheet.Range[css.cell].Style.Font.Size = int.Parse(css.fontSize);
@@ -42,8 +46,8 @@ namespace PhPPTGen.phCommand.phExcel {
 		}
 
 		protected void SetFontStyle() {
-			Sheet.Range[css.cell].Style.Font.IsBold = ((IList)css.fontStyle).Contains("bold ");
-			Sheet.Range[css.cell].Style.Font.IsItalic = ((IList)css.fontStyle).Contains("italic ");
+			Sheet.Range[css.cell].Style.Font.IsBold = ((IList)css.fontStyle).Contains("bold");
+			Sheet.Range[css.cell].Style.Font.IsItalic = ((IList)css.fontStyle).Contains("italic");
 		}
 
 		protected void SetCellColor() {
@@ -78,11 +82,13 @@ namespace PhPPTGen.phCommand.phExcel {
 		}
 
 		protected void SetHeight() {
-			Sheet.Range[css.cell].RowHeight = int.Parse(css.cellHeight); 
-		}
+            if (!css.height.Equals("0")) Sheet.Range[css.cell].RowHeight = double.Parse(css.height);
+            //if (!css.height.Equals("0")) Sheet.SetRowHeight(Sheet.Range[css.cell].RowCount, double.Parse(css.height));
+        }
 
-		protected void SetWidth() {
-			Sheet.Range[css.cell].RowHeight = int.Parse(css.cellWidth);
-		}
-	}
+        protected void SetWidth() {
+            if (!css.width.Equals("0")) Sheet.Range[css.cell].ColumnWidth = double.Parse(css.width);
+            //if (!css.width.Equals("0")) Sheet.SetColumnWidth(Sheet.Range[css.cell].ColumnCount, double.Parse(css.width));
+        }
+    }
 }

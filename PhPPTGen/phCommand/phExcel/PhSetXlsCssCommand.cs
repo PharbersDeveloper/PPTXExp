@@ -27,6 +27,9 @@ namespace PhPPTGen.phCommand.phExcel {
 			SetFontStyle();
 			SetCellColor();
 			SetCellBorders();
+			SetCellBordersColor();
+			SetHeight();
+			SetWidth();
 		}
 
 		protected void SetFontSize() {
@@ -78,11 +81,11 @@ namespace PhPPTGen.phCommand.phExcel {
 		}
 
 		protected void SetHeight() {
-			Sheet.Range[css.cell].RowHeight = int.Parse(css.cellHeight); 
+			Sheet.Range[css.cell].RowHeight = double.Parse(css.cellHeight); 
 		}
 
 		protected void SetWidth() {
-			Sheet.Range[css.cell].RowHeight = int.Parse(css.cellWidth);
+			Sheet.Range[css.cell].ColumnWidth = double.Parse(css.cellWidth);
 		}
 	}
 }

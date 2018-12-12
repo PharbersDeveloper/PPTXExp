@@ -59,6 +59,13 @@ namespace PhPPTGen.phCommand.phChart {
 			//chart.ChartTitle.Height = 30;
 			chart.HasTitle = false;
 			chart.HasLegend = false;
+			chart.ChartDataTable.ShowLegendKey = true;
+			chart.HasDataTable = true;
+			chart.PrimaryCategoryAxis.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
+			chart.PrimaryValueAxis.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
+			//chart.PlotArea.Top = 1;
+			//chart.PlotArea.Left = 100;
+
 			//for (int i = 0; i < data.GetLength(0); i++)
 			//{
 			//    for (int j = 0; j < data.GetLength(1); j++)
@@ -84,7 +91,7 @@ namespace PhPPTGen.phCommand.phChart {
 				string end = ((char)((int)'A' + (dt.Columns.Count - 1))).ToString() + (i + 2);
 				chart.Series[i].Values = chart.ChartData[start, end];
 			}
-			chart.ChartStyle = ChartStyle.Style11;
+			//chart.ChartStyle = ChartStyle.Style11;
 			//chart.GapWidth = 200;
 
 			ppt.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
@@ -124,19 +131,33 @@ namespace PhPPTGen.phCommand.phChart {
 			}
 				
 		}
-				
 
-		//static void Main(string[] args) {
-		//	phModel.PhRequest phRequest = new phModel.PhRequest();
-		//	phModel.PhExcel2PPT phExcel2PPT = new phModel.PhExcel2PPT();
-		//	phExcel2PPT.name = "test1";
-		//	phExcel2PPT.slider = 1;
-		//	phExcel2PPT.pos = new int[4] { 50, 60, 600, 200 };
-		//	phRequest.jobid = "test";
-		//	phRequest.e2p = phExcel2PPT;
-		//	new PhCreatePPTCommand().Exec(phRequest);
-		//	new phPpt.PhPPTImportXlsCommand().Exec(phRequest);
-		//}
+
+		static void Main(string[] args) {
+			phModel.PhRequest phRequest = new phModel.PhRequest();
+			phModel.PhExcel2PPT phExcel2PPT = new phModel.PhExcel2PPT();
+			phModel.PhExcelCss phExcelCss = new phModel.PhExcelCss() {
+				cell = "A1", cellBordersColor = "#F5F5F5",
+				cellBorders =new string[2] {"top#Thin", "bottom#Thin"}
+			};
+			phModel.PhExcelPush PhExcelPush = new phModel.PhExcelPush() {
+				name = "testCss", cell = "A1", cate = "String", value = "test",
+				css = phExcelCss
+			};
+			
+			phExcel2PPT.name = "test";
+			phExcel2PPT.slider = 1;
+			phExcel2PPT.pos = new int[4] { 50, 60, 600, 200 };
+	
+		
+
+			phRequest.jobid = "test";
+			phRequest.e2p = phExcel2PPT;
+			phRequest.push = PhExcelPush;
+			new PhCreatePPTCommand().Exec(phRequest);
+			//new PhChartContentCommand().Exec(phRequest);
+			new phExcel.PhUpdateXlsCommand().Exec(phRequest);
+		}
 
 	}
 }

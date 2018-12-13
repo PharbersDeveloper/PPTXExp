@@ -79,6 +79,7 @@ namespace PhPPTGen.phCommand.phExcel {
 
 		protected void SetCellBordersColor() {
 			Sheet.Range[css.cell].Borders.Color = System.Drawing.ColorTranslator.FromHtml(css.cellBordersColor);
+			//Sheet.Range[css.cell].Borders.Color = System.Drawing.Color.Gainsboro;
 		}
 
 		protected void SetHeight() {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using PhPPTGen.phModel;
@@ -10,7 +11,9 @@ namespace PhPPTGen.phCommand.phExcel {
 
         }
 
-        public override object Exec(params object[] parameters) {
+		public static Dictionary<string, Workbook> workbookMap = new Dictionary<string, Workbook>();
+
+		public override object Exec(params object[] parameters) {
             Console.WriteLine("Execute Commmand: PhUpdateXls update value command");
             var req = (phModel.PhRequest)parameters[0];
             var jobid = req.jobid;
@@ -29,36 +32,37 @@ namespace PhPPTGen.phCommand.phExcel {
             Console.WriteLine("push Value to Excel");
             Console.WriteLine(excel_name);
             var file_path = workingPath + "\\" + excel_name + ".xls";
+			string workbookKey = jobid + excel_name;
 
             /**
              * 2.1 check excel is created
              *     if no create it
              */
-            if (!File.Exists(file_path)) {
-                CreateXlsInPath(file_path);
+            if (!workbookMap.ContainsKey(workbookKey) {
+                CreateXlsInMap(workbookKey);
             }
 
             /**
              * 3. update the value in the excel
              */
-            UpdateXlsInPath(file_path, req.push);
+            UpdateXlsInPath(workbookKey, req.push);
 
             return null;
         }
 
-        private void CreateXlsInPath(string path) {
-            Console.WriteLine("File not exist, should create one");
+        private void CreateXlsInMap(string key) {
+            Console.WriteLine("workbook not exist, should create one");
             Workbook workbook = new Workbook();
             Worksheet sheet = workbook.Worksheets[0];
-            //sheet.Range["A1"].Text = "Hello,World!";
-            workbook.SaveToFile(path);
-        }
+			workbookMap.Add(key, workbook);
 
-        private void UpdateXlsInPath(string path, PhExcelPush p) {
-            Console.WriteLine("Write a value to excel");
-            Workbook workbook = new Workbook();
-            workbook.LoadFromFile(path);
-            Worksheet sheet = workbook.Worksheets[0];
+		}
+
+        private void UpdateXlsInPath(string key, PhExcelPush p) {
+			Console.WriteLine("Write a value to excel");
+			Workbook workbook = new Workbook(); 
+			workbookMap.TryGetValue(key, out workbook);
+			Worksheet sheet = workbook.Worksheets[0];
             if (p.cell.Contains(":")) {
                 sheet.Range[p.cell].Merge();
             }
@@ -75,7 +79,6 @@ namespace PhPPTGen.phCommand.phExcel {
 			 */
 			phCommandFactory.PhCommandFactory fct = phCommandFactory.PhCommandFactory.GetInstance();
 			fct.CreateCommandInstance(p.css.factory, p.css, sheet);
-			workbook.SaveToFile(path);
         }
     }
 }

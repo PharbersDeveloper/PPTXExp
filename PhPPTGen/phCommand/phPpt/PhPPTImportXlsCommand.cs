@@ -4,6 +4,7 @@ using Spire.Xls;
 using Spire.Presentation;
 using System.Drawing;
 using Spire.Presentation.Drawing;
+using PhPPTGen.phCommand.phExcel;
 
 namespace PhPPTGen.phCommand.phPpt {
     public class PhPPTImportXlsCommand : PhCommand {
@@ -23,18 +24,19 @@ namespace PhPPTGen.phCommand.phPpt {
             var fct = phCommandFactory.PhCommandFactory.GetInstance();
             var tmpDir = fct.GetTmpDictionary();
             var workingPath = tmpDir + "\\" + jobid;
+			string workbookKey = jobid + e2p.name;
 
-            /**
+			/**
              * 2. get workbook 
              */
-            var ePath = workingPath + "\\" + e2p.name + ".xls";
-            if (!File.Exists(ePath)) {
+			var ePath = workingPath + "\\" + e2p.name + ".xls";
+            if (!PhUpdateXlsCommand.workbookMap.ContainsKey(workbookKey)) {
                 throw new Exception("Excel name is not exists");
             }
 
             Workbook book = new Workbook();
-            book.LoadFromFile(ePath);
-            Worksheet sheet = book.Worksheets[0];
+			PhUpdateXlsCommand.workbookMap.TryGetValue(workbookKey, out book);
+			Worksheet sheet = book.Worksheets[0];
             var col = sheet.Columns.Length;
             var row = sheet.Rows.Length;
 
@@ -68,6 +70,7 @@ namespace PhPPTGen.phCommand.phPpt {
 
 			}
             ppt.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
+			book.SaveToFile(ePath);
 			return null;
         }
     }

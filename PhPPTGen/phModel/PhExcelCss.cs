@@ -18,6 +18,8 @@ namespace PhPPTGen.phModel {
 		public string cellBordersColor { get; set; } = "";
 		public string height { get; set; } = "0";
 		public string width { get; set; } = "0";
+		public string verticalAlignType { get; set; } = "Center";
+		public string horizontalAlignType { get; set; } = "Center";
 
 	}
 }

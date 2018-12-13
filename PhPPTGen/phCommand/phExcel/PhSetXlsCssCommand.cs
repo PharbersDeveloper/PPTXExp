@@ -30,8 +30,10 @@ namespace PhPPTGen.phCommand.phExcel {
             SetCellBordersColor();
             SetHeight();
             SetWidth();
+			SetAlignment();
 
-        }
+
+		}
 
 		protected void SetFontSize() {
 			Sheet.Range[css.cell].Style.Font.Size = int.Parse(css.fontSize);
@@ -91,5 +93,14 @@ namespace PhPPTGen.phCommand.phExcel {
             if (!css.width.Equals("0")) Sheet.Range[css.cell].ColumnWidth = double.Parse(css.width);
             //if (!css.width.Equals("0")) Sheet.SetColumnWidth(Sheet.Range[css.cell].ColumnCount, double.Parse(css.width));
         }
-    }
+
+		protected void SetAlignment() {
+			
+			Sheet.Range[css.cell].Style.VerticalAlignment =
+				(VerticalAlignType)Enum.Parse(typeof(VerticalAlignType), css.verticalAlignType);
+			Sheet.Range[css.cell].Style.HorizontalAlignment =
+				(HorizontalAlignType)Enum.Parse(typeof(HorizontalAlignType), css.horizontalAlignType);
+		}
+
+	}
 }

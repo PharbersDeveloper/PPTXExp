@@ -63,7 +63,12 @@ namespace PhPPTGen.phCommand.phExcel {
 			Workbook workbook = new Workbook(); 
 			workbookMap.TryGetValue(key, out workbook);
 			Worksheet sheet = workbook.Worksheets[0];
-            if (p.cell.Contains(":")) {
+			/**
+			 * 居中需要写到css中
+			 */
+			sheet.Range[p.cell].Style.VerticalAlignment = VerticalAlignType.Center;
+			sheet.Range[p.cell].Style.HorizontalAlignment = HorizontalAlignType.Center;
+			if (p.cell.Contains(":")) {
                 sheet.Range[p.cell].Merge();
             }
 

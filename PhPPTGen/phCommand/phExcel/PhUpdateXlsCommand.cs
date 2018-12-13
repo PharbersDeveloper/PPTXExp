@@ -59,21 +59,29 @@ namespace PhPPTGen.phCommand.phExcel {
             Workbook workbook = new Workbook();
             workbook.LoadFromFile(path);
             Worksheet sheet = workbook.Worksheets[0];
-            if (p.cell.Contains(":")) {
+            if (p.cell.Contains(":"))
+            {
                 sheet.Range[p.cell].Merge();
             }
 
-            if (p.cate == "String") {
+            sheet.Range[p.cell].Style.VerticalAlignment = VerticalAlignType.Center;
+            sheet.Range[p.cell].Style.HorizontalAlignment = HorizontalAlignType.Center;
+
+            if (p.cate == "String")
+            {
                 sheet.Range[p.cell].Text = p.value;
-            } else {
+            }
+            else
+            {
                 double tmp = 0.0;
                 double.TryParse(p.value, out tmp);
+                sheet.Range[p.cell].NumberFormat = "#,##0.00";
                 sheet.Range[p.cell].NumberValue = tmp;
             }
-			/**
+            /**
 			 * set css
 			 */
-			phCommandFactory.PhCommandFactory fct = phCommandFactory.PhCommandFactory.GetInstance();
+            phCommandFactory.PhCommandFactory fct = phCommandFactory.PhCommandFactory.GetInstance();
 			fct.CreateCommandInstance(p.css.factory, p.css, sheet);
 			workbook.SaveToFile(path);
         }

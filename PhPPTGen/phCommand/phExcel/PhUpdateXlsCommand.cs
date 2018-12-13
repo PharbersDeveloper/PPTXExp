@@ -38,7 +38,7 @@ namespace PhPPTGen.phCommand.phExcel {
              * 2.1 check excel is created
              *     if no create it
              */
-            if (!workbookMap.ContainsKey(workbookKey) {
+            if (!workbookMap.ContainsKey(workbookKey)) {
                 CreateXlsInMap(workbookKey);
             }
 
@@ -66,8 +66,8 @@ namespace PhPPTGen.phCommand.phExcel {
 			/**
 			 * 居中需要写到css中
 			 */
-			sheet.Range[p.cell].Style.VerticalAlignment = VerticalAlignType.Center;
-			sheet.Range[p.cell].Style.HorizontalAlignment = HorizontalAlignType.Center;
+			//sheet.Range[p.cell].Style.VerticalAlignment = VerticalAlignType.Center;
+			//sheet.Range[p.cell].Style.HorizontalAlignment = HorizontalAlignType.Center;
 			if (p.cell.Contains(":")) {
                 sheet.Range[p.cell].Merge();
             }
@@ -77,6 +77,7 @@ namespace PhPPTGen.phCommand.phExcel {
             } else {
                 double tmp = 0.0;
                 double.TryParse(p.value, out tmp);
+                sheet.Range[p.cell].NumberFormat = "#,##0.00";
                 sheet.Range[p.cell].NumberValue = tmp;
             }
 			/**

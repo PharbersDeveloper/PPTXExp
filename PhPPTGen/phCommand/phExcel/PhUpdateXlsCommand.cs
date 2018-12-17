@@ -76,9 +76,16 @@ namespace PhPPTGen.phCommand.phExcel {
                 sheet.Range[p.cell].Text = p.value;
             } else {
                 double tmp = 0.0;
-                double.TryParse(p.value, out tmp);
-                sheet.Range[p.cell].NumberFormat = "#,##0.00";
-                sheet.Range[p.cell].NumberValue = tmp;
+                if(double.TryParse(p.value, out tmp))
+                {
+                    sheet.Range[p.cell].NumberFormat = "#,##0.00";
+                    sheet.Range[p.cell].NumberValue = tmp;
+                }
+                else
+                {
+                    sheet.Range[p.cell].Text = "N/A";
+                }
+               
             }
 			/**
 			 * set css

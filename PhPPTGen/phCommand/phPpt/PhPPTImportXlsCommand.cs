@@ -69,7 +69,7 @@ namespace PhPPTGen.phCommand.phPpt {
                 oleObject.ProgId = "Excel.Sheet.8";
 
 			}
-            ppt.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
+            ppt.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2007);
 			book.SaveToFile(ePath);
 			return null;
         }

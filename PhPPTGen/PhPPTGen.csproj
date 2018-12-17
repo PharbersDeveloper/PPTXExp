@@ -53,50 +53,50 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.Barcode, Version=2.3.0.16040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\..\..\PPTXExp\packages\FreeSpire.Office.3.0\lib\net40\Spire.Barcode.dll</HintPath>
+    <Reference Include="Spire.Barcode, Version=2.10.0.11040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.Office.3.11.5\lib\net40\Spire.Barcode.dll</HintPath>
     </Reference>
     <Reference Include="Spire.Common, Version=1.11.6.6040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
       <HintPath>..\packages\Spire.Office.3.11.5\lib\net40\Spire.Common.dll</HintPath>
     </Reference>
     <Reference Include="Spire.DataExport, Version=3.5.131.4040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\..\..\PPTXExp\packages\FreeSpire.Office.3.0\lib\net40\Spire.DataExport.dll</HintPath>
+      <HintPath>..\packages\Spire.Office.3.11.5\lib\net40\Spire.DataExport.dll</HintPath>
     </Reference>
     <Reference Include="Spire.DataExport.ResourceMgr, Version=1.6.71.4040, Culture=neutral, PublicKeyToken=4bc1500157862925, processorArchitecture=MSIL">
-      <HintPath>..\..\..\PPTXExp\packages\FreeSpire.Office.3.0\lib\net40\Spire.DataExport.ResourceMgr.dll</HintPath>
+      <HintPath>..\packages\Spire.Office.3.11.5\lib\net40\Spire.DataExport.ResourceMgr.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.Doc, Version=6.5.6.4040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\..\..\PPTXExp\packages\FreeSpire.Office.3.0\lib\net40\Spire.Doc.dll</HintPath>
+    <Reference Include="Spire.Doc, Version=6.11.9.4040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.Office.3.11.5\lib\net40\Spire.Doc.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.DocViewer.Forms, Version=3.4.1.14040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\..\..\PPTXExp\packages\FreeSpire.Office.3.0\lib\net40\Spire.DocViewer.Forms.dll</HintPath>
+    <Reference Include="Spire.DocViewer.Forms, Version=3.11.2.5040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.Office.3.11.5\lib\net40\Spire.DocViewer.Forms.dll</HintPath>
     </Reference>
     <Reference Include="Spire.Email, Version=1.3.2.14040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
       <HintPath>..\packages\Spire.Office.3.11.5\lib\net40\Spire.Email.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.License, Version=1.3.6.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
-      <HintPath>..\..\..\PPTXExp\packages\FreeSpire.Office.3.0\lib\net40\Spire.License.dll</HintPath>
+    <Reference Include="Spire.License, Version=1.3.7.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.Office.3.11.5\lib\net40\Spire.License.dll</HintPath>
     </Reference>
     <Reference Include="Spire.OfficeViewer.Forms, Version=3.11.5.14040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
       <HintPath>..\packages\Spire.Office.3.11.5\lib\net40\Spire.OfficeViewer.Forms.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.Pdf, Version=4.5.1.2040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\..\..\PPTXExp\packages\FreeSpire.Office.3.0\lib\net40\Spire.Pdf.dll</HintPath>
+    <Reference Include="Spire.Pdf, Version=4.11.9.2040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.Office.3.11.5\lib\net40\Spire.Pdf.dll</HintPath>
     </Reference>
     <Reference Include="Spire.PdfViewer.Asp, Version=3.11.0.3340, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
       <HintPath>..\packages\Spire.Office.3.11.5\lib\net40\Spire.PdfViewer.Asp.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.PdfViewer.Forms, Version=3.4.1.14340, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\..\..\PPTXExp\packages\FreeSpire.Office.3.0\lib\net40\Spire.PdfViewer.Forms.dll</HintPath>
+    <Reference Include="Spire.PdfViewer.Forms, Version=3.11.0.3340, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.Office.3.11.5\lib\net40\Spire.PdfViewer.Forms.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.Presentation, Version=3.5.1.9040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\..\..\PPTXExp\packages\FreeSpire.Office.3.0\lib\net40\Spire.Presentation.dll</HintPath>
+    <Reference Include="Spire.Presentation, Version=3.11.1.9040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.Office.3.11.5\lib\net40\Spire.Presentation.dll</HintPath>
     </Reference>
     <Reference Include="Spire.Spreadsheet, Version=2.10.3.8040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
       <HintPath>..\packages\Spire.Office.3.11.5\lib\net40\Spire.Spreadsheet.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.XLS, Version=8.5.0.6040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\..\..\PPTXExp\packages\FreeSpire.Office.3.0\lib\net40\Spire.XLS.dll</HintPath>
+    <Reference Include="Spire.XLS, Version=8.11.6.6040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
+      <HintPath>..\packages\Spire.Office.3.11.5\lib\net40\Spire.XLS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -111,6 +111,7 @@
   <ItemGroup>
     <Compile Include="phCommandFactory\PhCommandFactory.cs" />
     <Compile Include="phCommand\phChart\PhChartContentCommand.cs" />
+    <Compile Include="phCommand\phChart\workbookMap.cs" />
     <Compile Include="phCommand\PhCommand.cs" />
     <Compile Include="phCommand\phExcel\css\FontSize.cs" />
     <Compile Include="phCommand\phExcel\PhSetXlsCssCommand.cs" />

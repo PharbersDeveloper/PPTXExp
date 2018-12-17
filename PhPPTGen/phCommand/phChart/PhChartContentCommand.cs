@@ -103,7 +103,14 @@ namespace PhPPTGen.phCommand.phChart {
             book.SaveToFile(ePath);
             ppt = new Presentation();
             ppt.LoadFromFile(ppt_path);
-            (ppt.Slides[e2p.slider].Shapes[2] as IChart).ChartDataTable.Text.Paragraphs[0].DefaultCharacterProperties.FontHeight = 6;
+			foreach (Shape shape in  ppt.Slides[e2p.slider].Shapes){
+				if(shape is IChart) {
+					chart = shape as IChart;
+					chart.ChartDataTable.Text.Paragraphs[0].DefaultCharacterProperties.FontHeight = 6;
+				}
+			}
+			//chart = ppt.Slides[e2p.slider].Shapes[0] as IChart;
+			//chart.ChartDataTable.Text.Paragraphs[0].DefaultCharacterProperties.FontHeight = 6;
             ppt.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
             return null;
 		}
@@ -127,11 +134,11 @@ namespace PhPPTGen.phCommand.phChart {
 
 			for (int i = 0; i < dataTable.Rows.Count; i++) {
 				for (int j = 0; j < dataTable.Rows[0].ItemArray.Length ; j++) {
-					Double number;
+					Double number = 0;
 					string s = dataTable.Rows[i].ItemArray[j].ToString();
 					bool result = Double.TryParse(s, out number);
 					if (result) {
-						chart.ChartData[i + 1, j].Value = number;
+						chart.ChartData[i + 1, j].Value = Math.Round(number, 2);
 					} else {
 						chart.ChartData[i +1, j].Value = s;
 					}		
@@ -142,53 +149,50 @@ namespace PhPPTGen.phCommand.phChart {
 		}
 
 
-        //static void Main(string[] args)
-        //{
-        //    phModel.PhRequest phRequest = new phModel.PhRequest();
-        //    phModel.PhExcel2PPT phExcel2PPT = new phModel.PhExcel2PPT();
-        //    phModel.PhExcelCss phExcelCss = new phModel.PhExcelCss()
-        //    {
-        //        cell = "A1",
-        //        cellBordersColor = "#AEEEEE",
-        //        cellBorders = new string[2] { "top#Thin", "bottom#Thin" },
-        //        cellColor = "#000000"
-        //    };
-        //    phModel.PhExcelPush PhExcelPush = new phModel.PhExcelPush()
-        //    {
-        //        name = "testCss",
-        //        cell = "A1",
-        //        cate = "String",
-        //        value = "test",
-        //        css = phExcelCss
-        //    };
+		static void Main(string[] args) {
+			phModel.PhRequest phRequest = new phModel.PhRequest();
+			phModel.PhExcel2PPT phExcel2PPT = new phModel.PhExcel2PPT();
+			phModel.PhExcelCss phExcelCss = new phModel.PhExcelCss() {
+				cell = "A1",
+				cellBordersColor = "#AEEEEE",
+				cellBorders = new string[2] { "top#Thin", "bottom#Thin" },
+				cellColor = "#000000"
+			};
+			phModel.PhExcelPush PhExcelPush = new phModel.PhExcelPush() {
+				name = "testCss",
+				cell = "A1",
+				cate = "String",
+				value = "test",
+				css = phExcelCss
+			};
 
-        //    phExcel2PPT.name = "test";
-        //    phExcel2PPT.slider = 1;
-        //    phExcel2PPT.pos = new int[4] { 50, 60, 600, 400 };
-        //    Workbook workbook = new Workbook();
-        //    workbook.LoadFromFile(@"D:\pptresult\test\test.xls");
-        //    PhUpdateXlsCommand.workbookMap.Add("testtest", workbook);
-        //    phRequest.jobid = "test";
-        //    phRequest.e2p = phExcel2PPT;
-        //    phRequest.push = PhExcelPush;
-        //    new PhCreatePPTCommand().Exec(phRequest);
-        //    new PhChartContentCommand().Exec(phRequest);
-        //    ////for(int i = 1; i < 20; i++) {
-        //    ////	phExcelCss.cell = "A" + i;
-        //    ////	PhExcelPush.cell = "A" + i;
-        //    ////	new phExcel.PhUpdateXlsCommand().Exec(phRequest);
-        //    ////}
+			phExcel2PPT.name = "test";
+			phExcel2PPT.slider = 1;
+			phExcel2PPT.pos = new int[4] { 50, 60, 600, 400 };
+			Workbook workbook = new Workbook();
+			workbook.LoadFromFile(@"C:\Users\ycq\Documents\pptresult\test\test.xls");
+			PhUpdateXlsCommand.workbookMap.Add("testtest", workbook);
+			phRequest.jobid = "test";
+			phRequest.e2p = phExcel2PPT;
+			phRequest.push = PhExcelPush;
+			new PhCreatePPTCommand().Exec(phRequest);
+			new PhChartContentCommand().Exec(phRequest);
+			////for(int i = 1; i < 20; i++) {
+			////	phExcelCss.cell = "A" + i;
+			////	PhExcelPush.cell = "A" + i;
+			////	new phExcel.PhUpdateXlsCommand().Exec(phRequest);
+			////}
 
-        //    //Workbook workbook = new Workbook();
-        //    //workbook.LoadFromFile(@"C:\Users\ycq\Documents\pptresult\test\testCss.xls");
-        //    //Worksheet sheet = workbook.Worksheets[0];
-        //    //for (int i = 1; i < 100; i++)
-        //    //{
-        //    //    phExcelCss.cell = "A" + i;
-        //    //    new phExcel.PhSetXlsCssBaseCommand().Exec(phExcelCss, sheet);
-        //    //}
-        //    //workbook.SaveToFile(@"C:\Users\ycq\Documents\pptresult\test\testCss.xls");
-        //}
+			//Workbook workbook = new Workbook();
+			//workbook.LoadFromFile(@"C:\Users\ycq\Documents\pptresult\test\testCss.xls");
+			//Worksheet sheet = workbook.Worksheets[0];
+			//for (int i = 1; i < 100; i++)
+			//{
+			//    phExcelCss.cell = "A" + i;
+			//    new phExcel.PhSetXlsCssBaseCommand().Exec(phExcelCss, sheet);
+			//}
+			//workbook.SaveToFile(@"C:\Users\ycq\Documents\pptresult\test\testCss.xls");
+		}
 
-    }
+	}
 }

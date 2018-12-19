@@ -8,6 +8,7 @@ namespace PhPPTGen.phModel {
         // Excel 
         public PhExcelPush push { get; set; }
         public PhExcel2PPT e2p { get; set; }
+		public PhExcel2Chart e2c { get; set; }
         public PhExportPPT exp { get; set; }
 
         // Shape

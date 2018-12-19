@@ -7,26 +7,38 @@ using Spire.Presentation.Drawing;
 using System.Data;
 using Spire.Presentation.Charts;
 using PhPPTGen.phCommand.phExcel;
+using System.Collections.Generic;
 
 namespace PhPPTGen.phCommand.phChart {
 	class PhChartContentCommand : PhCommand {
+		static Dictionary<string, string> workbookMap = new Dictionary<string, string>();
 		public override object Exec(params object[] parameters) {
+			var req = (phModel.PhRequest)parameters[0];
+			var jobid = req.jobid;
+			var e2c = req.e2c;
+			string ins = PhChartType.PhChaerType2Cls(e2c.chartType);
+			phCommandFactory.PhCommandFactory fct = phCommandFactory.PhCommandFactory.GetInstance();
+			fct.CreateCommandInstance(ins, parameters);
+			return null;
+		}
+
+		protected virtual void PutChart(params object[] parameters) {
 			Console.WriteLine("PPTGen phCommand: generate chart shape for ppt");
 			var req = (phModel.PhRequest)parameters[0];
 			var jobid = req.jobid;
-			var e2p = req.e2p;
+			var e2c = req.e2c;
 			/**
              * 1. go to the work place
              */
 			var fct = phCommandFactory.PhCommandFactory.GetInstance();
 			var tmpDir = fct.GetTmpDictionary();
 			var workingPath = tmpDir + "\\" + jobid;
-			string workbookKey = jobid + e2p.name;
+			string workbookKey = jobid + e2c.name;
 
 			/**
              * 2. get workbook 
              */
-			var ePath = workingPath + "\\" + e2p.name + ".xls";
+			var ePath = workingPath + "\\" + e2c.name + ".xls";
 			if (!PhUpdateXlsCommand.workbookMap.ContainsKey(workbookKey)) {
 				throw new Exception("Excel name is not exists");
 			}
@@ -51,42 +63,11 @@ namespace PhPPTGen.phCommand.phChart {
 			Presentation ppt = new Presentation();
 			ppt.LoadFromFile(ppt_path);
 
-			while (ppt.Slides.Count <= e2p.slider) {
+			while (ppt.Slides.Count <= e2c.slider) {
 				ppt.Slides.Append();
 			}
-			Rectangle rec = new Rectangle(e2p.pos[0], e2p.pos[1], e2p.pos[2], e2p.pos[3]);
-			IChart chart = ppt.Slides[e2p.slider].Shapes.AppendChart(Spire.Presentation.Charts.ChartType.Line, rec);
-			//chart.ChartTitle.TextProperties.Text = "部门信息";
-			//chart.ChartTitle.TextProperties.IsCentered = true;
-			//chart.ChartTitle.Height = 30;
-			chart.HasTitle = false;
-			chart.HasLegend = false;
-			chart.ChartDataTable.ShowLegendKey = true;
-            chart.HasDataTable = true;
-            //chart.ChartDataTable.Text.Paragraphs[0].DefaultCharacterProperties.FontHeight = 5;
-            chart.ChartDataTable.Text.AutofitType = TextAutofitType.Normal;
-            chart.PrimaryCategoryAxis.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
-			chart.PrimaryValueAxis.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
-			//chart.PlotArea.Top = 1;
-			//chart.PlotArea.Left = 100;
-
-			//for (int i = 0; i < data.GetLength(0); i++)
-			//{
-			//    for (int j = 0; j < data.GetLength(1); j++)
-			//    {
-			//        //将数字类型的字符串转换为整数
-			//        int number;
-			//        bool result = Int32.TryParse(data[i, j], out number);
-			//        if (result)
-			//        {
-			//            chart.ChartData[i, j].Value = number;
-			//        }
-			//        else
-			//        {
-			//            chart.ChartData[i, j].Value = data[i, j];
-			//        }
-			//    }
-			//}
+			Rectangle rec = new Rectangle(e2c.pos[0], e2c.pos[1], e2c.pos[2], e2c.pos[3]);
+			IChart chart = ppt.Slides[e2c.slider].Shapes.AppendChart(Spire.Presentation.Charts.ChartType.Line, rec);
 			InitChartData(chart, dt);
 			chart.Series.SeriesLabel = chart.ChartData["A2", "A" + row];
 			chart.Categories.CategoryLabels = chart.ChartData["B1", ((char)((int)'A' + (dt.Columns.Count - 1))).ToString() + "1"];
@@ -95,27 +76,33 @@ namespace PhPPTGen.phCommand.phChart {
 				string end = ((char)((int)'A' + (dt.Columns.Count - 1))).ToString() + (i + 2);
 				chart.Series[i].Values = chart.ChartData[start, end];
 			}
-            //chart.ChartStyle = ChartStyle.Style11;
-            //chart.GapWidth = 200;
-            //chart.ChartDataTable.Text.
-    
-            ppt.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
-            book.SaveToFile(ePath);
-            ppt = new Presentation();
-            ppt.LoadFromFile(ppt_path);
-			foreach (Shape shape in  ppt.Slides[e2p.slider].Shapes){
-				if(shape is IChart) {
+
+			chart.HasDataTable = true;
+			ppt.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
+			book.SaveToFile(ePath);
+			Presentation pptx = new Presentation();
+			pptx.LoadFromFile(ppt_path);
+			foreach (Shape shape in ppt.Slides[e2c.slider].Shapes) {
+				if (shape is IChart) {
 					chart = shape as IChart;
-					chart.ChartDataTable.Text.Paragraphs[0].DefaultCharacterProperties.FontHeight = 6;
+					DiyChart(chart);
 				}
 			}
-			//chart = ppt.Slides[e2p.slider].Shapes[0] as IChart;
-			//chart.ChartDataTable.Text.Paragraphs[0].DefaultCharacterProperties.FontHeight = 6;
-            ppt.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
-            return null;
+			ppt.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
 		}
 
-		private void InitChartData(IChart chart, DataTable dataTable) {
+		protected virtual void DiyChart(IChart chart) {
+			chart.HasTitle = false;
+			chart.HasLegend = false;
+			chart.ChartDataTable.ShowLegendKey = true;
+			chart.ChartDataTable.Text.AutofitType = TextAutofitType.Normal;
+			chart.PrimaryCategoryAxis.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
+			chart.PrimaryValueAxis.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
+			chart.ChartDataTable.Text.Paragraphs[0].DefaultCharacterProperties.FontHeight = 6;
+
+		}
+
+		protected virtual void InitChartData(IChart chart, DataTable dataTable) {
 			for (int c = 0; c < dataTable.Columns.Count; c++) {
 				chart.ChartData[0, c].Text = dataTable.Columns[c].Caption;
 			}
@@ -138,7 +125,9 @@ namespace PhPPTGen.phCommand.phChart {
 					string s = dataTable.Rows[i].ItemArray[j].ToString();
 					bool result = Double.TryParse(s, out number);
 					if (result) {
-						chart.ChartData[i + 1, j].Value = Math.Round(number, 2);
+						//chart.ChartData[i + 1, j].Value = Math.Round(number, 2);
+						chart.ChartData[i + 1, j].Value = number;
+
 					} else {
 						chart.ChartData[i +1, j].Value = s;
 					}		
@@ -151,7 +140,7 @@ namespace PhPPTGen.phCommand.phChart {
 
 		static void Main(string[] args) {
 			phModel.PhRequest phRequest = new phModel.PhRequest();
-			phModel.PhExcel2PPT phExcel2PPT = new phModel.PhExcel2PPT();
+			phModel.PhExcel2Chart phExcel2Chart = new phModel.PhExcel2Chart();
 			phModel.PhExcelCss phExcelCss = new phModel.PhExcelCss() {
 				cell = "A1",
 				cellBordersColor = "#AEEEEE",
@@ -166,14 +155,15 @@ namespace PhPPTGen.phCommand.phChart {
 				css = phExcelCss
 			};
 
-			phExcel2PPT.name = "test";
-			phExcel2PPT.slider = 1;
-			phExcel2PPT.pos = new int[4] { 50, 60, 600, 400 };
+			phExcel2Chart.name = "test";
+			phExcel2Chart.slider = 1;
+			phExcel2Chart.pos = new int[4] { 50, 60, 600, 400 };
+			phExcel2Chart.chartType = "Line";
 			Workbook workbook = new Workbook();
-			workbook.LoadFromFile(@"C:\Users\ycq\Documents\pptresult\test\test.xls");
+			workbook.LoadFromFile(@"C:\Users\ycq\Documents\pptresult\test\test2.xls");
 			PhUpdateXlsCommand.workbookMap.Add("testtest", workbook);
 			phRequest.jobid = "test";
-			phRequest.e2p = phExcel2PPT;
+			phRequest.e2c = phExcel2Chart;
 			phRequest.push = PhExcelPush;
 			new PhCreatePPTCommand().Exec(phRequest);
 			new PhChartContentCommand().Exec(phRequest);

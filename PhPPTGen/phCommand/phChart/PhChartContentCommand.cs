@@ -103,7 +103,14 @@ namespace PhPPTGen.phCommand.phChart {
             book.SaveToFile(ePath);
             ppt = new Presentation();
             ppt.LoadFromFile(ppt_path);
-            (ppt.Slides[e2p.slider].Shapes[2] as IChart).ChartDataTable.Text.Paragraphs[0].DefaultCharacterProperties.FontHeight = 6;
+            foreach(Shape shape in ppt.Slides[e2p.slider].Shapes)
+            {
+                if(shape is IChart)
+                {
+                    chart = shape as IChart;
+                    chart.ChartDataTable.Text.Paragraphs[0].DefaultCharacterProperties.FontHeight = 6;
+                }
+            }
             ppt.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
             return null;
 		}
@@ -131,7 +138,7 @@ namespace PhPPTGen.phCommand.phChart {
 					string s = dataTable.Rows[i].ItemArray[j].ToString();
 					bool result = Double.TryParse(s, out number);
 					if (result) {
-						chart.ChartData[i + 1, j].Value = number;
+						chart.ChartData[i + 1, j].Value = Math.Round(number,2);
 					} else {
 						chart.ChartData[i +1, j].Value = s;
 					}		

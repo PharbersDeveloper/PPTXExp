@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 using Spire.Presentation.Charts;
 
 namespace PhPPTGen.phCommand.phChart {
-	class PhComboChart : PhChartContentCommand {
-		public override object Exec(params object[] parameters) {
-			PutChart(parameters);
-			return null;
-		}
+	class PhComboChart : PhChartBase {
 
 		protected override void DiyChart(IChart chart) {
+			chart.HasDataTable = false;
 			chart.ChartLegend.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
 			chart.ChartLegend.Position = ChartLegendPositionType.Top;
 			chart.Series[0].Type = ChartType.ColumnClustered;

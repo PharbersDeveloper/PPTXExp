@@ -10,15 +10,9 @@ using PhPPTGen.phCommand.phExcel;
 using System.Collections.Generic;
 
 namespace PhPPTGen.phCommand.phChart {
-	class PhChartContentCommand : PhCommand {
-		static Dictionary<string, string> workbookMap = new Dictionary<string, string>();
+	class PhChartBase : PhCommand {
 		public override object Exec(params object[] parameters) {
-			var req = (phModel.PhRequest)parameters[0];
-			var jobid = req.jobid;
-			var e2c = req.e2c;
-			string ins = PhChartType.PhChaerType2Cls(e2c.chartType);
-			phCommandFactory.PhCommandFactory fct = phCommandFactory.PhCommandFactory.GetInstance();
-			fct.CreateCommandInstance(ins, parameters);
+			PutChart(parameters);
 			return null;
 		}
 
@@ -120,67 +114,21 @@ namespace PhPPTGen.phCommand.phChart {
 
 
 			for (int i = 0; i < dataTable.Rows.Count; i++) {
-				for (int j = 0; j < dataTable.Rows[0].ItemArray.Length ; j++) {
+				for (int j = 0; j < dataTable.Rows[0].ItemArray.Length; j++) {
 					Double number = 0;
 					string s = dataTable.Rows[i].ItemArray[j].ToString();
 					bool result = Double.TryParse(s, out number);
 					if (result) {
-						chart.ChartData[i + 1, j].Value = Math.Round(number,2);
+						//chart.ChartData[i + 1, j].Value = Math.Round(number, 2);
+						chart.ChartData[i + 1, j].Value = number;
+
 					} else {
-						chart.ChartData[i +1, j].Value = s;
-					}		
+						chart.ChartData[i + 1, j].Value = s;
+					}
 				}
-				
+
 			}
-				
+
 		}
-
-
-		static void Main(string[] args) {
-			phModel.PhRequest phRequest = new phModel.PhRequest();
-			phModel.PhExcel2Chart phExcel2Chart = new phModel.PhExcel2Chart();
-			phModel.PhExcelCss phExcelCss = new phModel.PhExcelCss() {
-				cell = "A1",
-				cellBordersColor = "#AEEEEE",
-				cellBorders = new string[2] { "top#Thin", "bottom#Thin" },
-				cellColor = "#000000"
-			};
-			phModel.PhExcelPush PhExcelPush = new phModel.PhExcelPush() {
-				name = "testCss",
-				cell = "A1",
-				cate = "String",
-				value = "test",
-				css = phExcelCss
-			};
-
-			phExcel2Chart.name = "test";
-			phExcel2Chart.slider = 1;
-			phExcel2Chart.pos = new int[4] { 50, 60, 600, 400 };
-			phExcel2Chart.chartType = "Line";
-			Workbook workbook = new Workbook();
-			workbook.LoadFromFile(@"C:\Users\ycq\Documents\pptresult\test\test1.xls");
-			PhUpdateXlsCommand.workbookMap.Add("testtest", workbook);
-			phRequest.jobid = "test";
-			phRequest.e2c = phExcel2Chart;
-			phRequest.push = PhExcelPush;
-			new PhCreatePPTCommand().Exec(phRequest);
-			new PhChartContentCommand().Exec(phRequest);
-			////for(int i = 1; i < 20; i++) {
-			////	phExcelCss.cell = "A" + i;
-			////	PhExcelPush.cell = "A" + i;
-			////	new phExcel.PhUpdateXlsCommand().Exec(phRequest);
-			////}
-
-			//Workbook workbook = new Workbook();
-			//workbook.LoadFromFile(@"C:\Users\ycq\Documents\pptresult\test\testCss.xls");
-			//Worksheet sheet = workbook.Worksheets[0];
-			//for (int i = 1; i < 100; i++)
-			//{
-			//    phExcelCss.cell = "A" + i;
-			//    new phExcel.PhSetXlsCssBaseCommand().Exec(phExcelCss, sheet);
-			//}
-			//workbook.SaveToFile(@"C:\Users\ycq\Documents\pptresult\test\testCss.xls");
-		}
-
 	}
 }

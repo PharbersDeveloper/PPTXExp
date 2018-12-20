@@ -76,13 +76,13 @@ namespace PhPPTGen.phCommand.phChart {
 			book.SaveToFile(ePath);
 			Presentation pptx = new Presentation();
 			pptx.LoadFromFile(ppt_path);
-			foreach (Shape shape in ppt.Slides[e2c.slider].Shapes) {
+			foreach (Shape shape in pptx.Slides[e2c.slider].Shapes) {
 				if (shape is IChart) {
 					chart = shape as IChart;
 					DiyChart(chart);
 				}
 			}
-			ppt.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
+			pptx.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
 		}
 
 		protected virtual void DiyChart(IChart chart) {
@@ -92,9 +92,11 @@ namespace PhPPTGen.phCommand.phChart {
 			chart.ChartDataTable.Text.AutofitType = TextAutofitType.Normal;
 			chart.PrimaryCategoryAxis.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
 			chart.PrimaryValueAxis.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
-			chart.ChartDataTable.Text.Paragraphs[0].DefaultCharacterProperties.FontHeight = 6;
-
-		}
+            TextParagraph par = new TextParagraph();
+            par.DefaultCharacterProperties.FontHeight = 8;
+			chart.ChartDataTable.Text.Paragraphs.Append(par);
+            //chart.ChartDataTable.Text.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
+        }
 
 		protected virtual void InitChartData(IChart chart, DataTable dataTable) {
 			for (int c = 0; c < dataTable.Columns.Count; c++) {

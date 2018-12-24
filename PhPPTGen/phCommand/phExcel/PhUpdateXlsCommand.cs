@@ -76,7 +76,7 @@ namespace PhPPTGen.phCommand.phExcel {
                 sheet.Range[p.cell].Text = p.value;
             } else {
                 double tmp = 0.0;
-                if(double.TryParse(p.value, out tmp))
+                if(double.TryParse(p.value, out tmp) && !double.IsNaN(tmp))
                 {
                     sheet.Range[p.cell].NumberFormat = "#,##0.00";
                     sheet.Range[p.cell].NumberValue = tmp;

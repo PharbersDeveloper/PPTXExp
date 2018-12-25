@@ -63,13 +63,7 @@ namespace PhPPTGen.phCommand.phChart {
 			Rectangle rec = new Rectangle(e2c.pos[0], e2c.pos[1], e2c.pos[2], e2c.pos[3]);
 			IChart chart = ppt.Slides[e2c.slider].Shapes.AppendChart(Spire.Presentation.Charts.ChartType.Line, rec);
 			InitChartData(chart, dt);
-			chart.Series.SeriesLabel = chart.ChartData["A2", "A" + row];
-			chart.Categories.CategoryLabels = chart.ChartData["B1", ((char)((int)'A' + (dt.Columns.Count - 1))).ToString() + "1"];
-			for (int i = 0; i < dt.Rows.Count; i++) {
-				string start = "B" + (i + 2);
-				string end = ((char)((int)'A' + (dt.Columns.Count - 1))).ToString() + (i + 2);
-				chart.Series[i].Values = chart.ChartData[start, end];
-			}
+			SetSeriesAndCategories(chart, dt);
 
 			chart.HasDataTable = true;
 			ppt.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
@@ -83,6 +77,16 @@ namespace PhPPTGen.phCommand.phChart {
 				}
 			}
 			pptx.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
+		}
+
+		protected virtual void SetSeriesAndCategories(IChart chart, DataTable dt) {
+			chart.Series.SeriesLabel = chart.ChartData["A2", "A" + (dt.Rows.Count + 1)];
+			chart.Categories.CategoryLabels = chart.ChartData["B1", ((char)((int)'A' + (dt.Columns.Count - 1))).ToString() + "1"];
+			for (int i = 0; i < dt.Rows.Count; i++) {
+				string start = "B" + (i + 2);
+				string end = ((char)((int)'A' + (dt.Columns.Count - 1))).ToString() + (i + 2);
+				chart.Series[i].Values = chart.ChartData[start, end];
+			}
 		}
 
 		protected virtual void DiyChart(IChart chart) {

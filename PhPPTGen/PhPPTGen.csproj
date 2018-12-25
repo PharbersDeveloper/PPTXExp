@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="phCommandFactory\PhCommandFactory.cs" />
+    <Compile Include="phCommand\phChart\Ph3DPieChart.cs" />
     <Compile Include="phCommand\phChart\PhChartBase.cs" />
     <Compile Include="phCommand\phChart\PhChartContentCommand.cs" />
     <Compile Include="phCommand\phChart\PhChartType.cs" />

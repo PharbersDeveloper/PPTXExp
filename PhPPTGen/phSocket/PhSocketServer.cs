@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace PhPPTGen.phSocket {
     public class PhSocketServer {
         private bool done = false;
-        private int portNum = 9998;
+        private int portNum = 9999;
         //private TcpListener listener = null;
         //private Dictionary<string, PhThreadClientHandler> clients = new Dictionary<string, PhThreadClientHandler>();
 

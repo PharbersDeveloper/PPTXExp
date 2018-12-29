@@ -1,10 +1,12 @@
-﻿using PhPPTGen.phModel;
+﻿using PhPPTGen.phCommand.phExcel.css;
+using PhPPTGen.phModel;
 using Spire.Xls;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,13 +14,41 @@ namespace PhPPTGen.phCommand.phExcel {
 	class PhSetXlsCssBaseCommand : PhCommand {
 		private PhExcelCss css { get; set; }
 		private Worksheet Sheet { get; set; }
+        private string cell { get; set; }
 
 		public override object Exec(params object[] parameters) {
-			css = (PhExcelCss)parameters[0];
-			Sheet = (Worksheet)parameters[1];
+            cell = (string)parameters[0];
+            css = getCss((string)parameters[1]);
+            css.cell = cell;
+			Sheet = (Worksheet)parameters[2];
 			SetCss();
 			return null;
 		}
+
+        protected PhExcelCss getCss(string cssName) {
+            Css.init();
+            PhExcelCss css = new PhExcelCss() {
+                cell = "A1",
+                fontSize = "10",
+                fontColor = "#000000",
+                fontName = "Tahome",
+                fontStyle = new string[0],
+                cellColor = "#FFFFFF",
+                cellBorders = new string[0],
+                cellBordersColor = "#CDFFFF",
+                height = "0",
+                width = "0",
+                verticalAlignType = "Center",
+                horizontalAlignType = "Center"
+
+            };
+            foreach (string oneCss in cssName.Split('*')) {
+                css = mergeCss(css, Css.getCss(oneCss));
+            }
+            
+
+            return css;
+        }
 
 		protected void SetCss() {
 			SetFontSize();
@@ -34,6 +64,26 @@ namespace PhPPTGen.phCommand.phExcel {
 
 
 		}
+
+        protected PhExcelCss mergeCss(PhExcelCss oldCss, PhExcelCss newCss) {
+            PropertyInfo[] propertys = oldCss.GetType().GetProperties();
+            foreach(PropertyInfo property in propertys) {
+                var newValue = newCss.GetType().GetProperty(property.Name).GetValue(newCss);
+                if(property.Name.Equals("fontStyle") || property.Name.Equals("cellBorders")) {
+                    var value = oldCss.fontStyle.ToList();
+                    value.AddRange(newCss.fontStyle.ToList());
+                    oldCss.fontStyle = value.ToArray();
+                    value = oldCss.cellBorders.ToList();
+                    value.AddRange(newCss.cellBorders.ToList());
+                    oldCss.cellBorders = value.ToArray();
+                    continue;
+                }
+                if(newValue != null && !((string)newValue).Equals("")) {
+                    property.SetValue(oldCss,newValue);
+                }
+            }
+            return oldCss;
+        }
 
 		protected void SetFontSize() {
 			Sheet.Range[css.cell].Style.Font.Size = int.Parse(css.fontSize);

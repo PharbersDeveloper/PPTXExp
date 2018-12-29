@@ -117,7 +117,7 @@
     <Compile Include="phCommand\phChart\PhLineChart.cs" />
     <Compile Include="phCommand\phChart\PhLineChartNoTable.cs" />
     <Compile Include="phCommand\PhCommand.cs" />
-    <Compile Include="phCommand\phExcel\css\FontSize.cs" />
+    <Compile Include="phCommand\phExcel\css\Css.cs" />
     <Compile Include="phCommand\phExcel\PhSetXlsCssCommand.cs" />
     <Compile Include="phCommand\phPpt\PhCreatePPTCommand.cs" />
     <Compile Include="phCommand\phExcel\PhUpdateXlsCommand.cs" />

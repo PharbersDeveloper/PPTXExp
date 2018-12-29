@@ -10,6 +10,7 @@ namespace PhPPTGen.phSocket {
         private NetworkStream ns = null;
         private bool isRunning = true;
         private Thread t = null;
+        private Byte[] int_bytes = new Byte[4];
         private Byte[] bytes = new Byte[2048];
 
         private DateTime last_msg = DateTime.Now;
@@ -54,10 +55,10 @@ namespace PhPPTGen.phSocket {
                 last_msg = DateTime.Now;
 
                 try {
-                    Array.Clear(bytes, 0, 2048);
-                    var nl = ns.Read(bytes, 0, 4);
+                    Array.Clear(int_bytes, 0, 4);
+                    var nl = ns.Read(int_bytes, 0, 4);
                     if (nl > 0) {
-                        int tmp = BitConverter.ToInt32(bytes, 0);
+                        int tmp = BitConverter.ToInt32(int_bytes, 0);
                         Console.WriteLine(tmp);
 
                         Array.Clear(bytes, 0, 2048);

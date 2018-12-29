@@ -33,6 +33,7 @@ namespace PhPPTGen.phSocket {
         }
 
         public void HandleClient() {
+            Byte[] byteArray = new Byte[0];
 
             while (isRunning) {
 
@@ -43,7 +44,7 @@ namespace PhPPTGen.phSocket {
 
                 if (client.Available == 0 || !ns.CanRead) {
                     TimeSpan span = DateTime.Now - last_msg;
-                    if (span.TotalMinutes > 60) {
+                    if (span.TotalMinutes > 600) {
                         client.Close();
                     }
                     Thread.Sleep(500);
@@ -55,9 +56,16 @@ namespace PhPPTGen.phSocket {
                 try {
                     Array.Clear(bytes, 0, 2048);
                     int nRec = ns.Read(bytes, 0, 2048);
-
+                
                     if (nRec > 0) {
+                        Byte[] newByteArray = new Byte[byteArray.Length + bytes.Length];
+                        byteArray.CopyTo(newByteArray, 0);
+                        bytes.CopyTo(newByteArray, byteArray.Length);
+                        byteArray = newByteArray;
                         phCommon.phMsgDefine.PhMsgContent msg = new phCommon.phMsgDefine.PhMsgContent();
+                        foreach (byte b in byteArray) {
+                            
+                        }
                         msg.msg_content = Encoding.UTF8.GetString(bytes); 
                         phCommon.PhMsgLst lst = phCommon.PhMsgLst.GetInstance();
                         lst.PushMsg(msg);

@@ -7,12 +7,12 @@ using System.Collections.Generic;
 namespace PhPPTGen.phSocket {
     public class PhSocketServer {
         private bool done = false;
-        private int portNum = 9999;
+        private int portNum = 9997;
         //private TcpListener listener = null;
         //private Dictionary<string, PhThreadClientHandler> clients = new Dictionary<string, PhThreadClientHandler>();
 
         public void StartListeningData() {
-            IPAddress localAddr = IPAddress.Parse("192.168.100.195");
+            IPAddress localAddr = IPAddress.Parse("127.0.0.1");
             TcpListener listener = new TcpListener(localAddr, this.portNum);
             listener.Start();
 

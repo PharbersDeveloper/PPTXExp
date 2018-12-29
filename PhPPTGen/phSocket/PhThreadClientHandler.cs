@@ -33,7 +33,7 @@ namespace PhPPTGen.phSocket {
         }
 
         public void HandleClient() {
-            Byte[] byteArray = new Byte[0];
+            //Byte[] byteArray = new Byte[0];
 
             while (isRunning) {
 
@@ -55,21 +55,21 @@ namespace PhPPTGen.phSocket {
 
                 try {
                     Array.Clear(bytes, 0, 2048);
-                    int nRec = ns.Read(bytes, 0, 2048);
+                    var nl = ns.Read(bytes, 0, 4);
+                    if (nl > 0) {
+                        int tmp = BitConverter.ToInt32(bytes, 0);
+                        Console.WriteLine(tmp);
+
+                        Array.Clear(bytes, 0, 2048);
+                        int nRec = ns.Read(bytes, 0, tmp);
                 
-                    if (nRec > 0) {
-                        Byte[] newByteArray = new Byte[byteArray.Length + bytes.Length];
-                        byteArray.CopyTo(newByteArray, 0);
-                        bytes.CopyTo(newByteArray, byteArray.Length);
-                        byteArray = newByteArray;
-                        phCommon.phMsgDefine.PhMsgContent msg = new phCommon.phMsgDefine.PhMsgContent();
-                        foreach (byte b in byteArray) {
-                            
+                        if (nRec > 0) {
+                            phCommon.phMsgDefine.PhMsgContent msg = new phCommon.phMsgDefine.PhMsgContent();
+                            msg.msg_content = Encoding.UTF8.GetString(bytes); 
+                            phCommon.PhMsgLst lst = phCommon.PhMsgLst.GetInstance();
+                            lst.PushMsg(msg);
                         }
-                        msg.msg_content = Encoding.UTF8.GetString(bytes); 
-                        phCommon.PhMsgLst lst = phCommon.PhMsgLst.GetInstance();
-                        lst.PushMsg(msg);
-                    }
+                    } 
 
                 } catch (Exception e) {
                     Console.WriteLine(e.ToString());

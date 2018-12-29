@@ -43,7 +43,7 @@ namespace PhPPTGen.phSocket {
 
                 if (client.Available == 0 || !ns.CanRead) {
                     TimeSpan span = DateTime.Now - last_msg;
-                    if (span.TotalMinutes > 60) {
+                    if (span.TotalMinutes > 600) {
                         client.Close();
                     }
                     Thread.Sleep(500);

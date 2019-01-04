@@ -11,6 +11,8 @@ namespace PhPPTGen.phCommand.phChart {
 		public static string combo = "Combo";
 		public static string lineNoTable = "LineNoTable";
 		public static string Pie3D = "Pie3D";
+		public static string Column = "Column";
+		public static string Pie = "Pie";
 
 
 		public static string PhChaerType2Cls(string type) {
@@ -22,6 +24,10 @@ namespace PhPPTGen.phCommand.phChart {
 				return "PhPPTGen.phCommand.phChart.PhLineChartNoTable";
 			} else if (type == Pie3D) {
 				return "PhPPTGen.phCommand.phChart.Ph3DPieChart";
+			} else if (type == Column) {
+				return "PhPPTGen.phCommand.phChart.PhColumnChart";
+			} else if (type == Pie) {
+				return "PhPPTGen.phCommand.phChart.PhPieChart";
 			} else {
 				throw new System.Exception("Can not handler message");
 			}

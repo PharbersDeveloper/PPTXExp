@@ -70,10 +70,10 @@ namespace PhPPTGen.phCommand.phExcel {
 			//sheet.Range[p.cell].Style.VerticalAlignment = VerticalAlignType.Center;
 			//sheet.Range[p.cell].Style.HorizontalAlignment = HorizontalAlignType.Center;
             foreach(string cells in p.cells) {
-                string cell = new Regex("-c#[^-]+").Match(cells).Value.Replace("-c#","");
-                string cate = new Regex("-t#[^-]+").Match(cells).Value.Replace("-t#", "");
-                string css = new Regex("-s#[^-]+").Match(cells).Value.Replace("-s#", "");
-                string value = new Regex("-v#[^-]+").Match(cells).Value.Replace("-v#", "");
+                string cell = new Regex("#c#[^#]+").Match(cells).Value.Replace("#c#","");
+                string cate = new Regex("#t#[^#]+").Match(cells).Value.Replace("#t#", "");
+                string css = new Regex("#s#[^#]+").Match(cells).Value.Replace("#s#", "");
+                string value = new Regex("#v#[^#]+").Match(cells).Value.Replace("#v#", "");
                 if (cell.Contains(":")) {
                     sheet.Range[cell].Merge();
                 }
@@ -90,10 +90,11 @@ namespace PhPPTGen.phCommand.phExcel {
                     }
 
                 }
-                /**
+				/**
                  * set css
                  */
-                new PhSetXlsCssBaseCommand().Exec(cell, css, sheet);
+				sheet.Range[cell].Style.WrapText = true;
+				new PhSetXlsCssBaseCommand().Exec(cell, css, sheet);
             }
 			
         }

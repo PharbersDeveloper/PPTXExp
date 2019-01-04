@@ -20,6 +20,14 @@ namespace PhPPTGen.phCommand.phExcel.css {
     'width' : '40',
     'horizontalAlignType' : 'Left'
   },
+	'row_title_common1' : {
+	'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
+	'fontSize' : '9',
+	'fontName' : 'Tahoma',
+	'cellBorders' : ['top#Thin', 'bottom#Thin', 'right#Thin'],
+	'width' : '30',
+	'horizontalAlignType' : 'Left'
+	},
   'row_title_chart' : {
     'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
     'fontSize' : '9',
@@ -36,6 +44,16 @@ namespace PhPPTGen.phCommand.phExcel.css {
     'fontStyle' : ['bold'],
     'cellColor' : '#FF0000',
     'cellBorders' : ['top#Thin', 'bottom#Thin']
+  },
+	'col_title_common1' : {
+    'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
+    'fontSize' : '9',
+    'fontColor' : '#FFFFFF',
+    'fontName' : 'Tahoma',
+    'fontStyle' : ['bold'],
+    'cellColor' : '#FF0000',
+    'cellBorders' : ['top#Thin', 'bottom#Thin'],
+	'height' : '50'
   },
   'col_title_chart' : {
     'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',

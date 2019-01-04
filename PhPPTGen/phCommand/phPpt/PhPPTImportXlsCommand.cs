@@ -36,9 +36,11 @@ namespace PhPPTGen.phCommand.phPpt {
 
             Workbook book = new Workbook();
 			PhUpdateXlsCommand.workbookMap.TryGetValue(workbookKey, out book);
-			Worksheet sheet = book.Worksheets[0];
+            PhUpdateXlsCommand.workbookMap.Remove(workbookKey);
+            Worksheet sheet = book.Worksheets[0];
             var col = sheet.Columns.Length;
             var row = sheet.Rows.Length;
+			sheet.Rows[1].Cells[col - 1].Style.HorizontalAlignment = HorizontalAlignType.Left;
 
 			/**
              * 3. put the excel into pptx

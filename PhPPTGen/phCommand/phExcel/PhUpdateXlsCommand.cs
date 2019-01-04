@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Text.RegularExpressions;
 using PhPPTGen.phModel;
 using Spire.Xls;
 
@@ -59,7 +60,7 @@ namespace PhPPTGen.phCommand.phExcel {
 		}
 
         private void UpdateXlsInPath(string key, PhExcelPush p) {
-			Console.WriteLine("Write a value to excel");
+			Console.WriteLine("Write a value to excel***********");
 			Workbook workbook = new Workbook(); 
 			workbookMap.TryGetValue(key, out workbook);
 			Worksheet sheet = workbook.Worksheets[0];
@@ -68,30 +69,34 @@ namespace PhPPTGen.phCommand.phExcel {
 			 */
 			//sheet.Range[p.cell].Style.VerticalAlignment = VerticalAlignType.Center;
 			//sheet.Range[p.cell].Style.HorizontalAlignment = HorizontalAlignType.Center;
-			if (p.cell.Contains(":")) {
-                sheet.Range[p.cell].Merge();
-            }
+            foreach(string cells in p.cells) {
+                string cell = new Regex("#c#[^#]+").Match(cells).Value.Replace("#c#","");
+                string cate = new Regex("#t#[^#]+").Match(cells).Value.Replace("#t#", "");
+                string css = new Regex("#s#[^#]+").Match(cells).Value.Replace("#s#", "");
+                string value = new Regex("#v#[^#]+").Match(cells).Value.Replace("#v#", "");
+                if (cell.Contains(":")) {
+                    sheet.Range[cell].Merge();
+                }
 
-            if (p.cate == "String") {
-                sheet.Range[p.cell].Text = p.value;
-            } else {
-                double tmp = 0.0;
-                if(double.TryParse(p.value, out tmp) && !double.IsNaN(tmp))
-                {
-                    sheet.Range[p.cell].NumberFormat = "#,##0.00";
-                    sheet.Range[p.cell].NumberValue = tmp;
+                if (cate == "String") {
+                    sheet.Range[cell].Text = value;
+                } else {
+                    double tmp = 0.0;
+                    if (double.TryParse(value, out tmp) && !double.IsNaN(tmp)) {
+                        sheet.Range[cell].NumberFormat = "#,##0.00";
+                        sheet.Range[cell].NumberValue = tmp;
+                    } else {
+                        sheet.Range[cell].Text = "N/A";
+                    }
+
                 }
-                else
-                {
-                    sheet.Range[p.cell].Text = "N/A";
-                }
-               
+				/**
+                 * set css
+                 */
+				sheet.Range[cell].Style.WrapText = true;
+				new PhSetXlsCssBaseCommand().Exec(cell, css, sheet);
             }
-			/**
-			 * set css
-			 */
-			phCommandFactory.PhCommandFactory fct = phCommandFactory.PhCommandFactory.GetInstance();
-			fct.CreateCommandInstance(p.css.factory, p.css, sheet);
+			
         }
     }
 }

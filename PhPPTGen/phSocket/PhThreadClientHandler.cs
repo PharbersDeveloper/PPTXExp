@@ -10,7 +10,8 @@ namespace PhPPTGen.phSocket {
         private NetworkStream ns = null;
         private bool isRunning = true;
         private Thread t = null;
-        private Byte[] bytes = new Byte[2048];
+        private Byte[] int_bytes = new Byte[4];
+        private Byte[] bytes = new Byte[9196];
 
         private DateTime last_msg = DateTime.Now;
 
@@ -33,6 +34,7 @@ namespace PhPPTGen.phSocket {
         }
 
         public void HandleClient() {
+            //Byte[] byteArray = new Byte[0];
 
             while (isRunning) {
 
@@ -43,7 +45,7 @@ namespace PhPPTGen.phSocket {
 
                 if (client.Available == 0 || !ns.CanRead) {
                     TimeSpan span = DateTime.Now - last_msg;
-                    if (span.TotalMinutes > 60) {
+                    if (span.TotalMinutes > 600) {
                         client.Close();
                     }
                     Thread.Sleep(500);
@@ -53,15 +55,24 @@ namespace PhPPTGen.phSocket {
                 last_msg = DateTime.Now;
 
                 try {
-                    Array.Clear(bytes, 0, 2048);
-                    int nRec = ns.Read(bytes, 0, 2048);
+                    Array.Clear(int_bytes, 0, 4);
+                    var nl = ns.Read(int_bytes, 0, 4);
+                    if (nl > 0) {
+                        int tmp = BitConverter.ToInt32(int_bytes, 0);
+                        Console.WriteLine("tem*********************" + tmp);
 
-                    if (nRec > 0) {
-                        phCommon.phMsgDefine.PhMsgContent msg = new phCommon.phMsgDefine.PhMsgContent();
-                        msg.msg_content = Encoding.UTF8.GetString(bytes); 
-                        phCommon.PhMsgLst lst = phCommon.PhMsgLst.GetInstance();
-                        lst.PushMsg(msg);
-                    }
+                        Array.Clear(bytes, 0, 9196);
+                        int nRec = ns.Read(bytes, 0, tmp);
+                        
+                        if (nRec > 0) {
+                            phCommon.phMsgDefine.PhMsgContent msg = new phCommon.phMsgDefine.PhMsgContent();
+                            //Byte[] input = new Byte[tmp]; 
+                            //Buffer.BlockCopy(bytes, 0, input, 0, tmp);
+                            msg.msg_content = Encoding.UTF8.GetString(bytes); 
+                            phCommon.PhMsgLst lst = phCommon.PhMsgLst.GetInstance();
+                            lst.PushMsg(msg);
+                        }
+                    } 
 
                 } catch (Exception e) {
                     Console.WriteLine(e.ToString());

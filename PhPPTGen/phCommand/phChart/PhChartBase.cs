@@ -39,7 +39,8 @@ namespace PhPPTGen.phCommand.phChart {
 
 			Workbook book = new Workbook();
 			PhUpdateXlsCommand.workbookMap.TryGetValue(workbookKey, out book);
-			Worksheet sheet = book.Worksheets[0];
+            PhUpdateXlsCommand.workbookMap.Remove(workbookKey);
+            Worksheet sheet = book.Worksheets[0];
 			var col = sheet.Columns.Length;
 			var row = sheet.Rows.Length;
 

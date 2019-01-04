@@ -6,20 +6,19 @@ using System.Threading.Tasks;
 
 namespace PhPPTGen.phModel {
 	public class PhExcelCss {
-		public string id { get; set; }
-		public string factory { get; set; } = "PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand";
-		public string cell { get; set; } = "A1";
-		public string fontSize { get; set; } = "10";
-		public string fontColor { get; set; } = "#000000";
-		public string fontName { get; set; } = "Tahoma";
-		public string[] fontStyle { get; set; } = new string[0];
-		public string cellColor { get; set; } = "#FFFFFF";
-		public string[] cellBorders { get; set; } = new string[0];
-		public string cellBordersColor { get; set; } = "";
-		public string height { get; set; } = "0";
-		public string width { get; set; } = "0";
-		public string verticalAlignType { get; set; } = "Center";
-		public string horizontalAlignType { get; set; } = "Center";
+		public string factory { get; set; }
+		public string cell { get; set; } 
+		public string fontSize { get; set; } 
+		public string fontColor { get; set; } 
+		public string fontName { get; set; }
+        public string[] fontStyle { get; set; } = new string[0];
+		public string cellColor { get; set; }
+        public string[] cellBorders { get; set; } = new string[0];
+		public string cellBordersColor { get; set; } 
+		public string height { get; set; } 
+		public string width { get; set; } 
+		public string verticalAlignType { get; set; } 
+		public string horizontalAlignType { get; set; } 
 
 	}
 }

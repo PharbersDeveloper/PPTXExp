@@ -21,8 +21,7 @@ namespace PhPPTGen.phCommand.phChart {
 
 		protected override void DiyChart(IChart chart) {
 			chart.HasDataTable = false;
-			chart.ChartLegend.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
-			chart.ChartLegend.Position = ChartLegendPositionType.Top;
+			
 			chart.Series[0].Type = ChartType.ColumnClustered;
 			chart.Series[0].Fill.SolidColor.KnownColor = Spire.Presentation.KnownColors.Red;
 			chart.Series[0].InvertIfNegative = false;
@@ -52,6 +51,9 @@ namespace PhPPTGen.phCommand.phChart {
 			chart.PrimaryCategoryAxis.TickLabelPosition = TickLabelPositionType.TickLabelPositionLow;
 			chart.PrimaryCategoryAxis.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
 			chart.PrimaryValueAxis.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
+			chart.ChartLegend.Position = ChartLegendPositionType.Top;
+			chart.ChartLegend.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
+			
 			//chart.PrimaryValueAxis.NumberFormat = "#,##0.0%";
 		}
 	}

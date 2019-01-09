@@ -67,17 +67,18 @@ namespace PhPPTGen.phCommand.phChart {
 			SetSeriesAndCategories(chart, dt);
 
 			chart.HasDataTable = true;
+			DiyChart(chart);
 			ppt.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
 			book.SaveToFile(ePath);
-			Presentation pptx = new Presentation();
-			pptx.LoadFromFile(ppt_path);
-			foreach (Shape shape in pptx.Slides[e2c.slider].Shapes) {
-				if (shape is IChart) {
-					chart = shape as IChart;
-					DiyChart(chart);
-				}
-			}
-			pptx.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
+			//Presentation pptx = new Presentation();
+			//pptx.LoadFromFile(ppt_path);
+			//foreach (Shape shape in pptx.Slides[e2c.slider].Shapes) {
+			//	if (shape is IChart) {
+			//		chart = shape as IChart;
+			//		DiyChart(chart);
+			//	}
+			//}
+			//pptx.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
 		}
 
 		protected virtual void SetSeriesAndCategories(IChart chart, DataTable dt) {

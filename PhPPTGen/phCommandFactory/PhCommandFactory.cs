@@ -37,7 +37,7 @@ namespace PhPPTGen.phCommandFactory {
         }
 
         public string GetTmpDictionary() {
-            return @"C:\Users\ycq\Documents\pptresult";
-        }
+            return @"D:\pptresult\css";
+		}
     }
 }

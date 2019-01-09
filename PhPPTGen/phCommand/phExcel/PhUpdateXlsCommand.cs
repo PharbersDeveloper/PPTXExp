@@ -93,7 +93,7 @@ namespace PhPPTGen.phCommand.phExcel {
 				/**
                  * set css
                  */
-				sheet.Range[cell].Style.WrapText = true;
+				//sheet.Range[cell].Style.WrapText = true;
 				new PhSetXlsCssBaseCommand().Exec(cell, css, sheet);
             }
 			

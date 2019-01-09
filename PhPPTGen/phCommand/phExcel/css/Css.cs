@@ -53,7 +53,16 @@ namespace PhPPTGen.phCommand.phExcel.css {
     'fontStyle' : ['bold'],
     'cellColor' : '#FF0000',
     'cellBorders' : ['top#Thin', 'bottom#Thin'],
-	'height' : '50'
+	'height' : '25'
+  },
+	'col_title_rank' : {
+    'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
+    'fontSize' : '9',
+    'fontColor' : '#FFFFFF',
+    'fontName' : 'Tahoma',
+    'fontStyle' : ['bold'],
+    'cellColor' : '#FF0000',
+    'cellBorders' : ['top#Thin', 'bottom#Thin', 'left#Thin']
   },
   'col_title_chart' : {
     'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
@@ -64,6 +73,14 @@ namespace PhPPTGen.phCommand.phExcel.css {
     'cellColor' : '#FFFFFF',
     'cellBorders' : ['top#Thin', 'bottom#Thin']
   },
+ 'row_title_chart1' : {
+  'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
+  'fontSize' : '9',
+  'fontName' : 'Tahoma',
+  'cellBorders' : ['top#Thin', 'bottom#Thin', 'right#Thin', 'left#Thin'],
+  'width' : '18',
+  'horizontalAlignType' : 'Left'
+	},
   'row_title_chart2' : {
     'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
     'fontSize' : '9',
@@ -139,16 +156,26 @@ namespace PhPPTGen.phCommand.phExcel.css {
   'row_7' : {
     'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
     'fontSize' : '9',
-    'fontColor' : '#000000',
+    'fontColor' : '#FF0000',
     'fontName' : 'Tahoma',
     'fontStyle' : ['bold'],
-    'cellColor' : '#FFFF00',
+    'cellColor' : '#FFFFFF',
     'cellBorders' : ['top#Thin', 'bottom#Thin'],
     'height' : '11.75'
   },
   'row_8' : {
     'cellBorders' : ['top#Thin', 'bottom#Thin'],
     'height' : '14'
+  },
+	'row_9' : {
+    'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
+    'fontSize' : '9',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'fontStyle' : ['bold'],
+    'cellColor' : '#D9D9D9',
+    'cellBorders' : ['top#Thin', 'bottom#Thin'],
+    'height' : '11.75'
   },
   'col_common' : {
     'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
@@ -168,7 +195,7 @@ namespace PhPPTGen.phCommand.phExcel.css {
     'fontStyle' : [],
     'cellColor' : '#FFFFFF',
     'cellBorders' : ['left#Thin'],
-    'width' : '15'
+    'width' : '16'
   },
   'col_common2' : {
     'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
@@ -210,6 +237,35 @@ namespace PhPPTGen.phCommand.phExcel.css {
     'cellBorders' : ['left#Thin', 'right#Thin'],
     'width' : '7'
   },
+	'col_chart1' : {
+  'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
+  'fontSize' : '6',
+  'fontColor' : '#000000',
+  'fontName' : 'Tahoma',
+  'fontStyle' : [],
+  'cellColor' : '#FFFFFF',
+  'cellBorders' : ['left#Thin', 'right#Thin'],
+  'width' : '5'
+},
+	'col_chart2' : {
+  'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
+  'fontSize' : '6',
+  'fontColor' : '#000000',
+  'fontName' : 'Tahoma',
+  'fontStyle' : [],
+  'cellColor' : '#FFFFFF',
+  'cellBorders' : ['left#Thin', 'right#Thin'],
+  'width' : '10'
+},
+'col_title_chart1' : {
+  'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
+  'fontSize' : '8',
+  'fontColor' : '#000000',
+  'fontName' : 'Tahoma',
+  'fontStyle' : [],
+  'cellColor' : '#FFFFFF',
+  'cellBorders' : ['top#Thin', 'bottom#Thin']
+},
   'col_chart2' : {
     'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
     'fontSize' : '9',
@@ -249,7 +305,17 @@ namespace PhPPTGen.phCommand.phExcel.css {
     'cellColor' : '#0070C0',
     'cellBorders' : ['top#Thin', 'bottom#Thin', 'right#Thin', 'left#Thin'],
     'height' : '14'
-  }
+  },
+ 'timeline_4' : {
+  'factory' : 'PhPPTGen.phCommand.phExcel.PhSetXlsCssBaseCommand',
+  'fontSize' : '8',
+  'fontColor' : '#000000',
+  'fontName' : 'Tahoma',
+  'fontStyle' : ['bold'],
+  'cellColor' : '#FFFFFF',
+  'cellBorders' : ['top#Thin', 'bottom#Thin', 'right#Thin', 'left#Thin'],
+  'height' : '11.75'
+	}
 }
 ";
                 cssMap = JsonConvert.DeserializeObject <Dictionary<string, PhExcelCss>>(json);

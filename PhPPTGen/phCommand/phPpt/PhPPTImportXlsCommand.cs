@@ -39,9 +39,9 @@ namespace PhPPTGen.phCommand.phPpt {
 			//PhUpdateXlsCommand.workbookMap.TryGetValue(workbookKey, out book);
 			//PhUpdateXlsCommand.workbookMap.Remove(workbookKey);
 			book.LoadFromFile(ePath);
-			book.SaveToFile(xlsPath);
+			book.SaveToFile(xlsPath, ExcelVersion.Version97to2003);
 			book.LoadFromFile(xlsPath);
-            Worksheet sheet = book.Worksheets[0];
+			Worksheet sheet = book.Worksheets[0];
             var col = sheet.Columns.Length;
             var row = sheet.Rows.Length;
 			sheet.Rows[1].Cells[col - 1].Style.HorizontalAlignment = HorizontalAlignType.Left;

@@ -95,12 +95,12 @@ namespace PhPPTGen.phCommand.phChart {
 			chart.HasTitle = false;
 			chart.HasLegend = false;
 			chart.ChartDataTable.ShowLegendKey = true;
-			chart.ChartDataTable.Text.AutofitType = TextAutofitType.Normal;
+			//chart.ChartDataTable.Text.AutofitType = TextAutofitType.Normal;
 			chart.PrimaryCategoryAxis.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
 			chart.PrimaryValueAxis.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
             TextParagraph par = new TextParagraph();
             par.DefaultCharacterProperties.FontHeight = 8;
-			chart.ChartDataTable.Text.Paragraphs.Append(par);
+			//chart.ChartDataTable.Text.Paragraphs.Append(par);
             //chart.ChartDataTable.Text.Paragraphs[0].DefaultCharacterProperties.FontHeight = 8;
         }
 

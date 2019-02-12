@@ -41,8 +41,8 @@ namespace PhPPTGen.phCommand.phChart {
 				lebel.LabelValueVisible = i == (chart.Series[1].Values.Count - 1);
 				lebel.PercentageVisible = true;
 				lebel.TextProperties.Paragraphs[0].DefaultCharacterProperties.FontHeight = 12;
-				lebel.X = 10f;
-				lebel.Y = 9f;
+				//lebel.X = 10f;
+				//lebel.Y = 9f;
 			}
 			chart.Series[1].Type = ChartType.Line;
 			chart.Series[1].Line.DashStyle = Spire.Presentation.LineDashStyleType.Dash;

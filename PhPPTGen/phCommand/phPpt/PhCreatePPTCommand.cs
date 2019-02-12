@@ -24,7 +24,7 @@ namespace PhPPTGen.phCommand {
              * 2. crate a result.pptx file
              */
             Presentation ppt = new Presentation();
-            ppt.SaveToFile(file_path, Spire.Presentation.FileFormat.Pptx2007);
+            ppt.SaveToFile(file_path, Spire.Presentation.FileFormat.Pptx2010);
 
             return null;
         }

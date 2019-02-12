@@ -27,7 +27,7 @@ namespace PhPPTGen.phCommand.phChart {
 			chart.HasLegend = false;
 			TextParagraph par = new TextParagraph();
 			par.DefaultCharacterProperties.FontHeight = 10;
-			chart.ChartDataTable.Text.Paragraphs.Append(par);
+			//chart.ChartDataTable.Text.Paragraphs.Append(par);
 		}
 	}
 }

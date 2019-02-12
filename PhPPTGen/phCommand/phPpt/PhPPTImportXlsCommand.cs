@@ -29,14 +29,18 @@ namespace PhPPTGen.phCommand.phPpt {
 			/**
              * 2. get workbook 
              */
-			var ePath = workingPath + "\\" + e2p.name + ".xls";
-            if (!PhUpdateXlsCommand.workbookMap.ContainsKey(workbookKey)) {
+			var ePath = workingPath + "\\" + e2p.name + ".xlsx";
+			var xlsPath = workingPath + "\\" + e2p.name + ".xls";
+			if (!File.Exists(ePath)) {
                 throw new Exception("Excel name is not exists");
             }
 
             Workbook book = new Workbook();
-			PhUpdateXlsCommand.workbookMap.TryGetValue(workbookKey, out book);
-            PhUpdateXlsCommand.workbookMap.Remove(workbookKey);
+			//PhUpdateXlsCommand.workbookMap.TryGetValue(workbookKey, out book);
+			//PhUpdateXlsCommand.workbookMap.Remove(workbookKey);
+			book.LoadFromFile(ePath);
+			book.SaveToFile(xlsPath);
+			book.LoadFromFile(xlsPath);
             Worksheet sheet = book.Worksheets[0];
             var col = sheet.Columns.Length;
             var row = sheet.Rows.Length;
@@ -71,8 +75,8 @@ namespace PhPPTGen.phCommand.phPpt {
                 oleObject.ProgId = "Excel.Sheet.8";
 
 			}
-            ppt.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2007);
-			book.SaveToFile(ePath);
+            ppt.SaveToFile(ppt_path, Spire.Presentation.FileFormat.Pptx2010);
+			//book.SaveToFile(ePath);
 			return null;
         }
     }

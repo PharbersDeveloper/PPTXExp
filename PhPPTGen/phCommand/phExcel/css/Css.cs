@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace PhPPTGen.phCommand.phExcel.css {
     class Css {
         private static Dictionary<string, PhExcelCss> cssMap = new Dictionary<string, PhExcelCss>();
-        public static void init() {
+		private static Dictionary<string, PhExcelCssForOpenxml> openxmlCssMap = new Dictionary<string, PhExcelCssForOpenxml>();
+		public static void init() {
             if (cssMap.Count == 0) {
                 string json = @"
   {
@@ -355,7 +356,143 @@ namespace PhPPTGen.phCommand.phExcel.css {
   }
 }
 ";
-                cssMap = JsonConvert.DeserializeObject <Dictionary<string, PhExcelCss>>(json);
+
+				string xmlJson = @"{
+	'timeline_2' : {
+    'fontSize' : '9',
+    'fontColor' : '#FFFFFF',
+    'fontName' : 'Tahoma',
+    'bold': 'true',
+    'cellColor' : '#FF0000',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'ThinF0F0F0',
+    'height' : '11.75'
+  },
+  'col_title_common' : {
+    'fontSize' : '9',
+    'fontColor' : '#FFFFFF',
+    'fontName' : 'Tahoma',
+    'bold': 'true',
+    'cellColor' : '#FF0000',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'None000000',
+    'rightBorder' : 'ThinF0F0F0'
+  },
+  'col_common1' : {
+    'fontSize' : '9',
+    'fontName' : 'Tahoma',
+	'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'None000000',
+    'cellColor' : '#FFFFFF',
+    'width' : '15'
+  },
+  'col_common3' : {
+    'fontSize' : '9',
+    'fontName' : 'Tahoma',
+	'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'None000000',
+    'cellColor' : '#FFFFFF',
+    'width' : '10'
+  },
+  'row_title_common' : {
+    'fontSize' : '9',
+    'fontName' : 'Tahoma',
+    'border' : 'ThinF0F0F0ThinF0F0F0ThinF0F0F0ThinF0F0F0',
+    'width' : '40',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'horizontalAlignType' : 'Left'
+  },
+  'row_1' : {
+    'fontSize' : '9',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'bold': 'true',
+    'cellColor' : '#D9D9D9',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'height' : '11.75'
+  },
+  'row_2' : {
+    'fontSize' : '9',
+    'fontColor' : '#FF0000',
+    'fontName' : 'Tahoma',
+    'bold': 'true',
+    'cellColor' : '#E2EFDA',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'height' : '11.75'
+  },
+  'row_3' : {
+    'fontSize' : '9',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'bold': 'false',
+    'cellColor' : '#FFF2CC',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'height' : '11.75'
+  },
+  'row_4' : {
+    'fontSize' : '9',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'bold': 'false',
+    'cellColor' : '#D9E1F2',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'height' : '11.75'
+  },
+  'row_5' : {
+    'fontSize' : '9',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'bold': 'false',
+    'cellColor' : '#FFFFFF',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'height' : '11.75'
+  },
+  'row_6' : {
+    'fontSize' : '9',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'bold': 'false',
+    'cellColor' : '#FFFFFF',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'height' : '11.75'
+  },
+  'row_7' : {
+    'fontSize' : '9',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'bold': 'true',
+    'cellColor' : '#FFFF00',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'height' : '11.75'
+  },
+  'row_8' : {
+    'border' : 'ThinF0F0F0ThinF0F0F0ThinF0F0F0ThinF0F0F0',
+    'height' : '14'
+  },
+  'row_9' : {
+    'fontSize' : '9',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'bold': 'true',
+    'cellColor' : '#D9D9D9',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'height' : '11.75'
+  }
+}";
+				openxmlCssMap = JsonConvert.DeserializeObject<Dictionary<string, PhExcelCssForOpenxml>>(xmlJson);
+				cssMap = JsonConvert.DeserializeObject <Dictionary<string, PhExcelCss>>(json);
             }
         }
         public static PhExcelCss getCss(string cssName) {
@@ -366,5 +503,14 @@ namespace PhPPTGen.phCommand.phExcel.css {
             }
             return new PhExcelCss();
         }
-    }
+
+		public static PhExcelCssForOpenxml getOpenxmlCss(string cssName) {
+			PhExcelCssForOpenxml css = new PhExcelCssForOpenxml();
+
+			if (openxmlCssMap.TryGetValue(cssName, out css)) {
+				return css;
+			}
+			return new PhExcelCssForOpenxml();
+		}
+	}
 }

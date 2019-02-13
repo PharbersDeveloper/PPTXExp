@@ -198,11 +198,15 @@
     <Compile Include="phModel\PhExcel2Chart.cs" />
     <Compile Include="phModel\PhExcel2PPT.cs" />
     <Compile Include="phModel\PhExcelCss.cs" />
+    <Compile Include="phModel\PhExcelCssForOpenxml.cs" />
     <Compile Include="phModel\PhExcelPush.cs" />
     <Compile Include="phModel\PhExportPPT.cs" />
     <Compile Include="phModel\PhMsgDefine.cs" />
     <Compile Include="phModel\PhRequest.cs" />
     <Compile Include="phModel\PhTextSetContent.cs" />
+    <Compile Include="phOpenxml\PhExcelFormatConfig.cs" />
+    <Compile Include="phOpenxml\phFormatHandler\PhExcelCssHandler.cs" />
+    <Compile Include="phOpenxml\phFormatHandler\PhExcelFormatHandler.cs" />
     <Compile Include="phOpenxml\PhExcelHandler.cs" />
     <Compile Include="phSocket\PhSocketServer.cs" />
     <Compile Include="phSocket\PhThreadClientHandler.cs" />
@@ -232,7 +236,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="resouces\PhFormatConfig.xml" />
+    <Content Include="resources\PhFormatConfig.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

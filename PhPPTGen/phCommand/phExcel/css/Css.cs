@@ -404,6 +404,10 @@ namespace PhPPTGen.phCommand.phExcel.css {
     'width' : '40',
     'topBorder' : 'ThinF0F0F0',
     'bottomBorder' : 'ThinF0F0F0',
+	'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'None000000',
+    'rightBorder' : 'ThinF0F0F0',
     'horizontalAlignType' : 'Left'
   },
   'row_1' : {

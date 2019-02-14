@@ -5,6 +5,7 @@ using Spire.Presentation;
 using System.Drawing;
 using Spire.Presentation.Drawing;
 using PhPPTGen.phCommand.phExcel;
+using PhPPTGen.phOpenxml;
 
 namespace PhPPTGen.phCommand.phPpt {
     public class PhPPTImportXlsCommand : PhCommand {
@@ -17,6 +18,9 @@ namespace PhPPTGen.phCommand.phPpt {
             var req = (phModel.PhRequest)parameters[0];
             var jobid = req.jobid;
             var e2p = req.e2p;
+
+			//清除格式信息
+			PhExcelFormatConfig.GetInstans().OneExcelOver();
 
             /**
              * 1. go to the work place

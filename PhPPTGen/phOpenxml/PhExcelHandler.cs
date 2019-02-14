@@ -348,8 +348,14 @@ namespace PhPPTGen.phOpenxml {
 
 		//static void Main(string[] args) {
 		//	GetInstance().CreatExcel(@"D:\alfredyang\test.xlsx");
-		//	PhExcelPush p = new PhExcelPush() { cells = new string[2] { "#c#A1#t#Number#v#1.123#s#col_title_common*row_7", "#c#B1#t#Number#v#1.3#s#col_common3*row_title_common" } };
+		//	GetInstance().CreatExcel(@"D:\alfredyang\test2.xlsx");
+		//	PhExcelPush p = new PhExcelPush() {
+		//		cells = new string[3] { "#c#A1#t#Number#v#1.123#s#row_title_common*row_7", "#c#B1#t#Number#v#1.3#s#col_common3*col_title_common",
+		//		"#c#A2#t#Number#v#1.123#s#row_title_common*row_7"}
+		//	};
 		//	GetInstance().UpdateExcel(@"D:\alfredyang\test.xlsx", p);
+		//	PhExcelFormatConfig.GetInstans().OneExcelOver();
+		//	GetInstance().UpdateExcel(@"D:\alfredyang\test2.xlsx", p);
 		//}
 	}
 }

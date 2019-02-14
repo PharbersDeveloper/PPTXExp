@@ -88,7 +88,7 @@ namespace PhPPTGen.phOpenxml {
 			cfs.Append(cf);
 
 			var idx = cfs.Elements<CellFormat>().Count() - 1;
-			cellformatMap.Add(id, idx);
+			cellformatMap[id] = idx;
 		}
 
 		protected void PushFont(Stylesheet ss) {
@@ -111,7 +111,7 @@ namespace PhPPTGen.phOpenxml {
 				fonts.Append(font);
 
 				var idx = fonts.Elements<Font>().Count() - 1;
-				fontMap.Add(id, idx);
+				fontMap[id] = idx;
 			}
 		}
 
@@ -130,7 +130,7 @@ namespace PhPPTGen.phOpenxml {
 
 				NumberingFormat nf = new NumberingFormat { NumberFormatId = idx, FormatCode = code };
 				numberings.Append(nf);
-				numberingMap.Add(id, idx);
+				numberingMap[id] = idx;
 			}
 		}
 
@@ -176,7 +176,7 @@ namespace PhPPTGen.phOpenxml {
 				borders.Append(border);
 
 				var idx = borders.Elements<Border>().Count() - 1;
-				borderMap.Add(id, idx);
+				borderMap[id] = idx;
 
 			}
 		}
@@ -206,7 +206,7 @@ namespace PhPPTGen.phOpenxml {
 
 				fills.Append(fill);
 				int idx = fills.Elements<Fill>().Count() - 1;
-				fillMap.Add(id, idx);
+				fillMap[id] = idx;
 			}
 		}
 
@@ -248,7 +248,7 @@ namespace PhPPTGen.phOpenxml {
 				cfs.Append(cf);
 
 				var idx = cfs.Elements<CellFormat>().Count() - 1;
-				cellformatMap.Add(id, idx);
+				cellformatMap[id] = idx;
 			}
 		}
 

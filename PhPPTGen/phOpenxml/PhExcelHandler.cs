@@ -7,12 +7,26 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using PhPPTGen.phModel;
 using PhPPTGen.phOpenxml.phFormatHandler;
+using System.Collections.Generic;
 
 namespace PhPPTGen.phOpenxml {
 	class PhExcelHandler {
 		private static PhExcelHandler _instance = null;
+		private readonly Dictionary<String, CheckValue> valueCheckMap = new Dictionary<string, CheckValue>();
 
-		private PhExcelHandler() { }
+		private PhExcelHandler() {
+			string checkString(string v, out string type) {
+				type = "String";
+				return v;
+			}
+			string checkNumber(string v, out string type) {
+				type = new Dictionary<Boolean, String> { { true, "Number" }, { false, "String" } }[Double.TryParse(v, out double re)];
+				return new Dictionary<String, String> { { "Number", v }, { "String", "N/A" } }[type];
+			}
+
+			valueCheckMap["String"] = checkString;
+			valueCheckMap["Number"] = checkNumber;
+		}
 
 		public static PhExcelHandler GetInstance() {
 			if (_instance == null) {
@@ -60,6 +74,7 @@ namespace PhPPTGen.phOpenxml {
 					string cate = new Regex("#t#[^#]+").Match(cells).Value.Replace("#t#", "");
 					string css = new Regex("#s#[^#]+").Match(cells).Value.Replace("#s#", "");
 					string value = new Regex("#v#[^#]+").Match(cells).Value.Replace("#v#", "");
+					value = valueCheckMap[cate](value, out cate);
 					Cell cell = InsertCellIntoexcel(GetColumnName(cellReference), GetRowIndex(cellReference), worksheetPart);
 					cell.CellValue = new CellValue(value);
 					cell.DataType = (CellValues)Enum.Parse(typeof(CellValues), cate);
@@ -346,11 +361,13 @@ namespace PhPPTGen.phOpenxml {
 			//worksheetPart.Worksheet.Append(columns);
 		}
 
+		private delegate string CheckValue(string value, out string type);
+
 		//static void Main(string[] args) {
 		//	GetInstance().CreatExcel(@"D:\alfredyang\test.xlsx");
 		//	GetInstance().CreatExcel(@"D:\alfredyang\test2.xlsx");
 		//	PhExcelPush p = new PhExcelPush() {
-		//		cells = new string[3] { "#c#A1#t#Number#v#1.123#s#row_title_common*row_7", "#c#B1#t#Number#v#1.3#s#col_common3*col_title_common",
+		//		cells = new string[3] { "#c#A1#t#Number#v#big#s#row_title_common*row_7", "#c#B1#t#Number#v#1.3#s#col_common3*col_title_common",
 		//		"#c#A2#t#Number#v#1.123#s#row_title_common*row_7"}
 		//	};
 		//	GetInstance().UpdateExcel(@"D:\alfredyang\test.xlsx", p);

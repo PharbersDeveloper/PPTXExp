@@ -204,6 +204,24 @@
     <Compile Include="phModel\PhMsgDefine.cs" />
     <Compile Include="phModel\PhRequest.cs" />
     <Compile Include="phModel\PhTextSetContent.cs" />
+    <Compile Include="phOpenxml\phExcelChart\DO\PhChartContent.cs" />
+    <Compile Include="phOpenxml\phExcelChart\DO\PhChartFormat.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\IPhCommonElementHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\IPhElementHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhBarChartHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhBaseElementHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhCategoryAxisHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhChartHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhChartPartsHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhChartShapePropertiesHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhDataLabelsHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhDataTableHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhLegendHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhPlotAreaHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhShapePropertiesHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhTextPropertiesHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhTitleHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhValueAxisHandler.cs" />
     <Compile Include="phOpenxml\PhExcelFormatConfig.cs" />
     <Compile Include="phOpenxml\phFormatHandler\PhExcelCssHandler.cs" />
     <Compile Include="phOpenxml\phFormatHandler\PhExcelFormatHandler.cs" />
@@ -219,6 +237,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="resources\PhBarChart.json" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -238,5 +257,6 @@
   <ItemGroup>
     <Content Include="resources\PhFormatConfig.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,10 @@
+{
+  "chartType": {
+    "Column": "PhColumn.json"
+  },
+  "excelFormat": "PhFormatConfig.xml",
+  "pptFormat": {
+    "pptParagraphFormat": "PhPPTParagraphFormat.json",
+    "pptFontFormat": "PhPPTFontFormat.json"
+  }
+}

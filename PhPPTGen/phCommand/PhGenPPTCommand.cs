@@ -30,7 +30,7 @@ namespace PhPPTGen.phCommand {
             /**
              * 2. create final result pptx
              */
-            fct.CreateCommandInstance("PhPPTGen.phCommand.PhCreatePPTCommand", req);
+            fct.CreateCommandInstance("PhPPTGen.phCommand.phPpt.PhCreatePPTForXmlCommand", req);
 
             return null;
         }

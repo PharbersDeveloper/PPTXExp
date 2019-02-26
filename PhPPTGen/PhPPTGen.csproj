@@ -189,6 +189,11 @@
     <Compile Include="phCommand\phPpt\PhCreatePPTCommand.cs" />
     <Compile Include="phCommand\phExcel\PhUpdateXlsCommand.cs" />
     <Compile Include="phCommand\PhGenPPTCommand.cs" />
+    <Compile Include="phCommand\phChart\PhPPTImportChartCommand.cs" />
+    <Compile Include="phCommand\phPpt\PhCreatePPTForXmlCommand.cs" />
+    <Compile Include="phCommand\phText\PhTextContentForXmlCommand.cs" />
+    <Compile Include="PhConfigHandler.cs" />
+    <Compile Include="phOpenxml\PhOpenxmlPPTHandler.cs" />
     <Compile Include="phCommand\phPpt\PhPPTImportXlsCommand.cs" />
     <Compile Include="phCommand\phText\PhTextContentCommand.cs" />
     <Compile Include="phCommon\PhCommon.cs" />
@@ -237,7 +242,10 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="resources\PhBarChart.json" />
+    <None Include="resources\PhColumn.json" />
+    <None Include="resources\PhConfig.json" />
+    <None Include="resources\PhPPTFontFormat.json" />
+    <None Include="resources\PhPPTParagraphFormat.json" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

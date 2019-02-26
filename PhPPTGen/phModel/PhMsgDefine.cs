@@ -16,11 +16,11 @@ namespace PhPPTGen.phModel {
             } else if (cmd == Ph_Msg_Excel2PPT) {
                 return "PhPPTGen.phCommand.phPpt.PhPPTImportXlsCommand";
             } else if (cmd == Ph_Msg_PushText) {
-                return "PhPPTGen.phCommand.phText.PhTextContentCommand";
+                return "PhPPTGen.phCommand.phText.PhTextContentForXmlCommand";
             } else if (cmd == Ph_Msg_ExportPPT) {
                 return "PhPPTGen.phCommand.PhGenPPTCommand";
             } else if (cmd == Ph_Msg_Excel2Chart) {
-                return "PhPPTGen.phCommand.phChart.PhChartContentCommand";
+                return "PhPPTGen.phCommand.phChart.PhPPTImportChartCommand";
             } else {
                 throw new System.Exception("Can not handler message");
             }

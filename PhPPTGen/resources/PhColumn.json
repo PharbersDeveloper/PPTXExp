@@ -1,6 +1,7 @@
 {
   "chart": {
     "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartHandler",
+    "contentType": "column",
     "child": [ "titlt", "plotArea", "legend" ],
     "autoTitleDeleted": "false",
     "titlt": {
@@ -27,13 +28,13 @@
       "child": [ "chartType", "categoryAxis", "valueAxis", "dataTable", "shapeProperties" ],
       "chartType": {
         "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhBarChartHandler",
-        "child": [ "dataLables"],
+        "child": [ "dataLables" ],
         "direction": "Column",
         "grouping": "Clustered",
         "varyColors": "false",
-        "gapWidth": "219",
-        "gapDepth": "219",
-        "overlap": "-27",
+        "gapWidth": "95",
+        "gapDepth": "95",
+        "overlap": "0",
         "axisID": [ "855667343", "762537759" ],
         "dataLables": {
           "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhDataLabelsHandler",
@@ -58,7 +59,7 @@
             "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
             "child": [],
             "alpha": "100000",
-            "solidFill": "9932CC",
+            "solidFill": "0070C0",
             "outline": "FFFFFF"
           },
           {
@@ -73,6 +74,125 @@
             "child": [],
             "alpha": "100000",
             "solidFill": "FFF000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FFFFFF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
             "outline": "FFFFFF"
           },
           {
@@ -210,4 +330,5 @@
       }
     }
   }
+ 
 }

@@ -1,0 +1,14 @@
+{
+  "": {
+    "Alignment": "Center"
+  },
+  "center": {
+    "Alignment": "Center"
+  },
+  "right": {
+    "Alignment": "Right"
+  },
+  "left": {
+    "Alignment": "Left"
+  }
+}

@@ -18,6 +18,7 @@ namespace PhPPTGen.phOpenxml {
 	class PhExcelHandler {
 		private static PhExcelHandler _instance = null;
 		private readonly Dictionary<String, CheckValue> valueCheckMap = new Dictionary<string, CheckValue>();
+		private readonly Dictionary<string, JToken> ChartTypeMap;
 
 		private PhExcelHandler() {
 			string checkString(string v, out string type) {
@@ -31,6 +32,13 @@ namespace PhPPTGen.phOpenxml {
 
 			valueCheckMap["String"] = checkString;
 			valueCheckMap["Number"] = checkNumber;
+
+			ChartTypeMap = new Dictionary<string, JToken>();
+			foreach (JToken jToken in PhConfigHandler.GetInstance().configMap["chartType"]) {
+				using (StreamReader reader = File.OpenText(PhConfigHandler.GetInstance().path + jToken.First().Value<string>())) {
+					ChartTypeMap.Add(((JProperty)jToken).Name, JToken.ReadFrom(new JsonTextReader(reader)));
+				}
+			}
 		}
 
 		public static PhExcelHandler GetInstance() {
@@ -95,13 +103,9 @@ namespace PhPPTGen.phOpenxml {
 		}
 
 		public void InsertChartIntoExcel(WorkbookPart workbookPart, string type) {
-			PhChartPartsHandler test = new PhChartPartsHandler();
-
-			//后面图表类型多了这儿通过配置文件控制
-			using (StreamReader reader = File.OpenText(@"..\..\resources\Ph" + type + ".json")) {
-				test.Format = JToken.ReadFrom(new JsonTextReader(reader))["chart"];
-
-			}
+			PhChartPartsHandler test = new PhChartPartsHandler {
+				Format = ChartTypeMap[type]["chart"]
+			};
 			test.Content.SetValueFromExcel(workbookPart, test.Format);
 			WorksheetPart worksheetPart = workbookPart.WorksheetParts.ElementAt(0);
 			DrawingsPart drawingsPart = worksheetPart.AddNewPart<DrawingsPart>();

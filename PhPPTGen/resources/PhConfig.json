@@ -6,5 +6,13 @@
   "pptFormat": {
     "pptParagraphFormat": "PhPPTParagraphFormat.json",
     "pptFontFormat": "PhPPTFontFormat.json"
+  },
+  "command": {
+    "GenPPT": "PhPPTGen.phCommand.PhGenPPTCommand",
+    "ExcelPush": "PhPPTGen.phCommand.phExcel.PhUpdateExcelForXmlCommand",
+    "Excel2PPT": "PhPPTGen.phCommand.phPpt.PhPPTImportXlsCommand",
+    "ExportPPT": "PhPPTGen.phCommand.PhGenPPTCommand",
+    "PushText": "PhPPTGen.phCommand.phText.PhTextContentForXmlCommand",
+    "Excel2Chart": "PhPPTGen.phCommand.phChart.PhPPTImportChartCommand"
   }
 }

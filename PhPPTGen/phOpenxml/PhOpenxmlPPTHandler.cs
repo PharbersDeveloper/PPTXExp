@@ -157,20 +157,20 @@ namespace PhPPTGen.phOpenxml {
 			// Specify the text of the body shape.
 			P.TextBody textBody = new P.TextBody(new A.BodyProperties(),
 					new A.ListStyle());
-			foreach (Match m in new Regex(@"(?<=(#{#))(\S)*?(?=(#}#))").Matches(content)) {
+			foreach (Match m in new Regex(@"(?<=(#{#))[\s\S]*?(?=(#}#))").Matches(content)) {
 				string paragraphContent = m.Value;
 				A.Paragraph paragraph = new Paragraph();
-				JToken paragraphCss = FormatMap["pptParagraphFormat"][new Regex(@"(?<=(#C#))(\S)*").Match(paragraphContent).Value];
+				JToken paragraphCss = FormatMap["pptParagraphFormat"][new Regex(@"(?<=(#P#))[\s\S]*").Match(paragraphContent).Value];
 
-				//todo:正则读取content里面的段落格式代号，根据代号在json中取得具体格式
+				//正则读取content里面的段落格式代号，根据代号在json中取得具体格式
 				paragraph.Append(new A.ParagraphProperties() {
 					Alignment = (A.TextAlignmentTypeValues)Enum.Parse(typeof(A.TextAlignmentTypeValues), (string)paragraphCss["Alignment"]) });
 
-				foreach (Match match in new Regex(@"(?<=(#[#))(\S)*?(?=(#]#))").Matches(new Regex(@"(\S)*(?=(#C#))").Match(paragraphContent).Value)) {
+				foreach (Match match in new Regex(@"(?<=(#\[#))[\s\S]*?(?=(#\]#))").Matches(new Regex(@"[\s\S]*(?=(#P#))").Match(paragraphContent).Value)) {
 					string runContent = match.Value;
-					A.Text text = new A.Text() { Text = new Regex(@"(\S)*(?=(#C#))").Match(runContent).Value };
-					JToken runCss = FormatMap["pptFontFormat"][new Regex(@"(?<=(#C#))(\S)*").Match(paragraphContent).Value];
-					//todo:正则读取content里面的字段格式代号，根据代号在json中取得具体格式
+					A.Text text = new A.Text() { Text = new Regex(@"[\s\S]*(?=(#C#))").Match(runContent).Value };
+					JToken runCss = FormatMap["pptFontFormat"][new Regex(@"(?<=(#C#))[\s\S]*").Match(runContent).Value];
+					//正则读取content里面的字段格式代号，根据代号在json中取得具体格式
 					A.RunProperties runProperties = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "zh-CN",
 						FontSize = int.Parse((string)runCss["FontSize"]) * 100,
 						Bold = Boolean.Parse((string)runCss["Bold"]), Dirty = false };
@@ -387,9 +387,9 @@ namespace PhPPTGen.phOpenxml {
 
 		private PhOpenxmlPPTHandler() {
 			FormatMap = new Dictionary<string, JToken>();
-			foreach (JToken jToken in PhConfigHandler.GetInstance().configMap["pptFormat"].Children()) {
-				using (StreamReader reader = File.OpenText(jToken.Value<string>())) {
-					FormatMap.Add(jToken.Value<string>(), JToken.ReadFrom(new JsonTextReader(reader)));
+			foreach (JToken jToken in PhConfigHandler.GetInstance().configMap["pptFormat"]) {
+				using (StreamReader reader = File.OpenText(PhConfigHandler.GetInstance().path + jToken.First().Value<string>())) {
+					FormatMap.Add(((JProperty)jToken).Name, JToken.ReadFrom(new JsonTextReader(reader)));
 				}
 			}
 		}

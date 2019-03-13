@@ -1,6 +1,9 @@
 {
   "chartType": {
-    "Column": "PhColumn.json"
+    "Column": "PhColumn.json",
+    "Line": "PhLine.json",
+    "Pie": "PhPie.json",
+    "Pie3D": "PhPie3D.json"
   },
   "excelFormat": "PhFormatConfig.xml",
   "pptFormat": {
@@ -10,9 +13,10 @@
   "command": {
     "GenPPT": "PhPPTGen.phCommand.PhGenPPTCommand",
     "ExcelPush": "PhPPTGen.phCommand.phExcel.PhUpdateExcelForXmlCommand",
-    "Excel2PPT": "PhPPTGen.phCommand.phPpt.PhPPTImportXlsCommand",
+    "Excel2PPT": "PhPPTGen.phCommand.phPpt.PhPPTImportXlsxForXmlCommand",
     "ExportPPT": "PhPPTGen.phCommand.PhGenPPTCommand",
     "PushText": "PhPPTGen.phCommand.phText.PhTextContentForXmlCommand",
     "Excel2Chart": "PhPPTGen.phCommand.phChart.PhPPTImportChartCommand"
-  }
+  },
+  "pptType": "PhPPTType.json"
 }

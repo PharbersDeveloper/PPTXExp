@@ -1,0 +1,121 @@
+{
+  "chart": {
+    "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartHandler",
+    "contentType": "column",
+    "child": [ "plotArea", "view3D", "floor", "sideWall", "backWall" ],
+    "autoTitleDeleted": "true",
+    "plotArea": {
+      "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhPlotAreaHandler",
+      "child": [ "chartType", "shapeProperties" ],
+      "chartType": {
+        "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.Ph3DPieChartHandler",
+        "child": [ "dataLables" ],
+        "varyColors": "true",
+        "numFormat": "#,##0.00",
+        "angle": "0",
+        "dataLables": {
+          "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhDataLabelsHandler",
+          "child": [ "chartShapeProperties", "textProperties" ],
+          "showValue": "false",
+          "showPercent": "true",
+          "showSeriesName": "false",
+          "showCategoryName": "true",
+          "position": "BestFit",
+          "chartShapeProperties": {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "0",
+            "solidFill": "FFFFFF",
+            "outline": "FFFFFF"
+          },
+          "textProperties": {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhTextPropertiesHandler",
+            "child": [],
+            "fontSize": "10",
+            "bold": "false",
+            "kerning": "12"
+          }
+        },
+        "seriesChartShapeProperties": [
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "0",
+            "solidFill": "0070C0",
+            "outline": "FF0000"
+          }
+        ],
+        "pointChartShapeProperties": [
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "FF0000",
+            "outline": "FF0000"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "02D2CF",
+            "outline": "02D2CF"
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
+            "child": [],
+            "alpha": "100000",
+            "solidFill": "664E83",
+            "outline": "664E83"
+          }
+        ]
+      },
+      "shapeProperties": {
+        "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhShapePropertiesHandler",
+        "child": [],
+        "alpha": "0",
+        "solidFill": "FFFFFF",
+        "outline": "FFFFFF"
+      }
+    },
+    "view3D": {
+      "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhView3DHandler",
+      "child": [],
+      "RotateX": "30",
+      "RotateY": "20"
+    },
+    "floor": {
+      "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhFloorHandler",
+      "child": [ "shapeProperties" ],
+      "shapeProperties": {
+        "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhShapePropertiesHandler",
+        "child": [],
+        "alpha": "0",
+        "solidFill": "FFFFFF",
+        "outline": "FFFFFF"
+      }
+    },
+    "sideWall": {
+      "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhSideWallHandler",
+      "child": [ "shapeProperties" ],
+      "shapeProperties": {
+        "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhShapePropertiesHandler",
+        "child": [],
+        "alpha": "0",
+        "solidFill": "FFFFFF",
+        "outline": "FFFFFF"
+      }
+    },
+    "backWall": {
+      "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhBackWallHandler",
+      "child": [ "shapeProperties" ],
+      "shapeProperties": {
+        "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhShapePropertiesHandler",
+        "child": [],
+        "alpha": "0",
+        "solidFill": "FFFFFF",
+        "outline": "FFFFFF"
+      }
+    }
+  }
+
+}

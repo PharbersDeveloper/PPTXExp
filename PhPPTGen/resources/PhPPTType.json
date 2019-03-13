@@ -1,0 +1,166 @@
+﻿{
+  "defult": [
+    {
+      "index": "1",
+      "name": "head",
+      "x": "0",
+      "y": "0",
+      "cx": "25.42",
+      "cy": "2.03",
+      "alpha": "100000",
+      "backColor": "D52B1E",
+      "content": [
+        {
+          "alignment": "Center",
+          "run": [
+            {
+              "type": "run",
+              "text": "",
+              "fontSize": "18",
+              "bold": "false",
+              "color": "FF0000"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": "2",
+      "name": "foot",
+      "x": "1.27",
+      "y": "18.28",
+      "cx": "3.92",
+      "cy": "0.63",
+      "alpha": "0",
+      "backColor": "FFFFFF",
+      "content": [
+        {
+          "alignment": "Left",
+          "run": [
+            {
+              "type": "field",
+              "id": "{0F952C1A-6D42-4F2A-A24F-B164E33AA632}",
+              "fieldType": "datetime1",
+              "text": "2019/3/2",
+              "fontSize": "8",
+              "bold": "false",
+              "color": "000000"
+            }
+          ]
+        },
+        {
+          "alignment": "Left",
+          "run": [
+            {
+              "type": "run",
+              "text": "File name/location",
+              "fontSize": "8",
+              "bold": "false",
+              "color": "000000"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": "3",
+      "name": "foot2",
+      "x": "8.68",
+      "y": "18.31",
+      "cx": "8.04",
+      "cy": "0.61",
+      "alpha": "0",
+      "backColor": "FFFFFF",
+      "content": [
+        {
+          "alignment": "Left",
+          "run": [
+            {
+              "type": "run",
+              "text": "Company Confidential Copyright © 2019 Eli Lilly and Pharbers",
+              "fontSize": "8",
+              "bold": "false",
+              "color": "000000"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": "4",
+      "name": "index",
+      "x": "22.31",
+      "y": "18.28",
+      "cx": "1.82",
+      "cy": "0.72",
+      "alpha": "0",
+      "backColor": "FFFFFF",
+      "content": [
+        {
+          "alignment": "Right",
+          "run": [
+            {
+              "type": "field",
+              "id": "{06BDC669-45A8-4B5C-8CC4-97198033D0CB}",
+              "fieldType": "slidenum",
+              "text": "#",
+              "fontSize": "8",
+              "bold": "false",
+              "color": "000000"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "title": [
+    {
+      "index": "1",
+      "name": "head",
+      "x": "0",
+      "y": "0",
+      "cx": "25.42",
+      "cy": "8.34",
+      "alpha": "100000",
+      "backColor": "E02725",
+      "content": [
+        {
+          "alignment": "Center",
+          "run": [
+            {
+              "type": "run",
+              "text": "",
+              "fontSize": "18",
+              "bold": "false",
+              "color": "FF0000"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": "2",
+      "name": "headLow",
+      "x": "0",
+      "y": "10.9",
+      "cx": "25.42",
+      "cy": "8.34",
+      "alpha": "100000",
+      "backColor": "E02725",
+      "content": [
+        {
+          "alignment": "Center",
+          "run": [
+            {
+              "type": "run",
+              "text": "",
+              "fontSize": "18",
+              "bold": "false",
+              "color": "FF0000"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

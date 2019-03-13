@@ -16,12 +16,12 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			C.DataLabels dataLabels = new C.DataLabels();
 
 			//标签属性，以后可以由format属性定义
-			dataLabels.Append(new C.DataLabelPosition() { Val = C.DataLabelPositionValues.OutsideEnd });
+			dataLabels.Append(new C.DataLabelPosition() { Val = (C.DataLabelPositionValues)Enum.Parse(typeof(C.DataLabelPositionValues), (string)format["position"]) });
 			dataLabels.Append(new C.ShowLegendKey() { Val = false });
-			dataLabels.Append(new C.ShowValue() { Val = true });
-			dataLabels.Append(new C.ShowCategoryName() { Val = false });
-			dataLabels.Append(new C.ShowSeriesName() { Val = false });
-			dataLabels.Append(new C.ShowPercent() { Val = false });
+			dataLabels.Append(new C.ShowValue() { Val = Boolean.Parse((string)format["showValue"]) });
+			dataLabels.Append(new C.ShowCategoryName() { Val = Boolean.Parse((string)format["showCategoryName"]) });
+			dataLabels.Append(new C.ShowSeriesName() { Val = Boolean.Parse((string)format["showSeriesName"]) });
+			dataLabels.Append(new C.ShowPercent() { Val = Boolean.Parse((string)format["showPercent"]) });
 			dataLabels.Append(new C.ShowBubbleSize() { Val = false });
 			dataLabels.Append(new C.ShowLeaderLines() { Val = false });
 

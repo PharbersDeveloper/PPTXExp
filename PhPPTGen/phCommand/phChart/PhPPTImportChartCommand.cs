@@ -92,9 +92,9 @@ namespace PhPPTGen.phCommand.phChart {
 				//Notice that I have hardcoded the dimensions of the chart I will be importing.
 				//Feel free to choose any dimension that works best for your document
 				//a:off Element.Specifies the location of the bounding box of an object
-				Drawing.Offset offset = new Drawing.Offset() { X = e2c.pos[0] * 12709L, Y = e2c.pos[1] * 12709L };
+				Drawing.Offset offset = new Drawing.Offset() { X = e2c.pos[0], Y = e2c.pos[1] };
 				//a:ext Element. Specifies the size of the bounding box enclosing the referenced object
-				Drawing.Extents extents = new Drawing.Extents() { Cx = e2c.pos[2] * 14081L, Cy = e2c.pos[3] * 11430L };
+				Drawing.Extents extents = new Drawing.Extents() { Cx = e2c.pos[2], Cy = e2c.pos[3]};
 
 				// Add position element to transform element.
 				transform.Append(offset);

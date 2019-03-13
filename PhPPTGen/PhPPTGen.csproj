@@ -191,8 +191,17 @@
     <Compile Include="phCommand\PhGenPPTCommand.cs" />
     <Compile Include="phCommand\phChart\PhPPTImportChartCommand.cs" />
     <Compile Include="phCommand\phPpt\PhCreatePPTForXmlCommand.cs" />
+    <Compile Include="phCommand\phPpt\PhPPTImportXlsxForXmlCommand.cs" />
     <Compile Include="phCommand\phText\PhTextContentForXmlCommand.cs" />
     <Compile Include="PhConfigHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\Ph3DPieChartHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhChartTypeBaseHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhLineChartHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhPieChartHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhBackWallHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhFloorHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhSideWallHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhView3DHandler.cs" />
     <Compile Include="phOpenxml\PhOpenxmlPPTHandler.cs" />
     <Compile Include="phCommand\phPpt\PhPPTImportXlsCommand.cs" />
     <Compile Include="phCommand\phText\PhTextContentCommand.cs" />
@@ -213,7 +222,7 @@
     <Compile Include="phOpenxml\phExcelChart\DO\PhChartFormat.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\IPhCommonElementHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\IPhElementHandler.cs" />
-    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhBarChartHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhBarChartHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhBaseElementHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhCategoryAxisHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhChartHandler.cs" />
@@ -231,6 +240,8 @@
     <Compile Include="phOpenxml\phFormatHandler\PhExcelCssHandler.cs" />
     <Compile Include="phOpenxml\phFormatHandler\PhExcelFormatHandler.cs" />
     <Compile Include="phOpenxml\PhExcelHandler.cs" />
+    <Compile Include="phOpenxml\phTextHandler\PhFieldTextHandler.cs" />
+    <Compile Include="phOpenxml\phTextHandler\PhRunTextHandler.cs" />
     <Compile Include="phSocket\PhSocketServer.cs" />
     <Compile Include="phSocket\PhThreadClientHandler.cs" />
     <Compile Include="phSocket\PhThreadSocketServ.cs" />
@@ -242,10 +253,14 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="resources\PhPie3D.json" />
     <None Include="resources\PhColumn.json" />
     <None Include="resources\PhConfig.json" />
+    <None Include="resources\PhLine.json" />
+    <None Include="resources\PhPie.json" />
     <None Include="resources\PhPPTFontFormat.json" />
     <None Include="resources\PhPPTParagraphFormat.json" />
+    <None Include="resources\PhPPTType.json" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

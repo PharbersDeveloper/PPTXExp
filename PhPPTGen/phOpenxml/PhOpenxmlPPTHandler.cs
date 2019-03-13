@@ -12,12 +12,14 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using Newtonsoft.Json;
+using PhPPTGen.phOpenxml.phTextHandler;
 
 namespace PhPPTGen.phOpenxml {
 	class PhOpenxmlPPTHandler {
 
 		private static readonly PhOpenxmlPPTHandler Instance = new PhOpenxmlPPTHandler();
 		private readonly Dictionary<string, JToken> FormatMap;
+		private readonly Dictionary<string, PhRunTextHandler> textHandlerMap;
 
 		public static PhOpenxmlPPTHandler GetInstance() {
 			return Instance;
@@ -36,7 +38,7 @@ namespace PhPPTGen.phOpenxml {
 		}
 
 		// Insert the specified slide into the presentation at the specified position.
-		public void InsertNewSlide(PresentationDocument presentationDocument, int position, string slideTitle) {
+		public void InsertNewSlide(PresentationDocument presentationDocument, int position, string slideTitle, string type = "defult") {
 
 			if (presentationDocument == null) {
 				throw new ArgumentNullException("presentationDocument");
@@ -56,7 +58,7 @@ namespace PhPPTGen.phOpenxml {
 
 			// Declare and instantiate a new slide.
 			Slide slide = new Slide(new CommonSlideData(new ShapeTree()));
-			uint drawingObjectId = 1;
+			//uint drawingObjectId = 1;
 
 			// Construct the slide content.            
 			// Specify the non-visual properties of the new slide.
@@ -65,28 +67,51 @@ namespace PhPPTGen.phOpenxml {
 			nonVisualProperties.NonVisualGroupShapeDrawingProperties = new P.NonVisualGroupShapeDrawingProperties();
 			nonVisualProperties.ApplicationNonVisualDrawingProperties = new ApplicationNonVisualDrawingProperties();
 
-			// Specify the group shape properties of the new slide.
+			// 加入预设shape
 			slide.CommonSlideData.ShapeTree.AppendChild(new GroupShapeProperties());
 
-			// Declare and instantiate the title shape of the new slide.
-			P.Shape titleShape = slide.CommonSlideData.ShapeTree.AppendChild(new P.Shape());
 
-			drawingObjectId++;
 
-			// Specify the required shape properties for the title shape. 
-			titleShape.NonVisualShapeProperties = new P.NonVisualShapeProperties
-				(new P.NonVisualDrawingProperties() { Id = drawingObjectId, Name = "Title" },
-				new P.NonVisualShapeDrawingProperties(new A.ShapeLocks() { NoGrouping = true }),
-				new ApplicationNonVisualDrawingProperties(new PlaceholderShape() { Type = PlaceholderValues.Title }));
-			titleShape.ShapeProperties = new P.ShapeProperties();
+			JToken typeFormat = null;
+			using (StreamReader reader = File.OpenText(PhConfigHandler.GetInstance().path + PhConfigHandler.GetInstance().configMap["pptType"].Value<string>())) {
+				typeFormat = JToken.ReadFrom(new JsonTextReader(reader));
+			}
+			foreach (JToken format in (JArray)typeFormat[type]) {
+				P.Shape shape = slide.CommonSlideData.ShapeTree.AppendChild(new P.Shape());
+				shape.NonVisualShapeProperties = new P.NonVisualShapeProperties
+				(new P.NonVisualDrawingProperties() { Id = (uint)format["index"], Name = (string)format["name"] },
+				new P.NonVisualShapeDrawingProperties() { TextBox = true },
+				new ApplicationNonVisualDrawingProperties(
+					//new PlaceholderShape() {
+					//Type = (PlaceholderValues)Enum.Parse(typeof(PlaceholderValues), (string)format["placeholderType"]) }
+					));
+				shape.ShapeProperties = new P.ShapeProperties(
+					new A.Transform2D(new A.Offset() { X = (long)(((double)format["x"]) / 0.00000278), Y = (long)(((double)format["y"]) / 0.00000278) }, 
+					new A.Extents() { Cx = (long)(((double)format["cx"])/0.00000278), Cy = (long)(((double)format["cy"]) / 0.00000278) }),
+					new A.PresetGeometry(new A.AdjustValueList()) { Preset = A.ShapeTypeValues.Rectangle },
+				new A.SolidFill(new A.RgbColorModelHex(new A.Alpha() {
+						Val = int.Parse((string)format["alpha"])
+					}) { Val = (string)format["backColor"] }));
+				shape.TextBody = new P.TextBody(new A.BodyProperties(),
+						new A.ListStyle());
+				foreach (JToken paragraphFormat in (JArray)format["content"]) {
+					A.Paragraph paragraph = new Paragraph(
+						new A.ParagraphProperties() {
+							Alignment = (A.TextAlignmentTypeValues)Enum.Parse(typeof(A.TextAlignmentTypeValues), (string)paragraphFormat["alignment"])
+						});
+					foreach(JToken runFormat in (JArray)paragraphFormat["run"]) {
+						
+						paragraph.Append(textHandlerMap[(string)runFormat["type"]].CreateRun(runFormat));
+					}
+					shape.TextBody.Append(paragraph);
+				}
+			}
 
-			// Specify the text of the title shape.
-			titleShape.TextBody = new P.TextBody(new A.BodyProperties(),
-					new A.ListStyle(),
-					new A.Paragraph(new A.Run(new A.Text() { Text = slideTitle })));
+
 
 			// Create the slide part for the new slide.
 			SlidePart slidePart = presentationPart.AddNewPart<SlidePart>();
+			slidePart.AddNewPart<VmlDrawingPart>("rId2");
 
 			// Save the new slide part.
 			slide.Save(slidePart);
@@ -137,12 +162,14 @@ namespace PhPPTGen.phOpenxml {
 		}
 
 		public void InsertText(PresentationDocument presentationDocument, int position, string content, int[] pos) {
+
 			PresentationPart pptPart = presentationDocument.PresentationPart;
 			if (pptPart.Presentation.SlideIdList.Count() < position) {
 				PhOpenxmlPPTHandler.GetInstance().InsertNewSlide(presentationDocument, position, "");
 			}
 
 			var slide = pptPart.SlideParts.Last().Slide;
+;
 			uint drawingObjectId = (uint)slide.CommonSlideData.ShapeTree.ChildElements.Count();
 			// Declare and instantiate the body shape of the new slide.
 			P.Shape bodyShape = slide.CommonSlideData.ShapeTree.AppendChild(new P.Shape());
@@ -152,7 +179,7 @@ namespace PhPPTGen.phOpenxml {
 			bodyShape.NonVisualShapeProperties = new P.NonVisualShapeProperties(new P.NonVisualDrawingProperties() { Id = drawingObjectId, Name = "Content Placeholder" },
 					new P.NonVisualShapeDrawingProperties(new A.ShapeLocks() { NoGrouping = true }),
 					new ApplicationNonVisualDrawingProperties(new PlaceholderShape() { Index = 1 }));
-			bodyShape.ShapeProperties = new P.ShapeProperties(new A.Transform2D(new A.Offset() { X = pos[0] * 12709L, Y = pos[1] * 12709L }, new A.Extents() { Cx = pos[2] * 14081L, Cy = pos[3] * 11430L }));
+			bodyShape.ShapeProperties = new P.ShapeProperties(new A.Transform2D(new A.Offset() { X = pos[0], Y = pos[1] }, new A.Extents() { Cx = pos[2], Cy = pos[3] }));
 
 			// Specify the text of the body shape.
 			P.TextBody textBody = new P.TextBody(new A.BodyProperties(),
@@ -171,7 +198,9 @@ namespace PhPPTGen.phOpenxml {
 					A.Text text = new A.Text() { Text = new Regex(@"[\s\S]*(?=(#C#))").Match(runContent).Value };
 					JToken runCss = FormatMap["pptFontFormat"][new Regex(@"(?<=(#C#))[\s\S]*").Match(runContent).Value];
 					//正则读取content里面的字段格式代号，根据代号在json中取得具体格式
-					A.RunProperties runProperties = new A.RunProperties() { Language = "en-US", AlternativeLanguage = "zh-CN",
+					A.RunProperties runProperties = new A.RunProperties(
+						new A.LatinFont() { Typeface = (string)runCss["Font"] }, new A.ComplexScriptFont() { Typeface = (string)runCss["Font"] }
+						) { Language = "en-US", AlternativeLanguage = "zh-CN",
 						FontSize = int.Parse((string)runCss["FontSize"]) * 100,
 						Bold = Boolean.Parse((string)runCss["Bold"]), Dirty = false };
 					A.SolidFill solidFill = new A.SolidFill(new A.RgbColorModelHex() { Val = new HexBinaryValue((string)runCss["Color"]) });
@@ -182,6 +211,97 @@ namespace PhPPTGen.phOpenxml {
 				textBody.Append(paragraph);
 			}
 			bodyShape.TextBody = textBody;
+		}
+
+		public void InsertExcel(PresentationDocument presentationDocument, string excelPath, string emfPath, int[] pos) {
+			PresentationPart pptPart = presentationDocument.PresentationPart;
+
+			var sld = pptPart.SlideParts.Last();
+
+			VmlDrawingPart vmlDrawingPart1 = sld.GetPartsOfType<VmlDrawingPart>().First();
+			//GenerateVmlDrawingPart1Content(vmlDrawingPart1);
+			string imagePartId = "imgId" + sld.GetPartsCountOfType<ImagePart>();
+			ImagePart imagePart = vmlDrawingPart1.AddNewPart<ImagePart>("image/x-emf", imagePartId);
+			using(var data = new FileStream(emfPath, FileMode.Open, FileAccess.ReadWrite)) {
+				imagePart.FeedData(data);
+			}
+
+			sld.AddPart(imagePart, imagePartId);
+
+			string embId = "embId" + sld.GetPartsCountOfType<EmbeddedPackagePart>();
+			EmbeddedPackagePart embeddedPackagePart = sld.AddNewPart<EmbeddedPackagePart>(
+				"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", embId);
+			embeddedPackagePart.FeedData(new FileStream(excelPath, FileMode.Open, FileAccess.ReadWrite));
+			ShapeTree shapeTree = sld.Slide.CommonSlideData.ShapeTree;
+			P.GraphicFrame graphicFrame = new P.GraphicFrame();
+			shapeTree.Append(graphicFrame);
+			P.NonVisualGraphicFrameProperties nonVisualGraphicFrameProperties = new P.NonVisualGraphicFrameProperties(
+				new P.NonVisualDrawingProperties() {
+					Id = (UInt32Value)(uint)shapeTree.ChildElements.Count(),
+					Name = "Chart" + shapeTree.ChildElements.Count()
+				}, new P.NonVisualGraphicFrameDrawingProperties(), new ApplicationNonVisualDrawingProperties());
+
+			Transform transform1 = new Transform(new A.Offset() { X = pos[0], Y = pos[1] }, new A.Extents() { Cx = pos[2], Cy = pos[3] });
+			A.Graphic graphic = new A.Graphic();
+			A.GraphicData graphicData = new A.GraphicData() { Uri = "http://schemas.openxmlformats.org/presentationml/2006/ole" };
+			AlternateContent alternateContent = new AlternateContent();
+			alternateContent.AddNamespaceDeclaration("mc", "http://schemas.openxmlformats.org/markup-compatibility/2006");
+			AlternateContentChoice alternateContentChoice = new AlternateContentChoice(new OleObject(new OleObjectEmbed()) {
+				Name = "Worksheet",
+				Id = embId,
+				ImageWidth = pos[2],
+				ImageHeight = pos[3],
+				ProgId = "Excel.Sheet.12"
+			}) { Requires = "v" };
+			alternateContentChoice.AddNamespaceDeclaration("v", "urn:schemas-microsoft-com:vml");
+			alternateContent.Append(alternateContentChoice);
+
+			AlternateContentFallback alternateContentFallback = new AlternateContentFallback();
+			OleObject oleObject = new OleObject(new OleObjectEmbed()) {
+				Name = "Worksheet",
+				Id = embId,
+				ImageWidth = pos[2],
+				ImageHeight = pos[3],
+				ProgId = "Excel.Sheet.12"
+			};
+
+			P.Picture picture = new P.Picture();
+
+			P.NonVisualPictureProperties nonVisualPictureProperties = new P.NonVisualPictureProperties(
+				//动态id
+				new P.NonVisualDrawingProperties() { Id = (UInt32Value)0U, Name = "" },
+				new P.NonVisualPictureDrawingProperties(), new ApplicationNonVisualDrawingProperties());
+
+
+			P.BlipFill blipFill = new P.BlipFill(
+				new A.Blip() { Embed = imagePartId },
+				new A.Stretch(new A.FillRectangle()));
+
+			P.ShapeProperties shapeProperties = new P.ShapeProperties();
+
+			A.Transform2D transform2D = new A.Transform2D(
+				new A.Offset() { X = pos[0], Y = pos[1] },
+				new A.Extents() { Cx = pos[2], Cy = pos[3] });
+
+			A.PresetGeometry presetGeometry = new A.PresetGeometry(new A.AdjustValueList()) { Preset = A.ShapeTypeValues.Rectangle };
+
+			shapeProperties.Append(transform2D);
+			shapeProperties.Append(presetGeometry);
+
+			picture.Append(nonVisualPictureProperties);
+			picture.Append(blipFill);
+			picture.Append(shapeProperties);
+
+			oleObject.Append(picture);
+			alternateContentFallback.Append(oleObject);
+
+			alternateContent.Append(alternateContentFallback);
+
+
+			graphicData.Append(alternateContent);
+			graphic.Append(graphicData);
+			graphicFrame.Append(nonVisualGraphicFrameProperties, transform1, graphic);
+			sld.Slide.Save();
 		}
 
 		private void CreatePresentationParts(PresentationPart presentationPart) {
@@ -211,8 +331,8 @@ namespace PhPPTGen.phOpenxml {
 		}
 
 		private SlidePart CreateSlidePart(PresentationPart presentationPart) {
-			SlidePart slidePart1 = presentationPart.AddNewPart<SlidePart>("rId2");
-			slidePart1.Slide = new Slide(
+			SlidePart slidePart = presentationPart.AddNewPart<SlidePart>("rId2");
+			slidePart.Slide = new Slide(
 					new CommonSlideData(
 						new ShapeTree(
 							new P.NonVisualGroupShapeProperties(
@@ -221,7 +341,46 @@ namespace PhPPTGen.phOpenxml {
 								new ApplicationNonVisualDrawingProperties()),
 							new GroupShapeProperties(new TransformGroup()))),
 					new ColorMapOverride(new MasterColorMapping()));
-			return slidePart1;
+			slidePart.AddNewPart<VmlDrawingPart>("rId2");
+			// 加入预设title shape
+			var slide = slidePart.Slide;
+			//slide.CommonSlideData.ShapeTree.AppendChild(new GroupShapeProperties());
+
+			JToken typeFormat = null;
+			using (StreamReader reader = File.OpenText(PhConfigHandler.GetInstance().path + PhConfigHandler.GetInstance().configMap["pptType"].Value<string>())) {
+				typeFormat = JToken.ReadFrom(new JsonTextReader(reader));
+			}
+			foreach (JToken format in (JArray)typeFormat["title"]) {
+				P.Shape shape = slide.CommonSlideData.ShapeTree.AppendChild(new P.Shape());
+				shape.NonVisualShapeProperties = new P.NonVisualShapeProperties
+				(new P.NonVisualDrawingProperties() { Id = (uint)format["index"], Name = (string)format["name"] },
+				new P.NonVisualShapeDrawingProperties() { TextBox = true },
+				new ApplicationNonVisualDrawingProperties(
+					//new PlaceholderShape() {
+					//Type = (PlaceholderValues)Enum.Parse(typeof(PlaceholderValues), (string)format["placeholderType"]) }
+					));
+				shape.ShapeProperties = new P.ShapeProperties(
+					new A.Transform2D(new A.Offset() { X = (long)(((double)format["x"]) / 0.00000278), Y = (long)(((double)format["y"]) / 0.00000278) },
+					new A.Extents() { Cx = (long)(((double)format["cx"]) / 0.00000278), Cy = (long)(((double)format["cy"]) / 0.00000278) }),
+					new A.PresetGeometry(new A.AdjustValueList()) { Preset = A.ShapeTypeValues.Rectangle },
+				new A.SolidFill(new A.RgbColorModelHex(new A.Alpha() {
+					Val = int.Parse((string)format["alpha"])
+				}) { Val = (string)format["backColor"] }));
+				shape.TextBody = new P.TextBody(new A.BodyProperties(),
+						new A.ListStyle());
+				foreach (JToken paragraphFormat in (JArray)format["content"]) {
+					A.Paragraph paragraph = new Paragraph(
+						new A.ParagraphProperties() {
+							Alignment = (A.TextAlignmentTypeValues)Enum.Parse(typeof(A.TextAlignmentTypeValues), (string)paragraphFormat["alignment"])
+						});
+					foreach (JToken runFormat in (JArray)paragraphFormat["run"]) {
+
+						paragraph.Append(textHandlerMap[(string)runFormat["type"]].CreateRun(runFormat));
+					}
+					shape.TextBody.Append(paragraph);
+				}
+			}
+			return slidePart;
 		}
 
 		//官方给的祖传代码
@@ -392,6 +551,9 @@ namespace PhPPTGen.phOpenxml {
 					FormatMap.Add(((JProperty)jToken).Name, JToken.ReadFrom(new JsonTextReader(reader)));
 				}
 			}
+			textHandlerMap = new Dictionary<string, PhRunTextHandler>() {
+				{ "run", new PhRunTextHandler() }, {"field",new PhFieldTextHandler() }
+			};
 		}
 
 	}

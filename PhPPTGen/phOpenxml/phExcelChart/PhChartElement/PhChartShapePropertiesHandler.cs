@@ -21,7 +21,7 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			outline.Append(new A.SolidFill(new A.RgbColorModelHex(new A.Alpha() { Val = int.Parse((string)format["alpha"]) }) { Val = new HexBinaryValue((string)format["outline"]) }));
 			A.EffectList effectList = new A.EffectList();
 
-			chartShapeProperties.Append(solidFill);
+			//chartShapeProperties.Append(solidFill);
 			chartShapeProperties.Append(outline);
 			chartShapeProperties.Append(effectList);
 			return chartShapeProperties;

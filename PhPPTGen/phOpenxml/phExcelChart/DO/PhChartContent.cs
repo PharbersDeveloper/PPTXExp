@@ -50,6 +50,9 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 				}
 				Series.Add(serise);
 			}
+			for(int i = 0; i < seriesLabels.Count - Series[0].Count; i++) {
+				seriesLabels.RemoveAt(0);
+			}
 		}
 
 		private void SetValueForColumnType(WorkbookPart workbookPart) {

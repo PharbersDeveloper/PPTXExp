@@ -2,12 +2,27 @@
   "": {
     "FontSize": "24",
     "Bold": "false",
-    "Color": "000000"
+    "Color": "000000",
+    "Font": "Arial"
   },
-  "defult": {
+  "default": {
     "FontSize": "24",
-    "Bold": "false",
-    "Color": "000000"
+    "Bold": "true",
+    "Color": "000000",
+    "Font": "Arial"
+  },
+  "bigTitle": {
+    "FontSize": "40",
+    "Bold": "true",
+    "Color": "000000",
+    "Font": "Arial"
+  },
+  "overviewContent": {
+    "FontSize": "22",
+    "Bold": "true",
+    "Color": "000000",
+    "Font": "Arial Narrow"
   }
+
 
 }

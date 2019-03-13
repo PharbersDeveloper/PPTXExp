@@ -22,8 +22,12 @@ namespace PhPPTGen.phCommand.phText {
 			var workingPath = tmpDir + "\\" + jobid;
 			var file_path = workingPath + "\\result.pptx";
 
-			using (PresentationDocument presDoc = PresentationDocument.Open(file_path, true)) {
-				PhOpenxmlPPTHandler.GetInstance().InsertText(presDoc, text.slider, text.content, text.pos);
+			using (PresentationDocument pptDoc = PresentationDocument.Open(file_path, true)) {
+
+				if (pptDoc.PresentationPart.Presentation.SlideIdList.Count() - 1 < text.slider) {
+					PhOpenxmlPPTHandler.GetInstance().InsertNewSlide(pptDoc, text.slider, "");
+				}
+				PhOpenxmlPPTHandler.GetInstance().InsertText(pptDoc, text.slider, text.content, text.pos);
 			}			
 			return null;
 		}

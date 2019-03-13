@@ -10,7 +10,7 @@ using C = DocumentFormat.OpenXml.Drawing.Charts;
 
 
 namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
-	class PhBarChartHandler : PhBaseElementHandler {
+	class PhBarChartHandler : PhChartTypeBaseHandler {
 		protected override OpenXmlCompositeElement AppendDefaultElement(PhChartContent content, JToken format) {
 			C.BarChart barChart = new C.BarChart();
 
@@ -49,64 +49,12 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 
 			//todo: 不同图表formulaValue生成方式不同
 			barChartSeries.Append(new C.CategoryAxisData(CreateStringReference(content.seriesLabels, "Sheet1!$B$1:$D$1")));
-			barChartSeries.Append(new C.Values(CreateNumberReference(values, "Sheet1!$B$2:$D$2")));
+			barChartSeries.Append(new C.Values(CreateNumberReference(values, "Sheet1!$B$2:$D$2", (string)format["numFormat"])));
 
 			barChartSeries.Append(CreateBarSerExtensionList());
 			return barChartSeries;
 		}
 
-		private C.SeriesText CreateSeriesText(string value, string formulaValue) {
-			C.SeriesText seriesText = new C.SeriesText();
-			seriesText.Append(CreateStringReference(new List<string> { value }, formulaValue));
-			return seriesText;
-		}
-
-		private C.StringReference CreateStringReference(List<string> values, string formulaValue) {
-			C.StringReference stringReference = new C.StringReference();
-			C.Formula formula = new C.Formula {
-				//excel上的位置	
-				Text = formulaValue // "Sheet1!$B$1:$D$1";
-			};
-
-			C.StringCache stringCache = new C.StringCache();
-			stringCache.Append(new C.PointCount() { Val = new UInt32Value((uint)values.Count) });
-			foreach (string value in values) {
-				C.StringPoint stringPoint = new C.StringPoint() { Index = (UInt32Value)(uint)values.ToList().IndexOf(value) };
-				C.NumericValue numericValue = new C.NumericValue {
-					Text = value
-				};
-				stringPoint.Append(numericValue);
-				stringCache.Append(stringPoint);
-			}
-
-			stringReference.Append(formula);
-			stringReference.Append(stringCache);
-
-			return stringReference;
-		}
-
-		private C.NumberReference CreateNumberReference(List<string> values, string formulaValue) {
-
-			C.NumberReference numberReference = new C.NumberReference();
-			C.Formula formula = new C.Formula {
-				Text = formulaValue // "Sheet1!$B$2:$D$2"
-			};
-
-			C.NumberingCache numberingCache = new C.NumberingCache();
-
-			numberingCache.Append(new C.FormatCode { Text = "General" });
-			numberingCache.Append(new C.PointCount() { Val = (UInt32Value)(uint)values.Count });
-			foreach (string value in values) {
-				C.NumericPoint numericPoint = new C.NumericPoint() { Index = (UInt32Value)(uint)values.ToList().IndexOf(value) };
-				C.NumericValue numericValue = new C.NumericValue { Text = value };
-				numericPoint.Append(numericValue);
-				numberingCache.Append(numericPoint);
-			}
-			numberReference.Append(formula);
-			numberReference.Append(numberingCache);
-
-			return numberReference;
-		}
 
 		private C.BarSerExtensionList CreateBarSerExtensionList() {
 			C.BarSerExtensionList barSerExtensionList = new C.BarSerExtensionList();

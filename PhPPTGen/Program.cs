@@ -12,6 +12,7 @@ using A = DocumentFormat.OpenXml.Drawing;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using Spire.Xls;
 
 namespace PhPPTGen {
 	class Program {
@@ -23,27 +24,23 @@ namespace PhPPTGen {
 		}
 
 		//static void Main(string[] args) {
-		//	PhChartPartsHandler test = new PhChartPartsHandler();
+		//	//using (SpreadsheetDocument mySpreadsheet = SpreadsheetDocument.Open(@"D:\alfredyang\aa6452e1-bf63-47ab-bdf2-b5e19a5200c7.xlsx", true)) {
+		//	//	//Get all the appropriate parts
+		//	//	WorkbookPart workbookPart = mySpreadsheet.WorkbookPart;
 
-		//	using (StreamReader reader = File.OpenText(@"..\..\resources\PhBarChart.json")) {
-		//		test.Format = JToken.ReadFrom(new JsonTextReader(reader))["chart"];
-
-		//	}
-		//	using (SpreadsheetDocument mySpreadsheet = SpreadsheetDocument.Open(@"D:\alfredyang\chartTest.xlsx", true)) {
-		//		WorkbookPart workbookPart = mySpreadsheet.WorkbookPart;
-		//		test.Content.SetValueFromExcel(workbookPart);
-		//		WorksheetPart worksheetPart = mySpreadsheet.WorkbookPart.WorksheetParts.ElementAt(0);
-		//		DrawingsPart drawingsPart = worksheetPart.AddNewPart<DrawingsPart>();
-		//		worksheetPart.Worksheet.Append(new DocumentFormat.OpenXml.Spreadsheet.Drawing() { Id = worksheetPart.GetIdOfPart(drawingsPart) });
-		//		worksheetPart.Worksheet.Save();
-		//		ChartPart chartPart1 = drawingsPart.AddNewPart<ChartPart>("ch1");
-		//		test.CreateChartPart(chartPart1);
-		//		into(drawingsPart);
-		//		chartPart1.ChartSpace.Save();
-		//		drawingsPart.WorksheetDrawing.Save();
-		//	}
+		//	//	//生成chart在excel中
+		//	//	phOpenxml.PhExcelHandler.GetInstance().InsertChartIntoExcel(workbookPart, "Line");
+		//	//}
+		//	var input = new phModel.PhRequest() {
+		//		jobid = "dcstest",
+		//		e2c = new phModel.PhExcel2Chart() {
+		//			name = "test",
+		//			pos = new int[4] { 114, 392, 2311, 1380 },
+		//			chartType = "Line",
+		//			slider = 1
+		//		}
+		//	};
+		//	new phCommand.phChart.PhPPTImportChartCommand().Exec(input);
 		//}
-
-
 	}
 }

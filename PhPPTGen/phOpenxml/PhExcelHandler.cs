@@ -103,16 +103,16 @@ namespace PhPPTGen.phOpenxml {
 		}
 
 		public void InsertChartIntoExcel(WorkbookPart workbookPart, string type) {
-			PhChartPartsHandler test = new PhChartPartsHandler {
+			PhChartPartsHandler handler = new PhChartPartsHandler {
 				Format = ChartTypeMap[type]["chart"]
 			};
-			test.Content.SetValueFromExcel(workbookPart, test.Format);
+			handler.Content.SetValueFromExcel(workbookPart, handler.Format);
 			WorksheetPart worksheetPart = workbookPart.WorksheetParts.ElementAt(0);
 			DrawingsPart drawingsPart = worksheetPart.AddNewPart<DrawingsPart>();
 			worksheetPart.Worksheet.Append(new DocumentFormat.OpenXml.Spreadsheet.Drawing() { Id = worksheetPart.GetIdOfPart(drawingsPart) });
 			worksheetPart.Worksheet.Save();
 			ChartPart chartPart1 = drawingsPart.AddNewPart<ChartPart>("ch1");
-			test.CreateChartPart(chartPart1);
+			handler.CreateChartPart(chartPart1);
 			CreateDrawingPart(drawingsPart);
 			chartPart1.ChartSpace.Save();
 			drawingsPart.WorksheetDrawing.Save();

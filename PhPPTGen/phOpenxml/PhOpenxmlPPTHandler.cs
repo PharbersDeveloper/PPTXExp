@@ -198,13 +198,13 @@ namespace PhPPTGen.phOpenxml {
 					A.Text text = new A.Text() { Text = new Regex(@"[\s\S]*(?=(#C#))").Match(runContent).Value };
 					JToken runCss = FormatMap["pptFontFormat"][new Regex(@"(?<=(#C#))[\s\S]*").Match(runContent).Value];
 					//正则读取content里面的字段格式代号，根据代号在json中取得具体格式
+					A.SolidFill solidFill = new A.SolidFill(new A.RgbColorModelHex() { Val = new HexBinaryValue((string)runCss["Color"]) });
 					A.RunProperties runProperties = new A.RunProperties(
+						solidFill,
 						new A.LatinFont() { Typeface = (string)runCss["Font"] }, new A.ComplexScriptFont() { Typeface = (string)runCss["Font"] }
 						) { Language = "en-US", AlternativeLanguage = "zh-CN",
 						FontSize = int.Parse((string)runCss["FontSize"]) * 100,
 						Bold = Boolean.Parse((string)runCss["Bold"]), Dirty = false };
-					A.SolidFill solidFill = new A.SolidFill(new A.RgbColorModelHex() { Val = new HexBinaryValue((string)runCss["Color"]) });
-					runProperties.Append(solidFill);
 					paragraph.Append(new A.Run(runProperties, text));
 					
 				}

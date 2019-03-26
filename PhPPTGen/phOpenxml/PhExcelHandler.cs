@@ -26,7 +26,7 @@ namespace PhPPTGen.phOpenxml {
 				return v;
 			}
 			string checkNumber(string v, out string type) {
-				type = new Dictionary<Boolean, String> { { true, "Number" }, { false, "String" } }[Double.TryParse(v, out double re)];
+				type = new Dictionary<Boolean, String> { { true, "Number" }, { false, "String" } }[Double.TryParse(v, out double re) && !Double.IsNaN(re)];
 				return new Dictionary<String, String> { { "Number", v }, { "String", "N/A" } }[type];
 			}
 

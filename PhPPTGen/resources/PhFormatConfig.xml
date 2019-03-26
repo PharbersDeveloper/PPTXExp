@@ -8,6 +8,8 @@
     <font id="Tahoma9true#FF0000" name="Tahoma" size="9" bold="true" color="FF0000" />
     <font id="Tahoma9false#002060" name="Tahoma" size="9" bold="false" color="002060" />
     <font id="Tahoma9false#FFFFFF" name="Tahoma" size="9" bold="false" color="FFFFFF" />
+    <font id="Tahoma8true#000000" name="Tahoma" size="8" bold="true" color="000000" />
+    <font id="Tahoma8false#000000" name="Tahoma" size="8" bold="false" color="000000" />
     <font id="alfred" name="Arial" size="9" bold="false" color="000000" />
   </fonts>
   <fills>
@@ -20,6 +22,8 @@
     <fill id="#E2EFDA" type="Soild" color="E2EFDA" />
     <fill id="#FFF2CC" type="Soild" color="FFF2CC" />
     <fill id="#D9E1F2" type="Soild" color="D9E1F2" />
+    <fill id="#0070C0" type="Soild" color="0070C0" />
+    <fill id="#EDEDED" type="Soild" color="EDEDED" />
     <fill id="fillabcde" type="Soild" color="0000FF" />
   </fills>
   <numberings>

@@ -46,7 +46,8 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 				cells.Remove(cells.First());
 				List<string> serise = new List<string>();
 				foreach (Cell c in cells) {
-					serise.Add(GetValue(c, workbookPart));
+					double.TryParse(GetValue(c, workbookPart), out double re);
+					serise.Add(re.ToString());
 				}
 				Series.Add(serise);
 			}
@@ -74,7 +75,8 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 				cells.Remove(cells.First());
 				List<string> serise = new List<string>();
 				foreach (Cell c in cells) {
-					Series[cells.IndexOf(c)].Add(GetValue(c, workbookPart));
+					double.TryParse(GetValue(c, workbookPart), out double re);
+					Series[cells.IndexOf(c)].Add(re.ToString());
 				}
 				
 			}

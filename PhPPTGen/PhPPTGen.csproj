@@ -253,6 +253,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="resources\PhLineNoTable.json" />
     <None Include="resources\PhPie3D.json" />
     <None Include="resources\PhColumn.json" />
     <None Include="resources\PhConfig.json" />

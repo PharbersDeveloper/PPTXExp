@@ -358,12 +358,48 @@ namespace PhPPTGen.phCommand.phExcel.css {
 ";
 
 				string xmlJson = @"{
+  'timeline_1' : {
+    'fontSize' : '9',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'bold': 'true',
+    'cellColor' : '#FFFFFF',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'ThinF0F0F0',
+    'height' : '11.75'
+  },
 	'timeline_2' : {
     'fontSize' : '9',
     'fontColor' : '#FFFFFF',
     'fontName' : 'Tahoma',
     'bold': 'true',
     'cellColor' : '#FF0000',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'ThinF0F0F0',
+    'height' : '11.75'
+  },
+  'timeline_3' : {
+    'fontSize' : '9',
+    'fontColor' : '#FFFFFF',
+    'fontName' : 'Tahoma',
+    'bold': 'true',
+    'cellColor' : '#0070C0',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'ThinF0F0F0',
+    'height' : '14'
+  },
+    'timeline_4' : {
+    'fontSize' : '8',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'bold': 'true',
+    'cellColor' : '#FFFFFF',
     'topBorder' : 'ThinF0F0F0',
     'bottomBorder' : 'ThinF0F0F0',
     'leftBorder' : 'ThinF0F0F0',
@@ -381,33 +417,218 @@ namespace PhPPTGen.phCommand.phExcel.css {
     'leftBorder' : 'None000000',
     'rightBorder' : 'ThinF0F0F0'
   },
+  'col_title_common1' : {
+    'fontSize' : '9',
+    'fontColor' : '#FFFFFF',
+    'fontName' : 'Tahoma',
+    'bold': 'true',
+    'cellColor' : '#FF0000',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'None000000',
+    'rightBorder' : 'ThinF0F0F0',
+    'height' : '25'
+  },
+  'col_title_chart' : {
+    'fontSize' : '9',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'bold': 'false',
+    'cellColor' : '#FFFFFF',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'None000000',
+    'rightBorder' : 'ThinF0F0F0'
+  },
+  'col_title_chart1' : {
+    'fontSize' : '8',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'bold': 'false',
+    'cellColor' : '#FFFFFF',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'None000000',
+    'rightBorder' : 'ThinF0F0F0'
+  },
+  'col_title_common2' : {
+    'fontSize' : '9',
+    'fontColor' : '#FFFFFF',
+    'fontName' : 'Tahoma',
+    'bold': 'true',
+    'cellColor' : '#FF0000',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'None000000',
+    'rightBorder' : 'ThinF0F0F0',
+    'height' : '34.2'
+  },
+  'col_title_rank' : {
+    'fontSize' : '9',
+    'fontColor' : '#FFFFFF',
+    'fontName' : 'Tahoma',
+    'bold': 'true',
+    'cellColor' : '#FF0000',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'ThinF0F0F0'
+  },
+  'col_common' : {
+    'fontSize' : '9',
+    'fontName' : 'Tahoma',
+    'cellColor' : '#FFFFFF',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'None000000',
+    'width' : '12'
+  },
   'col_common1' : {
     'fontSize' : '9',
     'fontName' : 'Tahoma',
-	'leftBorder' : 'ThinF0F0F0',
+	  'leftBorder' : 'ThinF0F0F0',
     'rightBorder' : 'None000000',
     'cellColor' : '#FFFFFF',
     'width' : '15'
   },
+  'col_common2' : {
+    'fontSize' : '9',
+    'fontName' : 'Tahoma',
+    'cellColor' : '#FFFFFF',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'None000000',
+    'width' : '21'
+  },
   'col_common3' : {
     'fontSize' : '9',
     'fontName' : 'Tahoma',
-	'leftBorder' : 'ThinF0F0F0',
+	  'leftBorder' : 'ThinF0F0F0',
     'rightBorder' : 'None000000',
     'cellColor' : '#FFFFFF',
     'width' : '10'
   },
+  'col_common4' : {
+    'fontSize' : '9',
+    'fontName' : 'Tahoma',
+    'cellColor' : '#FFFFFF',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'None000000',
+    'width' : '8.11'
+  },
+  'col_common5' : {
+    'fontSize' : '9',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'cellColor' : '#FFFFFF',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'None000000',
+    'width' : '9'
+  },
+  'col_common6' : {
+    'fontSize' : '9',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'cellColor' : '#FFFFFF',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'None000000',
+    'width' : '7.5'
+  },
+  'col_chart' : {
+    'fontSize' : '9',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'cellColor' : '#FFFFFF',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'ThinF0F0F0',
+    'width' : '7'
+  },
+   'col_chart1' : {
+    'fontSize' : '6',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'cellColor' : '#FFFFFF',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'ThinF0F0F0',
+    'width' : '5'
+  },
+  'col_chart2' : {
+    'fontSize' : '9',
+    'fontColor' : '#000000',
+    'fontName' : 'Tahoma',
+    'cellColor' : '#EDEDED',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'ThinF0F0F0',
+    'width' : '11'
+  },
   'row_title_common' : {
     'fontSize' : '9',
     'fontName' : 'Tahoma',
-    'border' : 'ThinF0F0F0ThinF0F0F0ThinF0F0F0ThinF0F0F0',
     'width' : '40',
-    'topBorder' : 'ThinF0F0F0',
-    'bottomBorder' : 'ThinF0F0F0',
-	'topBorder' : 'ThinF0F0F0',
+	  'topBorder' : 'ThinF0F0F0',
     'bottomBorder' : 'ThinF0F0F0',
     'leftBorder' : 'None000000',
     'rightBorder' : 'ThinF0F0F0',
+    'horizontalAlignType' : 'Left'
+  },
+  'row_title_common1' : {
+    'fontSize' : '9',
+    'fontName' : 'Tahoma',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'None000000',
+    'rightBorder' : 'ThinF0F0F0',
+    'width' : '30',
+    'horizontalAlignType' : 'Left'
+  },
+  'row_title_chart' : {
+    'fontSize' : '9',
+    'fontName' : 'Tahoma',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'ThinF0F0F0',
+    'width' : '26.75',
+    'horizontalAlignType' : 'Left'
+  },
+   'row_title_chart1' : {
+    'fontSize' : '9',
+    'fontName' : 'Tahoma',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'ThinF0F0F0',
+    'width' : '18',
+    'horizontalAlignType' : 'Left'
+  },
+  'row_title_chart2' : {
+    'fontSize' : '9',
+    'fontColor' : '#FFFFFF',
+    'fontName' : 'Tahoma',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'ThinF0F0F0',
+    'cellColor' : '#0070C0',
+    'verticalAlignType' : 'Top',
+    'width' : '13'
+  },
+  'row_title_chart3' : {
+    'fontSize' : '9',
+    'fontName' : 'Tahoma',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'ThinF0F0F0',
+    'width' : '16',
+    'horizontalAlignType' : 'Left'
+  },
+  'row_title_chart4' : {
+    'fontSize' : '9',
+    'fontName' : 'Tahoma',
+    'topBorder' : 'ThinF0F0F0',
+    'bottomBorder' : 'ThinF0F0F0',
+    'leftBorder' : 'ThinF0F0F0',
+    'rightBorder' : 'ThinF0F0F0',
+    'width' : '15.23',
     'horizontalAlignType' : 'Left'
   },
   'row_1' : {

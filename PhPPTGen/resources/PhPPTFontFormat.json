@@ -11,6 +11,18 @@
     "Color": "000000",
     "Font": "Arial"
   },
+  "24Blue": {
+    "FontSize": "24",
+    "Bold": "false",
+    "Color": "2929FF",
+    "Font": "Arial"
+  },
+  "24Black": {
+    "FontSize": "24",
+    "Bold": "false",
+    "Color": "000000",
+    "Font": "Arial"
+  },
   "bigTitle": {
     "FontSize": "40",
     "Bold": "true",
@@ -22,7 +34,84 @@
     "Bold": "true",
     "Color": "000000",
     "Font": "Arial Narrow"
+  },
+  "content20Bold": {
+    "FontSize": "20",
+    "Bold": "true",
+    "Color": "000000",
+    "Font": "Arial"
+  },
+  "content16Bold": {
+    "FontSize": "16",
+    "Bold": "true",
+    "Color": "000000",
+    "Font": "Arial"
+  },
+  "content12Bold": {
+    "FontSize": "12",
+    "Bold": "true",
+    "Color": "000000",
+    "Font": "Arial"
+  },
+  "12BlueBold": {
+    "FontSize": "12",
+    "Bold": "true",
+    "Color": "0070C0",
+    "Font": "Arial"
+  },
+  "12Black": {
+    "FontSize": "12",
+    "Bold": "false",
+    "Color": "000000",
+    "Font": "Arial"
+  },
+  "12BlackBold": {
+    "FontSize": "12",
+    "Bold": "true",
+    "Color": "000000",
+    "Font": "Arial"
+  },
+  "36GrayBold": {
+    "FontSize": "36",
+    "Bold": "true",
+    "Color": "505046",
+    "Font": "Arial"
+  },
+  "16Black": {
+    "FontSize": "16",
+    "Bold": "false",
+    "Color": "000000",
+    "Font": "Arial"
+  },
+  "14Gray": {
+    "FontSize": "14",
+    "Bold": "false",
+    "Color": "505046",
+    "Font": "Arial"
+  },
+  "14Black": {
+    "FontSize": "14",
+    "Bold": "false",
+    "Color": "000000",
+    "Font": "Arial"
+  },
+  "14BlackBold": {
+    "FontSize": "14",
+    "Bold": "true",
+    "Color": "000000",
+    "Font": "Arial"
+  },
+  "11Black": {
+    "FontSize": "11",
+    "Bold": "false",
+    "Color": "000000",
+    "Font": "Arial"
+  },
+  "10BlueBold": {
+    "FontSize": "10",
+    "Bold": "true",
+    "Color": "4F81BD",
+    "Font": "Arial"
   }
-
 
 }

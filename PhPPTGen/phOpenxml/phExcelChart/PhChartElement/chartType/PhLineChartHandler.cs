@@ -33,7 +33,7 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			lineChartSeries.Append(CreateSeriesText(content.CategoryLabels[(int)index], "Sheet1!$A$" + (2 + index)));
 			lineChartSeries.Append(AppendOneElement(content, ((JArray)format["seriesChartShapeProperties"])[(int)index]));
 			lineChartSeries.Append(new C.Marker(new C.Symbol() { Val = (C.MarkerStyleValues)Enum.Parse(typeof(C.MarkerStyleValues), (string)format["marker"]) }));
-			lineChartSeries.Append(new C.CategoryAxisData(CreateStringReference(content.seriesLabels, "Sheet1!$B$1:$D$1")));
+			lineChartSeries.Append(new C.CategoryAxisData(CreateStringReference(content.SeriesLabels, "Sheet1!$B$1:$D$1")));
 			lineChartSeries.Append(new C.Values(CreateNumberReference(values, "Sheet1!$B$2:$D$2", (string)format["numFormat"])));
 			lineChartSeries.Append(new C.Smooth() { Val = Boolean.Parse((string)format["varyColors"]) });
 			lineChartSeries.Append(CreateLineSerExtensionList());

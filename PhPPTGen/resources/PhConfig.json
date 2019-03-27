@@ -4,7 +4,8 @@
     "Line": "PhLine.json",
     "Pie": "PhPie.json",
     "Pie3D": "PhPie3D.json",
-    "LineNoTable": "PhLineNoTable.json"
+    "LineNoTable": "PhLineNoTable.json",
+    "Stacked":  "PhStacked.json"
   },
   "excelFormat": "PhFormatConfig.xml",
   "pptFormat": {

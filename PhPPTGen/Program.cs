@@ -16,31 +16,31 @@ using Spire.Xls;
 
 namespace PhPPTGen {
 	class Program {
-		static void Main(string[] args) {
-			phSocket.PhThreadSocketServ s = new phSocket.PhThreadSocketServ();
-			s.startListen();
-			phCommon.PhMsgLst lst = phCommon.PhMsgLst.GetInstance();
-			lst.StartChecking();
-		}
-
 		//static void Main(string[] args) {
-		//	//using (SpreadsheetDocument mySpreadsheet = SpreadsheetDocument.Open(@"D:\alfredyang\aa6452e1-bf63-47ab-bdf2-b5e19a5200c7.xlsx", true)) {
-		//	//	//Get all the appropriate parts
-		//	//	WorkbookPart workbookPart = mySpreadsheet.WorkbookPart;
-
-		//	//	//生成chart在excel中
-		//	//	phOpenxml.PhExcelHandler.GetInstance().InsertChartIntoExcel(workbookPart, "Line");
-		//	//}
-		//	var input = new phModel.PhRequest() {
-		//		jobid = "dcstest",
-		//		e2c = new phModel.PhExcel2Chart() {
-		//			name = "test",
-		//			pos = new int[4] { 114, 392, 2311, 1380 },
-		//			chartType = "Line",
-		//			slider = 1
-		//		}
-		//	};
-		//	new phCommand.phChart.PhPPTImportChartCommand().Exec(input);
+		//	phSocket.PhThreadSocketServ s = new phSocket.PhThreadSocketServ();
+		//	s.startListen();
+		//	phCommon.PhMsgLst lst = phCommon.PhMsgLst.GetInstance();
+		//	lst.StartChecking();
 		//}
+
+		static void Main(string[] args) {
+			//using (SpreadsheetDocument mySpreadsheet = SpreadsheetDocument.Open(@"D:\alfredyang\aa6452e1-bf63-47ab-bdf2-b5e19a5200c7.xlsx", true)) {
+			//	//Get all the appropriate parts
+			//	WorkbookPart workbookPart = mySpreadsheet.WorkbookPart;
+
+			//	//生成chart在excel中
+			//	phOpenxml.PhExcelHandler.GetInstance().InsertChartIntoExcel(workbookPart, "Line");
+			//}
+			var input = new phModel.PhRequest() {
+				jobid = "dcstest",
+				e2c = new phModel.PhExcel2Chart() {
+					name = "test",
+					pos = new int[4] { 114, 392, 3334532, 3334532 },
+					chartType = "Stacked",
+					slider = 1
+				}
+			};
+			new phCommand.phChart.PhPPTImportChartCommand().Exec(input);
+		}
 	}
 }

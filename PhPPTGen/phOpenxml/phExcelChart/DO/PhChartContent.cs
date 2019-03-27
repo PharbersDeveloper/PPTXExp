@@ -12,18 +12,12 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 		public Dictionary<string, string> titleMap = new Dictionary<string, string>() { { "chartTitle", "chartTitle" } };
 		public List<List<string>> Series = new List<List<string>>();
 		public List<string> CategoryLabels = new List<string>();
-		public List<string> seriesLabels = new List<string>();
-		
-
-		//public void SetValue() {
-		//	Series = new List<string[]> { new string[3] { "1", "2", "3" }, new string[3] { "4", "5", "6" } };
-		//	CategoryLabels = new string[2] { "1号", "2号" };
-		//	seriesLabels = new string[3] { "a", "b", "c" };
-		//}
+		public List<string> SeriesLabels = new List<string>();
+		public List<List<string>> DataLabels = new List<List<string>>();
 
 		public void SetValueFromExcel(WorkbookPart workbookPart, JToken format) {
 			Dictionary<string, SetValue> funcMap = new Dictionary<string, SetValue>() {
-				{"row", SetValueForRowType },{"column", SetValueForColumnType}
+				{"row", SetValueForRowType },{"column", SetValueForColumnType},{"chcStacked", SetValueForChcStackedType}
 			};
 
 			funcMap[(string)format["contentType"]](workbookPart);
@@ -35,7 +29,7 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 			SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
 			var rows = sheetData.Elements<Row>().ToList();
 			foreach (Cell c in rows.First()) {
-				seriesLabels.Add(GetValue(c, workbookPart));
+				SeriesLabels.Add(GetValue(c, workbookPart));
 			}
 
 			rows.Remove(rows.First());
@@ -51,8 +45,8 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 				}
 				Series.Add(serise);
 			}
-			for(int i = 0; i < seriesLabels.Count - Series[0].Count; i++) {
-				seriesLabels.RemoveAt(0);
+			for(int i = 0; i < SeriesLabels.Count - Series[0].Count; i++) {
+				SeriesLabels.RemoveAt(0);
 			}
 		}
 
@@ -71,7 +65,7 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 			}
 				foreach (Row r in rows) {
 				var cells = r.Elements<Cell>().ToList();
-				seriesLabels.Add(GetValue(cells.First(), workbookPart));
+				SeriesLabels.Add(GetValue(cells.First(), workbookPart));
 				cells.Remove(cells.First());
 				List<string> serise = new List<string>();
 				foreach (Cell c in cells) {
@@ -79,6 +73,40 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 					Series[cells.IndexOf(c)].Add(re.ToString());
 				}
 				
+			}
+		}
+
+		private void SetValueForChcStackedType(WorkbookPart workbookPart) {
+			WorksheetPart worksheetPart = workbookPart.WorksheetParts.ElementAt(0);
+			SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
+			var rows = sheetData.Elements<Row>().ToList();
+			foreach (Cell c in rows.First()) {
+				SeriesLabels.Add(GetValue(c, workbookPart));
+			}
+
+			rows.Remove(rows.First());
+
+			foreach (Row r in rows) {
+				var cells = r.Elements<Cell>().ToList();
+				CategoryLabels.Add(GetValue(cells.First(), workbookPart));
+				cells.Remove(cells.First());
+				List<string> serise = new List<string>();
+				foreach (Cell c in cells.Take(cells.Count / 2)) {
+					double.TryParse(GetValue(c, workbookPart), out double re);
+					serise.Add(re.ToString());
+				}
+
+				List<string> dataLabel = new List<string>();
+				foreach (Cell c in cells.Skip(cells.Count / 2).Take(cells.Count / 2)) {
+					double.TryParse(GetValue(c, workbookPart), out double re);
+					dataLabel.Add(string.Format("{0:0.00%}", re));
+				}
+				Series.Add(serise);
+				DataLabels.Add(dataLabel);
+			}
+			SeriesLabels.RemoveAll(x => x.Trim() == "");
+			for (int i = 0; i < SeriesLabels.Count - Series[0].Count; i++) {
+				SeriesLabels.RemoveAt(0);
 			}
 		}
 

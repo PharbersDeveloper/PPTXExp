@@ -199,8 +199,11 @@
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhLineChartHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhPieChartHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhBackWallHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhChcStackDataLabelsHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhFloorHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhSeriesLinesHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhSideWallHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhTextPropertiesHasColorHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhView3DHandler.cs" />
     <Compile Include="phOpenxml\PhOpenxmlPPTHandler.cs" />
     <Compile Include="phCommand\phPpt\PhPPTImportXlsCommand.cs" />
@@ -262,6 +265,7 @@
     <None Include="resources\PhPPTFontFormat.json" />
     <None Include="resources\PhPPTParagraphFormat.json" />
     <None Include="resources\PhPPTType.json" />
+    <None Include="resources\PhStacked.json" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

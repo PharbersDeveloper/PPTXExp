@@ -19,17 +19,18 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			A.Paragraph paragraph = new A.Paragraph();
 
 			A.ParagraphProperties paragraphProperties = new A.ParagraphProperties();
-			A.DefaultRunProperties defaultRunProperties = new A.DefaultRunProperties() {
-				FontSize = int.Parse((string)format["fontSize"]) * 100,
-				Bold = Boolean.Parse((string)format["bold"]),
-				Italic = false,
-				Underline = A.TextUnderlineValues.None,
-				Strike = A.TextStrikeValues.NoStrike,
-				Kerning = int.Parse((string)format["kerning"]) * 100,
-				Baseline = 0
-			};
+			//A.DefaultRunProperties defaultRunProperties = new A.DefaultRunProperties() {
+			//	FontSize = int.Parse((string)format["fontSize"]) * 100,
+			//	Bold = Boolean.Parse((string)format["bold"]),
+			//	Italic = false,
+			//	Underline = A.TextUnderlineValues.None,
+			//	Strike = A.TextStrikeValues.NoStrike,
+			//	Kerning = int.Parse((string)format["kerning"]) * 100,
+			//	Baseline = 0
+			//};
 
-			paragraphProperties.Append(defaultRunProperties);
+
+			paragraphProperties.Append(GetDefaultRunProperties(format));
 			A.EndParagraphRunProperties endParagraphRunProperties = new A.EndParagraphRunProperties() { Language = "zh-CN" };
 
 			paragraph.Append(paragraphProperties);
@@ -39,6 +40,19 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			textProperties.Append(listStyle);
 			textProperties.Append(paragraph);
 			return textProperties;
+		}
+
+		protected virtual A.DefaultRunProperties GetDefaultRunProperties(JToken format) {
+			A.DefaultRunProperties defaultRunProperties = new A.DefaultRunProperties() {
+				FontSize = int.Parse((string)format["fontSize"]) * 100,
+				Bold = Boolean.Parse((string)format["bold"]),
+				Italic = false,
+				Underline = A.TextUnderlineValues.None,
+				Strike = A.TextStrikeValues.NoStrike,
+				Kerning = int.Parse((string)format["kerning"]) * 100,
+				Baseline = 0
+			};
+			return defaultRunProperties;
 		}
 	}
 }

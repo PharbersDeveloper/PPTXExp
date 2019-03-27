@@ -27,7 +27,7 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			pieChartSeries.Append(new C.Order() { Val = (UInt32Value)index });
 			pieChartSeries.Append(CreateSeriesText(content.CategoryLabels[(int)index], "Sheet1!$A$" + (2 + index)));
 			pieChartSeries.Append(AppendOneElement(content, ((JArray)format["seriesChartShapeProperties"])[(int)index]));
-			pieChartSeries.Append(new C.CategoryAxisData(CreateStringReference(content.seriesLabels, "Sheet1!$B$1:$D$1")));
+			pieChartSeries.Append(new C.CategoryAxisData(CreateStringReference(content.SeriesLabels, "Sheet1!$B$1:$D$1")));
 			pieChartSeries.Append(new C.Values(CreateNumberReference(values, "Sheet1!$B$2:$D$2", (string)format["numFormat"])));
 			pieChartSeries.Append(CreateLineSerExtensionList());
 			return pieChartSeries;

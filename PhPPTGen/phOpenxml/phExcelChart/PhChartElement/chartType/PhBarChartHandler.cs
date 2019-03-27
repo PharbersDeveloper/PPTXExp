@@ -48,7 +48,7 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			barChartSeries.Append(AppendOneElement(content, format["serisDataLables"]));	
 
 			//todo: 不同图表formulaValue生成方式不同
-			barChartSeries.Append(new C.CategoryAxisData(CreateStringReference(content.seriesLabels, "Sheet1!$B$1:$D$1")));
+			barChartSeries.Append(new C.CategoryAxisData(CreateStringReference(content.SeriesLabels, "Sheet1!$B$1:$D$1")));
 			barChartSeries.Append(new C.Values(CreateNumberReference(values, "Sheet1!$B$2:$D$2", (string)format["numFormat"])));
 
 			barChartSeries.Append(CreateBarSerExtensionList());

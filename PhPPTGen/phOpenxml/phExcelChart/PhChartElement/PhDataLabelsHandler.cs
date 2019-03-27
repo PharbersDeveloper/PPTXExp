@@ -29,7 +29,7 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			return dataLabels;
 		}
 
-		private C.DLblsExtensionList CreateDLblsExtensionList() {
+		protected virtual C.DLblsExtensionList CreateDLblsExtensionList() {
 			C.DLblsExtensionList dLblsExtensionList1 = new C.DLblsExtensionList();
 
 			C.DLblsExtension dLblsExtension1 = new C.DLblsExtension() { Uri = "{CE6537A1-D6FC-4f65-9D91-7224C49458BB}" };

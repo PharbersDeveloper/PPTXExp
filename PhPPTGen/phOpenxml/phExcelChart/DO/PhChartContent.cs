@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 
 namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 	class PhChartContent {
-		public Dictionary<string, string> titleMap = new Dictionary<string, string>() { { "chartTitle", "chartTitle" } };
+		
 		public List<List<string>> Series = new List<List<string>>();
 		public List<string> CategoryLabels = new List<string>();
 		public List<string> SeriesLabels = new List<string>();
 		public List<List<string>> DataLabels = new List<List<string>>();
+		
+
 
 		public void SetValueFromExcel(WorkbookPart workbookPart, JToken format) {
 			Dictionary<string, SetValue> funcMap = new Dictionary<string, SetValue>() {
@@ -23,6 +25,13 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 			funcMap[(string)format["contentType"]](workbookPart);
 		}
 		
+		public string GetTitle(string titleTye) {
+		Dictionary<string, GetTitleValue> titleMap = new Dictionary<string, GetTitleValue>() {
+			{ "xTitle", () => SeriesLabels[0] }, { "yTitle", () => SeriesLabels[1] }
+		};
+
+			return titleMap[titleTye]();
+		}
 
 		private void SetValueForRowType(WorkbookPart workbookPart) {
 			WorksheetPart worksheetPart = workbookPart.WorksheetParts.ElementAt(0);
@@ -125,10 +134,11 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 			return factionMap[cell.DataType.Value](cell, workbookPart);
 		}
 
-
 		private delegate string GetCellValue(Cell c, WorkbookPart w);
 
 		private delegate void SetValue(WorkbookPart workbookPart);
+
+		private delegate string GetTitleValue();
 	}
 
 	

@@ -4,25 +4,6 @@
     "contentType": "column",
     "child": [ "plotArea"],
     "autoTitleDeleted": "true",
-    "titlt": {
-      "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhTitleHandler",
-      "child": [ "chartShapeProperties", "textProperties" ],
-      "titleType": "chartTitle",
-      "chartShapeProperties": {
-        "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHandler",
-        "child": [],
-        "alpha": "100000",
-        "solidFill": "FFFFFF",
-        "outline": "FFFFFF"
-      },
-      "textProperties": {
-        "child": [],
-        "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhTextPropertiesHandler",
-        "fontSize": "10",
-        "bold": "false",
-        "kerning": "12"
-      }
-    },
     "plotArea": {
       "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhPlotAreaHandler",
       "child": [ "chartType", "categoryAxis", "valueAxis", "dataTable", "shapeProperties" ],
@@ -240,6 +221,8 @@
         "orientation": "MinMax",
         "delete": "false",
         "axisPosition": "Bottom",
+        "code": "General",
+        "sourceLinked": "true",
         "majorTickMark": "None",
         "minorTickMark": "None",
         "chartShapeProperties": {
@@ -267,6 +250,8 @@
         "orientation": "MinMax",
         "delete": "false",
         "axisPosition": "Left",
+        "code": "General",
+        "sourceLinked": "true",
         "majorGridlinesShapeProperties": {
           "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhShapePropertiesHandler",
           "child": [],

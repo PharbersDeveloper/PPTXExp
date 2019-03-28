@@ -238,6 +238,8 @@
         "orientation": "MinMax",
         "delete": "false",
         "axisPosition": "Bottom",
+        "code": "General",
+        "sourceLinked": "true",
         "majorTickMark": "None",
         "minorTickMark": "None",
         "chartShapeProperties": {
@@ -264,6 +266,8 @@
         "axisId": "762537759",
         "orientation": "MinMax",
         "delete": "false",
+        "code": "General",
+        "sourceLinked": "true",
         "axisPosition": "Left",
         "majorGridlinesShapeProperties": {
           "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhShapePropertiesHandler",

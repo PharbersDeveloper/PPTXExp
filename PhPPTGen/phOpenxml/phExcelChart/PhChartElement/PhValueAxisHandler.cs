@@ -22,7 +22,7 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			valueAxis.Append(new C.AxisPosition() { Val = (C.AxisPositionValues)Enum.Parse(typeof(C.AxisPositionValues), (string)format["axisPosition"]) });
 			valueAxis.Append(new C.MajorGridlines(AppendOneElement(content, format["majorGridlinesShapeProperties"])));
 			//编码方式，如保留小数等
-			valueAxis.Append(new C.NumberingFormat() { FormatCode = "General", SourceLinked = true });
+			valueAxis.Append(new C.NumberingFormat() { FormatCode = (string)format["code"], SourceLinked = Boolean.Parse((string)format["sourceLinked"]) });
 
 			//刻度
 			valueAxis.Append(new C.MajorTickMark() { Val = (C.TickMarkValues)Enum.Parse(typeof(C.TickMarkValues), (string)format["majorTickMark"]) });

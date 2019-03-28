@@ -195,6 +195,7 @@
     <Compile Include="phCommand\phText\PhTextContentForXmlCommand.cs" />
     <Compile Include="PhConfigHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\Ph3DPieChartHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhBubbleChartHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhChartTypeBaseHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhLineChartHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhPieChartHandler.cs" />
@@ -256,6 +257,8 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="resources\PhBubble.json" />
+    <None Include="resources\PhChcLine.json" />
     <None Include="resources\PhLineNoTable.json" />
     <None Include="resources\PhPie3D.json" />
     <None Include="resources\PhColumn.json" />

@@ -200,8 +200,11 @@
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhLineChartHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhPieChartHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhBackWallHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhChartShapePropertiesHasFill.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhChcStackDataLabelsHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhFloorHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhLayoutHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhMajorUnitHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhSeriesLinesHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhSideWallHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhTextPropertiesHasColorHandler.cs" />

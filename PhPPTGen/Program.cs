@@ -35,8 +35,8 @@ namespace PhPPTGen {
 				jobid = "dcstest",
 				e2c = new phModel.PhExcel2Chart() {
 					name = "test",
-					pos = new int[4] { 114, 392, 5334532, 5334532 },
-					chartType = "Bubble",
+					pos = new int[4] { (int)(169 / 0.000278), (int)(624 / 0.000278), (int)(927 / 0.000278), (int)(1105 / 0.000278)},
+					chartType = "Stacked",
 					slider = 1
 				}
 			};

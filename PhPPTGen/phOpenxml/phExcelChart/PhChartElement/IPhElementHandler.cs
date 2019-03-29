@@ -10,5 +10,6 @@ using System.Threading.Tasks;
 namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 	interface IPhElementHandler {
 		OpenXmlCompositeElement CreateElement(PhChartContent content, JToken format);
+		OpenXmlCompositeElement CreateElement(PhChartContent content, JToken format, params Object[] paras);
 	}
 }

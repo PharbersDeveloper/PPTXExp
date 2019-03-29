@@ -16,6 +16,12 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			return element;
 		}
 
+		public OpenXmlCompositeElement CreateElement(PhChartContent content, JToken format, params Object[] paras) {
+			var element = AppendDefaultElement(content, format, paras);
+			AppendChildElement(element, content, format);
+			return element;
+		}
+
 		protected virtual void AppendChildElement(OpenXmlCompositeElement element, PhChartContent content, JToken format) {
 			foreach(string childName in (JArray)format["child"]) {
 				element.Append(GetHandler((string)format[childName]["factory"]).CreateElement(content, format[childName]));
@@ -24,8 +30,16 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 
 		protected abstract OpenXmlCompositeElement AppendDefaultElement(PhChartContent content, JToken format);
 
+		protected virtual OpenXmlCompositeElement AppendDefaultElement(PhChartContent content, JToken format, params Object[] paras) {
+			throw new NotImplementedException();
+		}
+
 		protected OpenXmlCompositeElement AppendOneElement(PhChartContent content, JToken format) {
 			return GetHandler((string)format["factory"]).CreateElement(content, format);
+		}
+
+		protected virtual OpenXmlElement AppendOneElement(PhChartContent content, JToken format, params Object[] paras) {
+			return GetHandler((string)format["factory"]).CreateElement(content, format, paras);
 		}
 
 		protected IPhElementHandler GetHandler(string factory) {

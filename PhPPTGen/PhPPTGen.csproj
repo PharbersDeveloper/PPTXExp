@@ -202,6 +202,7 @@
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhBackWallHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhChartShapePropertiesHasFill.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhChcStackDataLabelsHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhDataLabelsForParasHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhFloorHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhLayoutHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhMajorUnitHandler.cs" />

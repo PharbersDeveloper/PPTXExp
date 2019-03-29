@@ -14,8 +14,8 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			C.Layout layout = new C.Layout();
 
 			C.ManualLayout manualLayout = new C.ManualLayout();
-			C.LeftMode leftMode = new C.LeftMode() { Val = C.LayoutModeValues.Edge };
-			C.TopMode topMode = new C.TopMode() { Val = C.LayoutModeValues.Edge };
+			C.LeftMode leftMode = new C.LeftMode() { Val = (C.LayoutModeValues)Enum.Parse(typeof(C.LayoutModeValues), (string)format["leftMode"]) };
+			C.TopMode topMode = new C.TopMode() { Val = (C.LayoutModeValues)Enum.Parse(typeof(C.LayoutModeValues), (string)format["topMode"]) };
 			C.Left left = new C.Left() { Val = Double.Parse((string)format["left"]) };
 			C.Top top = new C.Top() { Val = Double.Parse((string)format["top"]) };
 

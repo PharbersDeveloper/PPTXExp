@@ -268,8 +268,9 @@
           }
         ],
         "serisDataLables": {
-          "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhDataLabelsHandler",
+          "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhDataLabelsForParasHandler",
           "child": [ "chartShapeProperties", "textProperties" ],
+          "type": "chcBubble",
           "showValue": "false",
           "showPercent": "false",
           "showSeriesName": "true",
@@ -288,6 +289,42 @@
             "fontSize": "9",
             "bold": "false",
             "kerning": "12"
+          },
+          "small": {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhDataLabelsHandler",
+            "child": [ ],
+            "type": "chcBubble",
+            "showValue": "false",
+            "showPercent": "false",
+            "showSeriesName": "true",
+            "showCategoryName": "false",
+            "position": "Right",
+            "layout": {
+              "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhLayoutHandler",
+              "child": [],
+              "leftMode": "Factor",
+              "topMode": "Factor",
+              "left": "-0.9636701662292211E-2",
+              "top": "0.05277777777777768"
+            }
+          },
+          "big": {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhDataLabelsHandler",
+            "child": [],
+            "type": "chcBubble",
+            "showValue": "false",
+            "showPercent": "false",
+            "showSeriesName": "true",
+            "showCategoryName": "false",
+            "position": "Center",
+            "layout": {
+              "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhLayoutHandler",
+              "child": [],
+              "leftMode": "Factor",
+              "topMode": "Factor",
+              "left": "0",
+              "top": "0"
+            }
           }
         }
       },
@@ -337,6 +374,8 @@
           "layout": {
             "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhLayoutHandler",
             "child": [],
+            "leftMode": "Edge",
+            "topMode": "Edge",
             "left": "0.93435909505876968",
             "top": "0.93905208964264086"
           },
@@ -402,6 +441,8 @@
           "layout": {
             "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhLayoutHandler",
             "child": [],
+            "leftMode": "Edge",
+            "topMode": "Edge",
             "left": "1.6304347826086956E-2",
             "top": "2.1991650082201296E-2"
           },

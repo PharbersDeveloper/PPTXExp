@@ -271,6 +271,7 @@
           "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhDataLabelsForParasHandler",
           "child": [ "chartShapeProperties", "textProperties" ],
           "type": "chcBubble",
+          "diameterSquare": "0.1",
           "showValue": "false",
           "showPercent": "false",
           "showSeriesName": "true",
@@ -292,7 +293,7 @@
           },
           "small": {
             "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhDataLabelsHandler",
-            "child": [ ],
+            "child": [],
             "type": "chcBubble",
             "showValue": "false",
             "showPercent": "false",
@@ -304,8 +305,8 @@
               "child": [],
               "leftMode": "Factor",
               "topMode": "Factor",
-              "left": "-0.9636701662292211E-2",
-              "top": "0.05277777777777768"
+              "left": "0",
+              "top": "0"
             }
           },
           "big": {
@@ -325,6 +326,26 @@
               "left": "0",
               "top": "0"
             }
+          },
+          "position0": {
+            "position": "Left",
+            "left": "0.9636701662292211E-2",
+            "top": "0.05277777777777768"
+          },
+          "position1": {
+            "position": "Right",
+            "left": "-0.9636701662292211E-2",
+            "top": "0.05277777777777768"
+          },
+          "position2": {
+            "position": "Right",
+            "left": "-0.9636701662292211E-2",
+            "top": "-0.05277777777777768"
+          },
+          "position3": {
+            "position": "Left",
+            "left": "0.9636701662292211E-2",
+            "top": "-0.05277777777777768"
           }
         }
       },

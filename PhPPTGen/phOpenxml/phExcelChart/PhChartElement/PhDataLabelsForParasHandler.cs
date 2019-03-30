@@ -71,33 +71,46 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 
 		private C.DataLabel GetChcBubbleDataLabel(PhChartContent content, JToken format, params object[] paras) {
 			double size = double.Parse((string)paras[0]);
-			int index = (int)paras[1];
+			int index = Convert.ToInt32(paras[1]);
 			List<double> sizes = new List<double>();
 			foreach (List<string> i in content.Series) {
 				sizes.Add(double.Parse(i[2].Trim()));
 
 			}
 			//等之后可能性多了，改为map驱动
+			C.DataLabel dataLabel = null;
 			if (size < sizes.Max() / 4) {
-				return CreateDataLabel("", format["small"], 0);
+				dataLabel = CreateDataLabel("", format["small"], 0);
+			} else {
+				dataLabel = CreateDataLabel("", format["big"], 0);
 			}
-			return CreateDataLabel("", format["big"], 0);
-		}
-
-		//读C.DataLabelPosition和layout进行改动
-		private C.DataLabel SetPosition(C.DataLabel dataLabel, JToken format) {
-
+			var xList = content.Series.ConvertAll<double>(x => double.Parse(x[0].Trim()));
+			var yList = content.Series.ConvertAll<double>(x => double.Parse(x[1].Trim()));
+			var rate = (yList.Max() - yList.Min()) / (xList.Max() - xList.Min());
+			List<List<double>> intersectPoints = GetIntersectList(content.Series[index].ConvertAll<double>(x => Double.Parse(x.Trim())), 
+				content.Series.ConvertAll<List<double>>(x => x.ConvertAll<double>(y => Double.Parse(y.Trim()))), rate, format);
+			if(intersectPoints.Count > 1) {
+				string nodeName = "position" + GetPosition(content.Series[index].ConvertAll<double>(x => Double.Parse(x.Trim())),
+				intersectPoints, rate);
+				dataLabel = SetPosition(dataLabel, format[nodeName]);
+			}
 
 			return dataLabel;
 		}
 
-		private List<List<double>> GetIntersectList(List<double> point, List<List<double>> services, JToken format) {
-			var xList = services.ConvertAll<double>(x => x[0]);
-			var yList = services.ConvertAll<double>(x => x[1]);
-			var rate = (yList.Max() - yList.Min()) / (xList.Max() - xList.Min());
+		//读C.DataLabelPosition和layout进行改动
+		private C.DataLabel SetPosition(C.DataLabel dataLabel, JToken format) {
+			var manual = dataLabel.Elements<C.Layout>().First().Elements<C.ManualLayout>().First();
+			manual.Elements<C.Left>().First().Val = Double.Parse((string)format["left"]);
+			manual.Elements<C.Top>().First().Val = Double.Parse((string)format["top"]);
+			dataLabel.Elements<C.DataLabelPosition>().First().Val = (C.DataLabelPositionValues)Enum.Parse(typeof(C.DataLabelPositionValues), (string)format["position"]);
+			return dataLabel;
+		}
+
+		private List<List<double>> GetIntersectList(List<double> point, List<List<double>> series, double rate, JToken format) {
 
 			List <List<double>> re = new List<List<double>>();
-			foreach (List<double> j in services) {
+			foreach (List<double> j in series) {
 				var lengthSquare = Math.Pow(point[0] * rate - j[0] * rate, 2) + Math.Pow(point[1] - j[1], 2);
 				if (lengthSquare < double.Parse((string)format["diameterSquare"]) && lengthSquare > 0) {
 					re.Add(j);
@@ -106,11 +119,11 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			return re;
 		}
 
-		private int GetPosition(List<double> point, List<List<double>> otherPoints) {
+		private int GetPosition(List<double> point, List<List<double>> otherPoints, double rate) {
 			List<double> angles = new List<double>();
 			int[] positions = new int[4];
 			foreach (List<double> otherPoint in otherPoints) {
-				angles.Add(Math.Atan2(otherPoint[1] - point[1], otherPoint[0] * Rate - point[0] * Rate) * 180 / Math.PI);
+				angles.Add(Math.Atan2(otherPoint[1] - point[1], otherPoint[0] * rate - point[0] * rate) * 180 / Math.PI);
 			}
 			foreach (double angle in angles) {
 				var index = (int)(angle + 180) / 90;

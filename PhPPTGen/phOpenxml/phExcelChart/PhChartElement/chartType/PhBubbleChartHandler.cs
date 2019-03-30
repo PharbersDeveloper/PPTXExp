@@ -34,7 +34,7 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			bubbleChartSeries.Append(CreateSeriesText(content.CategoryLabels[(int)index], "Sheet1!$A$" + (2 + index)));
 			bubbleChartSeries.Append(AppendOneElement(content, ((JArray)format["seriesChartShapeProperties"])[(int)index]));
 			bubbleChartSeries.Append(new C.InvertIfNegative() { Val = false });
-			bubbleChartSeries.Append(AppendOneElement(content, format["serisDataLables"], values[2]));
+			bubbleChartSeries.Append(AppendOneElement(content, format["serisDataLables"], values[2], index));
 			bubbleChartSeries.Append(new C.XValues(CreateNumberReference(new List<string>() { values[0] }, "Sheet1!$B$2", (string)format["xNumFormat"])));
 			bubbleChartSeries.Append(new C.YValues(CreateNumberReference(new List<string>() { values[1] }, "Sheet1!$C$2", (string)format["yNumFormat"])));
 			bubbleChartSeries.Append(new C.BubbleSize(CreateNumberReference(new List<string>() { values[2] }, "Sheet1!$D$2", (string)format["sizeNumFormat"])));

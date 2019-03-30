@@ -81,18 +81,18 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			C.DataLabel dataLabel = null;
 			if (size < sizes.Max() / 4) {
 				dataLabel = CreateDataLabel("", format["small"], 0);
+				var xList = content.Series.ConvertAll<double>(x => double.Parse(x[0].Trim()));
+				var yList = content.Series.ConvertAll<double>(x => double.Parse(x[1].Trim()));
+				var rate = (yList.Max() - yList.Min()) / (xList.Max() - xList.Min());
+				List<List<double>> intersectPoints = GetIntersectList(content.Series[index].ConvertAll<double>(x => Double.Parse(x.Trim())),
+					content.Series.ConvertAll<List<double>>(x => x.ConvertAll<double>(y => Double.Parse(y.Trim()))), rate, format);
+				if (intersectPoints.Count > 1) {
+					string nodeName = "position" + GetPosition(content.Series[index].ConvertAll<double>(x => Double.Parse(x.Trim())),
+					intersectPoints, rate);
+					dataLabel = SetPosition(dataLabel, format[nodeName]);
+				}
 			} else {
 				dataLabel = CreateDataLabel("", format["big"], 0);
-			}
-			var xList = content.Series.ConvertAll<double>(x => double.Parse(x[0].Trim()));
-			var yList = content.Series.ConvertAll<double>(x => double.Parse(x[1].Trim()));
-			var rate = (yList.Max() - yList.Min()) / (xList.Max() - xList.Min());
-			List<List<double>> intersectPoints = GetIntersectList(content.Series[index].ConvertAll<double>(x => Double.Parse(x.Trim())), 
-				content.Series.ConvertAll<List<double>>(x => x.ConvertAll<double>(y => Double.Parse(y.Trim()))), rate, format);
-			if(intersectPoints.Count > 1) {
-				string nodeName = "position" + GetPosition(content.Series[index].ConvertAll<double>(x => Double.Parse(x.Trim())),
-				intersectPoints, rate);
-				dataLabel = SetPosition(dataLabel, format[nodeName]);
 			}
 
 			return dataLabel;

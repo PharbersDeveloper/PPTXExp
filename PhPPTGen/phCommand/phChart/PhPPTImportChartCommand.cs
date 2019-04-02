@@ -50,7 +50,7 @@ namespace PhPPTGen.phCommand.phChart {
 
 			using (PresentationDocument myPresDoc = PresentationDocument.Open(ppt_path, true)) {
 				PresentationPart pptPart = myPresDoc.PresentationPart;
-				if (pptPart.Presentation.SlideIdList.Count() < e2c.slider) {
+				if (pptPart.Presentation.SlideIdList.Count() - 1 < e2c.slider) {
 					PhOpenxmlPPTHandler.GetInstance().InsertNewSlide(myPresDoc, e2c.slider, "");
 				}
 

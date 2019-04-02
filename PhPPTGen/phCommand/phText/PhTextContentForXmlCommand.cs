@@ -27,7 +27,7 @@ namespace PhPPTGen.phCommand.phText {
 				if (pptDoc.PresentationPart.Presentation.SlideIdList.Count() - 1 < text.slider) {
 					PhOpenxmlPPTHandler.GetInstance().InsertNewSlide(pptDoc, text.slider, "");
 				}
-				PhOpenxmlPPTHandler.GetInstance().InsertText(pptDoc, text.slider, text.content, text.pos);
+				PhOpenxmlPPTHandler.GetInstance().InsertText(pptDoc, text);
 			}			
 			return null;
 		}

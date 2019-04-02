@@ -13,6 +13,9 @@ using Newtonsoft.Json.Linq;
 using System.IO;
 using Newtonsoft.Json;
 using PhPPTGen.phOpenxml.phTextHandler;
+using System.Reflection;
+using PhPPTGen.phOpenxml.PhShapeTreeChilren;
+using PhPPTGen.phModel;
 
 namespace PhPPTGen.phOpenxml {
 	class PhOpenxmlPPTHandler {
@@ -38,7 +41,7 @@ namespace PhPPTGen.phOpenxml {
 		}
 
 		// Insert the specified slide into the presentation at the specified position.
-		public void InsertNewSlide(PresentationDocument presentationDocument, int position, string slideTitle, string type = "defult") {
+		public void InsertNewSlide(PresentationDocument presentationDocument, int position, string slideTitle, string type = "default") {
 
 			if (presentationDocument == null) {
 				throw new ArgumentNullException("presentationDocument");
@@ -73,45 +76,19 @@ namespace PhPPTGen.phOpenxml {
 
 
 			JToken typeFormat = null;
+			// Create the slide part for the new slide.
+			SlidePart slidePart = presentationPart.AddNewPart<SlidePart>();
+			slidePart.AddNewPart<VmlDrawingPart>("rId2");
 			using (StreamReader reader = File.OpenText(PhConfigHandler.GetInstance().path + PhConfigHandler.GetInstance().configMap["pptType"].Value<string>())) {
 				typeFormat = JToken.ReadFrom(new JsonTextReader(reader));
 			}
 			foreach (JToken format in (JArray)typeFormat[type]) {
-				P.Shape shape = slide.CommonSlideData.ShapeTree.AppendChild(new P.Shape());
-				shape.NonVisualShapeProperties = new P.NonVisualShapeProperties
-				(new P.NonVisualDrawingProperties() { Id = (uint)format["index"], Name = (string)format["name"] },
-				new P.NonVisualShapeDrawingProperties() { TextBox = true },
-				new ApplicationNonVisualDrawingProperties(
-					//new PlaceholderShape() {
-					//Type = (PlaceholderValues)Enum.Parse(typeof(PlaceholderValues), (string)format["placeholderType"]) }
-					));
-				shape.ShapeProperties = new P.ShapeProperties(
-					new A.Transform2D(new A.Offset() { X = (long)(((double)format["x"]) / 0.00000278), Y = (long)(((double)format["y"]) / 0.00000278) }, 
-					new A.Extents() { Cx = (long)(((double)format["cx"])/0.00000278), Cy = (long)(((double)format["cy"]) / 0.00000278) }),
-					new A.PresetGeometry(new A.AdjustValueList()) { Preset = A.ShapeTypeValues.Rectangle },
-				new A.SolidFill(new A.RgbColorModelHex(new A.Alpha() {
-						Val = int.Parse((string)format["alpha"])
-					}) { Val = (string)format["backColor"] }));
-				shape.TextBody = new P.TextBody(new A.BodyProperties(),
-						new A.ListStyle());
-				foreach (JToken paragraphFormat in (JArray)format["content"]) {
-					A.Paragraph paragraph = new Paragraph(
-						new A.ParagraphProperties() {
-							Alignment = (A.TextAlignmentTypeValues)Enum.Parse(typeof(A.TextAlignmentTypeValues), (string)paragraphFormat["alignment"])
-						});
-					foreach(JToken runFormat in (JArray)paragraphFormat["run"]) {
-						
-						paragraph.Append(textHandlerMap[(string)runFormat["type"]].CreateRun(runFormat));
-					}
-					shape.TextBody.Append(paragraph);
-				}
+				slide.CommonSlideData.ShapeTree.Append(((IPhShapeTreeChilrenHander)Assembly.GetExecutingAssembly()
+					.CreateInstance((string)format["factory"])).CreateElement(format, slidePart));
 			}
 
-
-
-			// Create the slide part for the new slide.
-			SlidePart slidePart = presentationPart.AddNewPart<SlidePart>();
-			slidePart.AddNewPart<VmlDrawingPart>("rId2");
+			//SlidePart slidePart = presentationPart.AddNewPart<SlidePart>();
+			//slidePart.AddNewPart<VmlDrawingPart>("rId2");
 
 			// Save the new slide part.
 			slide.Save(slidePart);
@@ -161,30 +138,36 @@ namespace PhPPTGen.phOpenxml {
 			presentationPart.Presentation.Save();
 		}
 
-		public void InsertText(PresentationDocument presentationDocument, int position, string content, int[] pos) {
+		public void InsertText(PresentationDocument presentationDocument, PhTextSetContent textContent) {
 
 			PresentationPart pptPart = presentationDocument.PresentationPart;
-			if (pptPart.Presentation.SlideIdList.Count() < position) {
-				PhOpenxmlPPTHandler.GetInstance().InsertNewSlide(presentationDocument, position, "");
+			if (pptPart.Presentation.SlideIdList.Count() < textContent.slider) {
+				PhOpenxmlPPTHandler.GetInstance().InsertNewSlide(presentationDocument, textContent.slider, "");
 			}
 
 			var slide = pptPart.SlideParts.Last().Slide;
 ;
 			uint drawingObjectId = (uint)slide.CommonSlideData.ShapeTree.ChildElements.Count();
 			// Declare and instantiate the body shape of the new slide.
+			//todo:这儿应该调用PhShapeTreeChilren.PhShapeHandler
 			P.Shape bodyShape = slide.CommonSlideData.ShapeTree.AppendChild(new P.Shape());
 			drawingObjectId++;
-
+			JToken shapeCss = FormatMap["pptShapeType"][textContent.shapeType];
 			// Specify the required shape properties for the body shape.
-			bodyShape.NonVisualShapeProperties = new P.NonVisualShapeProperties(new P.NonVisualDrawingProperties() { Id = drawingObjectId, Name = "Content Placeholder" },
-					new P.NonVisualShapeDrawingProperties(new A.ShapeLocks() { NoGrouping = true }),
-					new ApplicationNonVisualDrawingProperties(new PlaceholderShape() { Index = 1 }));
-			bodyShape.ShapeProperties = new P.ShapeProperties(new A.Transform2D(new A.Offset() { X = pos[0], Y = pos[1] }, new A.Extents() { Cx = pos[2], Cy = pos[3] }));
+			bodyShape.NonVisualShapeProperties = new P.NonVisualShapeProperties(
+				new P.NonVisualDrawingProperties() { Id = drawingObjectId, Name = "Content Placeholder" },
+				new P.NonVisualShapeDrawingProperties(new A.ShapeLocks() { NoGrouping = true }),
+				new ApplicationNonVisualDrawingProperties(new PlaceholderShape() { Index = 1 }));
+			bodyShape.ShapeProperties = new P.ShapeProperties(
+				new A.Transform2D(new A.Offset() { X = textContent.pos[0], Y = textContent.pos[1] }, 
+					new A.Extents() { Cx = textContent.pos[2], Cy = textContent.pos[3] }),
+				new A.PresetGeometry(new A.AdjustValueList()) { Preset = (A.ShapeTypeValues)Enum.Parse(typeof(A.ShapeTypeValues), (string)shapeCss["type"]) },
+				new A.SolidFill(new A.RgbColorModelHex(new A.Alpha() {Val = int.Parse((string)shapeCss["alpha"])}) { Val = (string)shapeCss["color"] }));
 
 			// Specify the text of the body shape.
-			P.TextBody textBody = new P.TextBody(new A.BodyProperties(),
+			P.TextBody textBody = new P.TextBody(new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Center },
 					new A.ListStyle());
-			foreach (Match m in new Regex(@"(?<=(#{#))[\s\S]*?(?=(#}#))").Matches(content)) {
+			foreach (Match m in new Regex(@"(?<=(#{#))[\s\S]*?(?=(#}#))").Matches(textContent.content)) {
 				string paragraphContent = m.Value;
 				A.Paragraph paragraph = new Paragraph();
 				JToken paragraphCss = FormatMap["pptParagraphFormat"][new Regex(@"(?<=(#P#))[\s\S]*").Match(paragraphContent).Value];
@@ -201,8 +184,9 @@ namespace PhPPTGen.phOpenxml {
 					A.SolidFill solidFill = new A.SolidFill(new A.RgbColorModelHex() { Val = new HexBinaryValue((string)runCss["Color"]) });
 					A.RunProperties runProperties = new A.RunProperties(
 						solidFill,
-						new A.LatinFont() { Typeface = (string)runCss["Font"] }, new A.ComplexScriptFont() { Typeface = (string)runCss["Font"] }
-						) { Language = "en-US", AlternativeLanguage = "zh-CN",
+						new A.LatinFont() { Typeface = (string)runCss["Font"] }, 
+						new A.ComplexScriptFont() { Typeface = (string)runCss["Font"] }
+					) { Language = "en-US", AlternativeLanguage = "zh-CN",
 						FontSize = int.Parse((string)runCss["FontSize"]) * 100,
 						Bold = Boolean.Parse((string)runCss["Bold"]), Dirty = false };
 					paragraph.Append(new A.Run(runProperties, text));
@@ -304,6 +288,11 @@ namespace PhPPTGen.phOpenxml {
 			sld.Slide.Save();
 		}
 
+		//还没有这个需求
+		//public void AddPicture(PresentationDocument presentationDocument, string picturePath) {
+
+		//}
+
 		private void CreatePresentationParts(PresentationPart presentationPart) {
 			SlideMasterIdList slideMasterIdList1 = new SlideMasterIdList(new SlideMasterId() { Id = (UInt32Value)2147483648U, RelationshipId = "rId1" });
 			SlideIdList slideIdList1 = new SlideIdList(new SlideId() { Id = (UInt32Value)256U, RelationshipId = "rId2" });
@@ -344,41 +333,12 @@ namespace PhPPTGen.phOpenxml {
 			slidePart.AddNewPart<VmlDrawingPart>("rId2");
 			// 加入预设title shape
 			var slide = slidePart.Slide;
-			//slide.CommonSlideData.ShapeTree.AppendChild(new GroupShapeProperties());
-
 			JToken typeFormat = null;
 			using (StreamReader reader = File.OpenText(PhConfigHandler.GetInstance().path + PhConfigHandler.GetInstance().configMap["pptType"].Value<string>())) {
 				typeFormat = JToken.ReadFrom(new JsonTextReader(reader));
 			}
 			foreach (JToken format in (JArray)typeFormat["title"]) {
-				P.Shape shape = slide.CommonSlideData.ShapeTree.AppendChild(new P.Shape());
-				shape.NonVisualShapeProperties = new P.NonVisualShapeProperties
-				(new P.NonVisualDrawingProperties() { Id = (uint)format["index"], Name = (string)format["name"] },
-				new P.NonVisualShapeDrawingProperties() { TextBox = true },
-				new ApplicationNonVisualDrawingProperties(
-					//new PlaceholderShape() {
-					//Type = (PlaceholderValues)Enum.Parse(typeof(PlaceholderValues), (string)format["placeholderType"]) }
-					));
-				shape.ShapeProperties = new P.ShapeProperties(
-					new A.Transform2D(new A.Offset() { X = (long)(((double)format["x"]) / 0.00000278), Y = (long)(((double)format["y"]) / 0.00000278) },
-					new A.Extents() { Cx = (long)(((double)format["cx"]) / 0.00000278), Cy = (long)(((double)format["cy"]) / 0.00000278) }),
-					new A.PresetGeometry(new A.AdjustValueList()) { Preset = A.ShapeTypeValues.Rectangle },
-				new A.SolidFill(new A.RgbColorModelHex(new A.Alpha() {
-					Val = int.Parse((string)format["alpha"])
-				}) { Val = (string)format["backColor"] }));
-				shape.TextBody = new P.TextBody(new A.BodyProperties(),
-						new A.ListStyle());
-				foreach (JToken paragraphFormat in (JArray)format["content"]) {
-					A.Paragraph paragraph = new Paragraph(
-						new A.ParagraphProperties() {
-							Alignment = (A.TextAlignmentTypeValues)Enum.Parse(typeof(A.TextAlignmentTypeValues), (string)paragraphFormat["alignment"])
-						});
-					foreach (JToken runFormat in (JArray)paragraphFormat["run"]) {
-
-						paragraph.Append(textHandlerMap[(string)runFormat["type"]].CreateRun(runFormat));
-					}
-					shape.TextBody.Append(paragraph);
-				}
+				slide.CommonSlideData.ShapeTree.Append(((IPhShapeTreeChilrenHander)Assembly.GetExecutingAssembly().CreateInstance((string)format["factory"])).CreateElement(format, slidePart));
 			}
 			return slidePart;
 		}

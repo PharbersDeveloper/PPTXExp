@@ -41,6 +41,18 @@
     "Color": "000000",
     "Font": "Arial"
   },
+  "20Blue": {
+    "FontSize": "20",
+    "Bold": "false",
+    "Color": "005598",
+    "Font": "Arial"
+  },
+  "18Black": {
+    "FontSize": "18",
+    "Bold": "false",
+    "Color": "000000",
+    "Font": "Arial"
+  },
   "content16Bold": {
     "FontSize": "16",
     "Bold": "true",
@@ -59,6 +71,12 @@
     "Color": "0070C0",
     "Font": "Arial"
   },
+  "12Blue": {
+    "FontSize": "12",
+    "Bold": "false",
+    "Color": "0070C0",
+    "Font": "Arial"
+  },
   "12Black": {
     "FontSize": "12",
     "Bold": "false",
@@ -69,6 +87,12 @@
     "FontSize": "12",
     "Bold": "true",
     "Color": "000000",
+    "Font": "Arial"
+  },
+  "12WhiteBold": {
+    "FontSize": "12",
+    "Bold": "true",
+    "Color": "FFFFFF",
     "Font": "Arial"
   },
   "36GrayBold": {
@@ -111,6 +135,12 @@
     "FontSize": "10",
     "Bold": "true",
     "Color": "4F81BD",
+    "Font": "Arial"
+  },
+  "9WhiteBold": {
+    "FontSize": "9",
+    "Bold": "true",
+    "Color": "FFFFFF",
     "Font": "Arial"
   }
 

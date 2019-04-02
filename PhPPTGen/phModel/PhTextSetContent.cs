@@ -6,6 +6,6 @@ namespace PhPPTGen.phModel {
         public string content { get; set; }
         public int[] pos { get; set; }
         public int slider { get; set; }
-        public string css { get; set; }
+        public string shapeType { get; set; }
     }
 }

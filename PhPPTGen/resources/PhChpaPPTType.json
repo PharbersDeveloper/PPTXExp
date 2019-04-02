@@ -1,6 +1,8 @@
 ﻿{
-  "defult": [
+  "default": [
     {
+      "factory": "PhPPTGen.phOpenxml.PhShapeTreeChilren.PhShapeHandler",
+      "chilren": [],
       "index": "1",
       "name": "head",
       "x": "0",
@@ -14,6 +16,8 @@
           "alignment": "Center",
           "run": [
             {
+              "font": "Light",
+              "fontColor": "000000",
               "type": "run",
               "text": "",
               "fontSize": "18",
@@ -25,6 +29,8 @@
       ]
     },
     {
+      "factory": "PhPPTGen.phOpenxml.PhShapeTreeChilren.PhShapeHandler",
+      "chilren": [],
       "index": "2",
       "name": "foot",
       "x": "1.27",
@@ -38,6 +44,8 @@
           "alignment": "Left",
           "run": [
             {
+              "font": "Light",
+              "fontColor": "000000",
               "type": "field",
               "id": "{0F952C1A-6D42-4F2A-A24F-B164E33AA632}",
               "fieldType": "datetime1",
@@ -52,6 +60,8 @@
           "alignment": "Left",
           "run": [
             {
+              "font": "Light",
+              "fontColor": "000000",
               "type": "run",
               "text": "File name/location",
               "fontSize": "8",
@@ -63,6 +73,8 @@
       ]
     },
     {
+      "factory": "PhPPTGen.phOpenxml.PhShapeTreeChilren.PhShapeHandler",
+      "chilren": [],
       "index": "3",
       "name": "foot2",
       "x": "8.68",
@@ -76,6 +88,8 @@
           "alignment": "Left",
           "run": [
             {
+              "font": "Light",
+              "fontColor": "000000",
               "type": "run",
               "text": "Company Confidential Copyright © 2019 Eli Lilly and Pharbers",
               "fontSize": "8",
@@ -87,6 +101,8 @@
       ]
     },
     {
+      "factory": "PhPPTGen.phOpenxml.PhShapeTreeChilren.PhShapeHandler",
+      "chilren": [],
       "index": "4",
       "name": "index",
       "x": "22.31",
@@ -100,6 +116,8 @@
           "alignment": "Right",
           "run": [
             {
+              "font": "Light",
+              "fontColor": "000000",
               "type": "field",
               "id": "{06BDC669-45A8-4B5C-8CC4-97198033D0CB}",
               "fieldType": "slidenum",
@@ -115,6 +133,8 @@
   ],
   "title": [
     {
+      "factory": "PhPPTGen.phOpenxml.PhShapeTreeChilren.PhShapeHandler",
+      "chilren": [],
       "index": "1",
       "name": "head",
       "x": "0",
@@ -128,6 +148,8 @@
           "alignment": "Center",
           "run": [
             {
+              "font": "Light",
+              "fontColor": "000000",
               "type": "run",
               "text": "",
               "fontSize": "18",
@@ -139,6 +161,8 @@
       ]
     },
     {
+      "factory": "PhPPTGen.phOpenxml.PhShapeTreeChilren.PhShapeHandler",
+      "chilren": [],
       "index": "2",
       "name": "headLow",
       "x": "0",
@@ -152,6 +176,8 @@
           "alignment": "Center",
           "run": [
             {
+              "font": "Light",
+              "fontColor": "000000",
               "type": "run",
               "text": "",
               "fontSize": "18",

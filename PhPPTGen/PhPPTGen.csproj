@@ -191,9 +191,11 @@
     <Compile Include="phCommand\PhGenPPTCommand.cs" />
     <Compile Include="phCommand\phChart\PhPPTImportChartCommand.cs" />
     <Compile Include="phCommand\phPpt\PhCreatePPTForXmlCommand.cs" />
+    <Compile Include="phCommand\phPpt\PhCreateSliderForXmlCommand.cs" />
     <Compile Include="phCommand\phPpt\PhPPTImportXlsxForXmlCommand.cs" />
     <Compile Include="phCommand\phText\PhTextContentForXmlCommand.cs" />
     <Compile Include="PhConfigHandler.cs" />
+    <Compile Include="phModel\PhCreateSlider.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\Ph3DPieChartHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhBubbleChartHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhChartTypeBaseHandler.cs" />
@@ -248,6 +250,10 @@
     <Compile Include="phOpenxml\phFormatHandler\PhExcelCssHandler.cs" />
     <Compile Include="phOpenxml\phFormatHandler\PhExcelFormatHandler.cs" />
     <Compile Include="phOpenxml\PhExcelHandler.cs" />
+    <Compile Include="phOpenxml\PhShapeTreeChilren\IPhShapeTreeChilrenHander.cs" />
+    <Compile Include="phOpenxml\PhShapeTreeChilren\PhBaseHandler.cs" />
+    <Compile Include="phOpenxml\PhShapeTreeChilren\PhPictureHandler.cs" />
+    <Compile Include="phOpenxml\PhShapeTreeChilren\PhShapeHandler.cs" />
     <Compile Include="phOpenxml\phTextHandler\PhFieldTextHandler.cs" />
     <Compile Include="phOpenxml\phTextHandler\PhRunTextHandler.cs" />
     <Compile Include="phSocket\PhSocketServer.cs" />
@@ -255,6 +261,7 @@
     <Compile Include="phSocket\PhThreadSocketServ.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="test\ChcTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -263,6 +270,7 @@
     </None>
     <None Include="resources\PhBubble.json" />
     <None Include="resources\PhChcLine.json" />
+    <None Include="resources\PhChcPPTType.json" />
     <None Include="resources\PhLineNoTable.json" />
     <None Include="resources\PhPie3D.json" />
     <None Include="resources\PhColumn.json" />
@@ -271,7 +279,8 @@
     <None Include="resources\PhPie.json" />
     <None Include="resources\PhPPTFontFormat.json" />
     <None Include="resources\PhPPTParagraphFormat.json" />
-    <None Include="resources\PhPPTType.json" />
+    <None Include="resources\PhChpaPPTType.json" />
+    <None Include="resources\PhPptShapeType.json" />
     <None Include="resources\PhStacked.json" />
   </ItemGroup>
   <ItemGroup>
@@ -291,6 +300,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="resources\PhFormatConfig.xml" />
+    <Content Include="resources\picture\chcContent.png" />
+    <Content Include="resources\picture\chcEnd.png" />
+    <Content Include="resources\picture\chcTitleBlack.jpg" />
+    <Content Include="resources\picture\logo.jpg" />
+    <Content Include="resources\picture\logo.png" />
+    <Content Include="resources\picture\logoFont.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

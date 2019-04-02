@@ -17,10 +17,11 @@ namespace PhPPTGen.phOpenxml.phTextHandler {
 
 		protected void AppendContent(OpenXmlCompositeElement element, JToken format) {
 			A.Text text = new A.Text() { Text = (string)format["text"] };
-			A.RunProperties properties = new A.RunProperties() {
+			A.SolidFill fontSolidFill = new A.SolidFill(new A.RgbColorModelHex() { Val = new HexBinaryValue((string)format["fontColor"]) });
+			A.RunProperties properties = new A.RunProperties(fontSolidFill, new A.LatinFont() { Typeface = (string)format["Font"] },new A.ComplexScriptFont() { Typeface = (string)format["Font"] }) {
 				Language = "en-US",
 				AlternativeLanguage = "zh-CN",
-				FontSize = int.Parse((string)format["fontSize"]) * 100,
+				FontSize = (int)(Double.Parse((string)format["fontSize"]) * 100),
 				Bold = Boolean.Parse((string)format["bold"]),
 				Dirty = false
 			};

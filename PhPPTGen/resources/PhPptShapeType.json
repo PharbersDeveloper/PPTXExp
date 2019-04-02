@@ -1,0 +1,27 @@
+{
+  "Rectangle": {
+    "type": "Rectangle",
+    "alpha": "0",
+    "color": "FFFFFF"
+  },
+  "FlowChartTerminator5B9BD5": {
+    "type": "FlowChartTerminator",
+    "alpha": "100000",
+    "color": "5B9BD5"
+  },
+  "FlowChartTerminator005598": {
+    "type": "FlowChartTerminator",
+    "alpha": "100000",
+    "color": "005598"
+  },
+  "FlowChartTerminator0563C1": {
+    "type": "FlowChartTerminator",
+    "alpha": "100000",
+    "color": "0563C1"
+  },
+  "FlowChartTerminator954F72": {
+    "type": "FlowChartTerminator",
+    "alpha": "100000",
+    "color": "954F72"
+  }
+}

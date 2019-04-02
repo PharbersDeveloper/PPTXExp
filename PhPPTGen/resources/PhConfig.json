@@ -12,7 +12,8 @@
   "excelFormat": "PhFormatConfig.xml",
   "pptFormat": {
     "pptParagraphFormat": "PhPPTParagraphFormat.json",
-    "pptFontFormat": "PhPPTFontFormat.json"
+    "pptFontFormat": "PhPPTFontFormat.json",
+    "pptShapeType": "PhPptShapeType.json"
   },
   "command": {
     "GenPPT": "PhPPTGen.phCommand.PhGenPPTCommand",
@@ -20,7 +21,8 @@
     "Excel2PPT": "PhPPTGen.phCommand.phPpt.PhPPTImportXlsxForXmlCommand",
     "ExportPPT": "PhPPTGen.phCommand.PhGenPPTCommand",
     "PushText": "PhPPTGen.phCommand.phText.PhTextContentForXmlCommand",
-    "Excel2Chart": "PhPPTGen.phCommand.phChart.PhPPTImportChartCommand"
+    "Excel2Chart": "PhPPTGen.phCommand.phChart.PhPPTImportChartCommand",
+    "CreateSlider": "PhPPTGen.phCommand.phPpt.PhCreateSliderForXmlCommand"
   },
-  "pptType": "PhPPTType.json"
+  "pptType": "PhChcPPTType.json"
 }

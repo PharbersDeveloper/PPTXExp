@@ -194,6 +194,7 @@
     <Compile Include="phCommand\phPpt\PhCreateSliderForXmlCommand.cs" />
     <Compile Include="phCommand\phPpt\PhPPTImportXlsxForXmlCommand.cs" />
     <Compile Include="phCommand\phText\PhTextContentForXmlCommand.cs" />
+    <Compile Include="phCommon\PhRequestLst.cs" />
     <Compile Include="PhConfigHandler.cs" />
     <Compile Include="phModel\PhCreateSlider.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\Ph3DPieChartHandler.cs" />
@@ -286,7 +287,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 和 x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

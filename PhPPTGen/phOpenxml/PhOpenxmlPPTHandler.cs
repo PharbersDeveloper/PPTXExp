@@ -79,7 +79,7 @@ namespace PhPPTGen.phOpenxml {
 			// Create the slide part for the new slide.
 			SlidePart slidePart = presentationPart.AddNewPart<SlidePart>();
 			slidePart.AddNewPart<VmlDrawingPart>("rId2");
-			using (StreamReader reader = File.OpenText(PhConfigHandler.GetInstance().path + PhConfigHandler.GetInstance().configMap["pptType"].Value<string>())) {
+			using (StreamReader reader = File.OpenText(PhConfigHandler.GetInstance().path + PhConfigHandler.GetInstance().GetConfigMap()["pptType"].Value<string>())) {
 				typeFormat = JToken.ReadFrom(new JsonTextReader(reader));
 			}
 			foreach (JToken format in (JArray)typeFormat[type]) {
@@ -334,7 +334,7 @@ namespace PhPPTGen.phOpenxml {
 			// 加入预设title shape
 			var slide = slidePart.Slide;
 			JToken typeFormat = null;
-			using (StreamReader reader = File.OpenText(PhConfigHandler.GetInstance().path + PhConfigHandler.GetInstance().configMap["pptType"].Value<string>())) {
+			using (StreamReader reader = File.OpenText(PhConfigHandler.GetInstance().path + PhConfigHandler.GetInstance().GetConfigMap()["pptType"].Value<string>())) {
 				typeFormat = JToken.ReadFrom(new JsonTextReader(reader));
 			}
 			foreach (JToken format in (JArray)typeFormat["title"]) {
@@ -506,7 +506,7 @@ namespace PhPPTGen.phOpenxml {
 
 		private PhOpenxmlPPTHandler() {
 			FormatMap = new Dictionary<string, JToken>();
-			foreach (JToken jToken in PhConfigHandler.GetInstance().configMap["pptFormat"]) {
+			foreach (JToken jToken in PhConfigHandler.GetInstance().GetConfigMap()["pptFormat"]) {
 				using (StreamReader reader = File.OpenText(PhConfigHandler.GetInstance().path + jToken.First().Value<string>())) {
 					FormatMap.Add(((JProperty)jToken).Name, JToken.ReadFrom(new JsonTextReader(reader)));
 				}

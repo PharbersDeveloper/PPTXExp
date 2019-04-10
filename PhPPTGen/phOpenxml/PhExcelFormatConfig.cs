@@ -37,7 +37,7 @@ namespace PhPPTGen.phOpenxml {
 
 		protected PhExcelFormatConfig() {
 			_doc = new XmlDocument();
-			_doc.Load(@"..\..\resources\PhFormatConfig.xml");
+			_doc.Load(PhConfigHandler.GetInstance().path + @"\PhFormatConfig.xml");
 			IPhExcelFormatHandler getFormatHandler = new GetFormat();
 			IPhExcelFormatHandler addFormatHandler = new AddFormat();
 			FormatHandlerMap.Add(true, getFormatHandler);

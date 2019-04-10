@@ -5,8 +5,9 @@ using System.Reflection;
 namespace PhPPTGen.phCommandFactory {
     public class PhCommandFactory {
         private Dictionary<string, string> dic = new Dictionary<string, string>();
+		private string tmpDictionary;
 
-        private PhCommandFactory() {
+		private PhCommandFactory() {
         
         }
 
@@ -37,7 +38,12 @@ namespace PhPPTGen.phCommandFactory {
         }
 
         public string GetTmpDictionary() {
-            return @"D:\pptresult\css";
+			return tmpDictionary;
 		}
-    }
+
+		public void SeTmpDictionary(string tmpDictionary) {
+			this.tmpDictionary = tmpDictionary;
+		}
+
+	}
 }

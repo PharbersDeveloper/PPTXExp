@@ -44,7 +44,8 @@ namespace PhPPTGen.phCommon {
                             Console.WriteLine("Current Command is :");
                             Console.WriteLine(req.command);
                             string cls = phModel.PhMsgDefine.PhCommand2Cls(req.command);
-                            phCommandFactory.PhCommandFactory fct = phCommandFactory.PhCommandFactory.GetInstance();
+							phCommandFactory.PhCommandFactory fct = phCommandFactory.PhCommandFactory.GetInstance();
+							//todo:这儿需要捕获异常
                             fct.CreateCommandInstance(cls, req);
                             lst.Remove(current);
                         }

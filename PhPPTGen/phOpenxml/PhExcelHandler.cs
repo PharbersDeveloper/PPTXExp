@@ -34,7 +34,7 @@ namespace PhPPTGen.phOpenxml {
 			valueCheckMap["Number"] = checkNumber;
 
 			ChartTypeMap = new Dictionary<string, JToken>();
-			foreach (JToken jToken in PhConfigHandler.GetInstance().configMap["chartType"]) {
+			foreach (JToken jToken in PhConfigHandler.GetInstance().GetConfigMap()["chartType"]) {
 				using (StreamReader reader = File.OpenText(PhConfigHandler.GetInstance().path + jToken.First().Value<string>())) {
 					ChartTypeMap.Add(((JProperty)jToken).Name, JToken.ReadFrom(new JsonTextReader(reader)));
 				}

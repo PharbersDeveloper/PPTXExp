@@ -12,7 +12,7 @@ namespace PhPPTGen.phModel {
 
 
         public static string PhCommand2Cls(string cmd) {
-			return (string)PhConfigHandler.GetInstance().configMap["command"][cmd];
+			return (string)PhConfigHandler.GetInstance().GetConfigMap()["command"][cmd];
             //if (cmd == Ph_Msg_GenPPT) {
             //    return "PhPPTGen.phCommand.PhGenPPTCommand";
             //} else if (cmd == Ph_Msg_ExcelPush) {

@@ -8,21 +8,32 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PhPPTGen {
-	class PhConfigHandler {
-		public readonly string path;
-		public readonly Dictionary<string, JToken> configMap;
+	public class PhConfigHandler {
+		public string path;
+		private Dictionary<string, JToken> configMap { get; set;  }
 		private static readonly PhConfigHandler instance = new PhConfigHandler();
 
 		public static PhConfigHandler GetInstance() {
 			return instance;
 		}
 
-		private PhConfigHandler() {
-			path = @"..\..\resources\";
+		public Dictionary<string, JToken> GetConfigMap() {
+			return configMap;
+		}
+
+		public void SetPath(string path) {
+			this.path = path;
+		}
+
+		public void init() {
 			using (StreamReader reader = File.OpenText(path + "PhConfig.json")) {
 				//JToken.ReadFrom(new JsonTextReader(reader));
 				configMap = (Dictionary<string, JToken>)new JsonSerializer().Deserialize(reader, typeof(Dictionary<string, JToken>));
 			}
+		}
+
+		private PhConfigHandler() {
+			
 		}
 	}
 }

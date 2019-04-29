@@ -10,6 +10,8 @@
     <font id="Tahoma9false#FFFFFF" name="Tahoma" size="9" bold="false" color="FFFFFF" />
     <font id="Tahoma8true#000000" name="Tahoma" size="8" bold="true" color="000000" />
     <font id="Tahoma8false#000000" name="Tahoma" size="8" bold="false" color="000000" />
+    <font id="Tahoma10false#FFFFFF" name="Tahoma" size="10" bold="false" color="FFFFFF" />
+    <font id="Tahoma10true#FFFFFF" name="Tahoma" size="10" bold="true" color="FFFFFF" />
     <font id="alfred" name="Arial" size="9" bold="false" color="000000" />
   </fonts>
   <fills>
@@ -24,12 +26,14 @@
     <fill id="#D9E1F2" type="Soild" color="D9E1F2" />
     <fill id="#0070C0" type="Soild" color="0070C0" />
     <fill id="#EDEDED" type="Soild" color="EDEDED" />
+    <fill id="#1CADE4" type="Soild" color="1CADE4" />
     <fill id="fillabcde" type="Soild" color="0000FF" />
   </fills>
   <numberings>
     <numbering id="" idx="901" code="#,##0.00" />
     <numbering id="#,##0.00" idx="902" code="#,##0.00" />
-    <numbering id="two" idx="903" code="#,##0.0" />
+    <numbering id="0.00%" idx="903" code="0.00%" />
+    <numbering id="two" idx="904" code="#,##0.0" />
   </numberings>
   <borders>
     <border id="">
@@ -77,12 +81,47 @@
       <right style="Thin" color="000000" />
 
     </border>
+    <border id="Thin1CADE4Thin1CADE4Thin1CADE4Thin1CADE4">
+      <top style="Thin" color="1CADE4" />
+      <bottom style="Thin" color="1CADE4" />
+      <left style="Thin" color="1CADE4" />
+      <right style="Thin" color="1CADE4" />
+
+    </border>
+    <border id="Thin1CADE4Thin1CADE4None000000None000000">
+      <top style="Thin" color="1CADE4" />
+      <bottom style="Thin" color="1CADE4" />
+      <left style="None" color="000000" />
+      <right style="None" color="000000" />
+
+    </border>
+    <border id="Thin1CADE4Thin1CADE4Thin1CADE4None000000">
+      <top style="Thin" color="1CADE4" />
+      <bottom style="Thin" color="1CADE4" />
+      <left style="Thin" color="1CADE4" />
+      <right style="None" color="000000" />
+
+    </border>
+    <border id="Thin1CADE4Thin1CADE4None000000Thin1CADE4">
+      <top style="Thin" color="1CADE4" />
+      <bottom style="Thin" color="1CADE4" />
+      <left style="None" color="000000" />
+      <right style="Thin" color="1CADE4" />
+
+    </border>
     <border id="bordertest">
       <top style="Thin" color="FF0000" />
       <bottom style="Thin" color="00FF00" />
       <left style="Thin" color="000000" />
       <right style="Thin" color="000000" />
       
+    </border>
+    <border id="Thin1CADE4Thin1CADE4Thick1CADE4None000000">
+      <top style="Thin" color="1CADE4" />
+      <bottom style="Thin" color="1CADE4" />
+      <left style="Thick" color="1CADE4" />
+      <right style="None" color="000000" />
+
     </border>
   </borders>
   <cellformats>

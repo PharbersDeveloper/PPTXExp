@@ -20,7 +20,7 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			barChart.Append(new C.BarGrouping() { Val = (C.BarGroupingValues)Enum.Parse(typeof(C.BarGroupingValues), (string)format["grouping"]) });
 			barChart.Append(new C.VaryColors() { Val = Boolean.Parse((string)format["varyColors"]) });
 			foreach (List<string> values in content.Series) {
-				barChart.Append(CreateBarChartSeries((uint)content.Series.IndexOf(values), values, content, format));
+				barChart.Append(CreateBarChartSeries((uint)content.SeriesForIndex.IndexOf(values), values, content, format));
 			}
 
 ;

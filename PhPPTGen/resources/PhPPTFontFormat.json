@@ -59,6 +59,24 @@
     "Color": "000000",
     "Font": "Arial"
   },
+  "16BlueBold": {
+    "FontSize": "16",
+    "Bold": "true",
+    "Color": "0070C0",
+    "Font": "Arial"
+  },
+  "16Gary": {
+    "FontSize": "16",
+    "Bold": "false",
+    "Color": "A6A6A6",
+    "Font": "Arial"
+  },
+  "14Gary": {
+    "FontSize": "14",
+    "Bold": "false",
+    "Color": "A6A6A6",
+    "Font": "Arial"
+  },
   "content12Bold": {
     "FontSize": "12",
     "Bold": "true",
@@ -137,11 +155,22 @@
     "Color": "4F81BD",
     "Font": "Arial"
   },
+  "10Blue": {
+    "FontSize": "10",
+    "Bold": "false",
+    "Color": "4F81BD",
+    "Font": "Arial"
+  },
   "9WhiteBold": {
     "FontSize": "9",
     "Bold": "true",
     "Color": "FFFFFF",
     "Font": "Arial"
+  },
+  "9BlackBold": {
+    "FontSize": "9",
+    "Bold": "true",
+    "Color": "000000",
+    "Font": "Arial"
   }
-
 }

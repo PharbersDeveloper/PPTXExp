@@ -253,5 +253,105 @@
         }
       ]
     }
+  ],
+  "national": [
+    {
+      "factory": "PhPPTGen.phOpenxml.PhShapeTreeChilren.PhPictureHandler",
+      "chilren": [],
+      "id": "picture2",
+      "type": "image/x-emf",
+      "path": "picture/chcContent.png",
+      "index": "2",
+      "name": "title",
+      "x": "1.18",
+      "y": "2.01",
+      "cx": "9.41",
+      "cy": "1.19"
+    },
+    {
+      "factory": "PhPPTGen.phOpenxml.PhShapeTreeChilren.PhShapeHandler",
+      "chilren": [],
+      "index": "3",
+      "name": "“≥Ω≈low",
+      "x": "0",
+      "y": "18.38",
+      "cx": "25.42",
+      "cy": "0.7",
+      "alpha": "100000",
+      "backColor": "0E647C",
+      "content": [
+        {
+          "alignment": "Left",
+          "run": [
+            {
+              "font": "Arial",
+              "fontColor": "000000",
+              "type": "run",
+              "text": " ",
+              "fontSize": "14",
+              "bold": "false",
+              "color": "000000"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "factory": "PhPPTGen.phOpenxml.PhShapeTreeChilren.PhShapeHandler",
+      "chilren": [],
+      "index": "4",
+      "name": "“≥Ω≈high",
+      "x": "0",
+      "y": "18.52",
+      "cx": "25.42",
+      "cy": "0.56",
+      "alpha": "100000",
+      "backColor": "404040",
+      "content": [
+        {
+          "alignment": "Left",
+          "run": [
+            {
+              "font": "Arial",
+              "fontColor": "000000",
+              "type": "run",
+              "text": " ",
+              "fontSize": "14",
+              "bold": "false",
+              "color": "000000"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "factory": "PhPPTGen.phOpenxml.PhShapeTreeChilren.PhShapeHandler",
+      "chilren": [],
+      "index": "5",
+      "name": "±Í«©",
+      "x": "17.01",
+      "y": "7.74",
+      "cx": "16.20",
+      "cy": "3.57",
+      "alpha": "0",
+      "backColor": "0E5772",
+      "rotation": "-5400000",
+      "content": [
+        {
+          "alignment": "Left",
+          "run": [
+            {
+              "font": "Helvetica Neue",
+              "fontColor": "F8F8FB",
+              "type": "run",
+              "text": "Above Data",
+              "fontSize": "80",
+              "bold": "true",
+              "color": "F8F8FB"
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

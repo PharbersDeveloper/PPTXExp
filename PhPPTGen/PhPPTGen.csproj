@@ -205,6 +205,7 @@
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\Ph3DPieChartHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhBubbleChartHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhChartTypeBaseHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhComboChartHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhLineChartHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\chartType\PhPieChartHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhBackWallHandler.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhFloorHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhLayoutHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhMajorUnitHandler.cs" />
+    <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhMarkerHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhSeriesLinesHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhSideWallHandler.cs" />
     <Compile Include="phOpenxml\phExcelChart\PhChartElement\PhTextPropertiesHasColorHandler.cs" />
@@ -276,8 +278,11 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="resources\PhBubble.json" />
+    <None Include="resources\PhChcColumn.json" />
     <None Include="resources\PhChcLine.json" />
+    <None Include="resources\PhChcNationalLineAndColum.json" />
     <None Include="resources\PhChcPPTType.json" />
+    <None Include="resources\PhExcelCss.json" />
     <None Include="resources\PhLineNoTable.json" />
     <None Include="resources\PhPie3D.json" />
     <None Include="resources\PhColumn.json" />

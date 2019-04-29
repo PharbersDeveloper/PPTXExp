@@ -13,8 +13,8 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 	class PhChartShapePropertiesHandler : PhBaseElementHandler {
 		protected override OpenXmlCompositeElement AppendDefaultElement(PhChartContent content, JToken format) {
 			C.ChartShapeProperties chartShapeProperties = new C.ChartShapeProperties();
-
-			A.SolidFill solidFill = new A.SolidFill(new A.RgbColorModelHex(new A.Alpha() { Val = int.Parse((string)format["alpha"]) }) { Val = new HexBinaryValue((string)format["solidFill"]) });
+			//自动填充，要指定填充用PhChartShapePropertiesHasFill
+			//A.SolidFill solidFill = new A.SolidFill(new A.RgbColorModelHex(new A.Alpha() { Val = int.Parse((string)format["alpha"]) }) { Val = new HexBinaryValue((string)format["solidFill"]) });
 
 			A.Outline outline = new A.Outline();
 

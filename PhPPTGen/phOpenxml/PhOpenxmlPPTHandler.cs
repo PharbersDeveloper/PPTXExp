@@ -162,7 +162,9 @@ namespace PhPPTGen.phOpenxml {
 				new A.Transform2D(new A.Offset() { X = textContent.pos[0], Y = textContent.pos[1] }, 
 					new A.Extents() { Cx = textContent.pos[2], Cy = textContent.pos[3] }),
 				new A.PresetGeometry(new A.AdjustValueList()) { Preset = (A.ShapeTypeValues)Enum.Parse(typeof(A.ShapeTypeValues), (string)shapeCss["type"]) },
-				new A.SolidFill(new A.RgbColorModelHex(new A.Alpha() {Val = int.Parse((string)shapeCss["alpha"])}) { Val = (string)shapeCss["color"] }));
+				new A.SolidFill(new A.RgbColorModelHex(new A.Alpha() {Val = int.Parse((string)shapeCss["alpha"])}) { Val = (string)shapeCss["color"] }),
+				getLineType(shapeCss)
+			);
 
 			// Specify the text of the body shape.
 			P.TextBody textBody = new P.TextBody(new A.BodyProperties() { Anchor = A.TextAnchoringTypeValues.Center },
@@ -502,6 +504,26 @@ namespace PhPPTGen.phOpenxml {
 			themePart1.Theme = theme1;
 			return themePart1;
 
+		}
+
+		//todo: 和上面的一起合并到PhShapeHandler中
+		private A.Outline getLineType(JToken format) {
+			var outline = new A.Outline(
+				new A.SolidFill(
+					new A.RgbColorModelHex(
+						new A.Alpha() { Val = int.Parse((string)format["lineAlpha"] ?? "0") }
+					) { Val = (string)format["lineColor"] ?? "000000" }
+				)
+			) { Width = int.Parse((string)format["lineWidth"] ?? "19050") };
+			string typeName = (string)format["lineType"] ?? "line";
+			switch (typeName) {
+				case "dash":
+				outline.Append(new A.PresetDash() { Val = A.PresetLineDashValues.Dash });
+				break;
+				case "line":
+				break;
+			}
+			return outline;
 		}
 
 		private PhOpenxmlPPTHandler() {

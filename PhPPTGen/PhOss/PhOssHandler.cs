@@ -8,8 +8,8 @@ using Aliyun.OSS.Common;
 
 namespace PhPPTGen.PhOss {
 	public class PhOssHandler {
-		readonly string accessKeyId = "'LTAIEoXgk4DOHDGi";
-		readonly string accessKeySecret = "'x75sK6191dPGiu9wBMtKE6YcBBh8EI";
+		readonly string accessKeyId = "LTAIEoXgk4DOHDGi";
+		readonly string accessKeySecret = "x75sK6191dPGiu9wBMtKE6YcBBh8EI";
 		readonly string endpoint = "oss-cn-beijing.aliyuncs.com";
 		private static PhOssHandler _instance = new PhOssHandler();
 
@@ -52,13 +52,13 @@ namespace PhPPTGen.PhOss {
 
 			// 创建OSSClient实例。
 			var client = new OssClient(endpoint, accessKeyId, accessKeySecret);
-			try {
+			//try {
 				// 上传文件。
 				var result = client.PutObject(bucketName, PPTName, PPTPath);
 				Console.WriteLine("Put object succeeded, ETag: {0} ", result.ETag);
-			} catch (Exception ex) {
-				Console.WriteLine("Put object failed, {0}", ex.Message);
-			}
+			//} catch (Exception ex) {
+			//	Console.WriteLine("Put object failed, {0}", ex.Message);
+			//}
 		}
 
 		private PhOssHandler() {

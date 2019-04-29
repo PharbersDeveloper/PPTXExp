@@ -47,8 +47,13 @@ namespace PhPPTGen.phCommon {
 							Console.WriteLine(req.command);
 							string cls = phModel.PhMsgDefine.PhCommand2Cls(req.command);
 							phCommandFactory.PhCommandFactory fct = phCommandFactory.PhCommandFactory.GetInstance();
-							fct.CreateCommandInstance(cls, req);
-							lst.Remove(req);
+							try {
+								fct.CreateCommandInstance(cls, req);
+							} catch (Exception ex) {
+								Console.WriteLine("Failed with error info: {0}", ex.Message);
+							}
+
+						lst.Remove(req);
 						}
 					}
 				}

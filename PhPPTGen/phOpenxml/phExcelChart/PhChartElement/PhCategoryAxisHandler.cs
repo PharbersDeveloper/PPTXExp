@@ -30,8 +30,9 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			categoryAxis.Append(new C.CrossingAxis() { Val = (UInt32Value)uint.Parse((string)format["crossingAxis"]) });
 
 			//轴交叉方式
-			categoryAxis.Append(new C.Crosses() { Val = (C.CrossesValues)Enum.Parse(typeof(C.CrossesValues), (string)format["crosses"]) });
-
+			if(format["crosses"] != null) {
+				categoryAxis.Append(new C.Crosses() { Val = (C.CrossesValues)Enum.Parse(typeof(C.CrossesValues), (string)format["crosses"]) });
+			}
 			categoryAxis.Append(new C.AutoLabeled() { Val = true });
 			categoryAxis.Append(new C.LabelAlignment() { Val = C.LabelAlignmentValues.Center });
 

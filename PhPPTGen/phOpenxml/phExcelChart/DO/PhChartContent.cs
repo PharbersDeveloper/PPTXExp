@@ -9,13 +9,22 @@ using System.Threading.Tasks;
 
 namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 	class PhChartContent {
-		
+
+		public List<List<string>> SeriesForIndex { get; } = new List<List<string>>();
 		public List<List<string>> Series = new List<List<string>>();
 		public List<string> CategoryLabels = new List<string>();
 		public List<string> SeriesLabels = new List<string>();
 		public List<List<string>> DataLabels = new List<List<string>>();
 		
+		public PhChartContent() { }
 
+		public PhChartContent(List<List<string>> seriesForIndex, List<List<string>> series, List<string> categoryLabels, List<string> seriesLabels, List<List<string>> dataLabels) {
+			this.SeriesForIndex = seriesForIndex;
+			this.Series = series;
+			this.CategoryLabels = categoryLabels;
+			this.SeriesLabels = seriesLabels;
+			this.DataLabels = dataLabels;
+		}
 
 		public void SetValueFromExcel(WorkbookPart workbookPart, JToken format) {
 			Dictionary<string, SetValue> funcMap = new Dictionary<string, SetValue>() {
@@ -53,6 +62,7 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 					serise.Add(re.ToString());
 				}
 				Series.Add(serise);
+				SeriesForIndex.Add(serise);
 			}
 			for(int i = 0; i < SeriesLabels.Count - Series[0].Count; i++) {
 				SeriesLabels.RemoveAt(0);
@@ -69,10 +79,10 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 
 			rows.Remove(rows.First());
 
-			for(int i = 0; i < rows.First().Elements<Cell>().Count() - 1; i++) {
+			for (int i = 0; i < rows.First().Elements<Cell>().Count() - 1; i++) {
 				Series.Add(new List<string>());
 			}
-				foreach (Row r in rows) {
+			foreach (Row r in rows) {
 				var cells = r.Elements<Cell>().ToList();
 				SeriesLabels.Add(GetValue(cells.First(), workbookPart));
 				cells.Remove(cells.First());
@@ -81,7 +91,13 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 					double.TryParse(GetValue(c, workbookPart), out double re);
 					Series[cells.IndexOf(c)].Add(re.ToString());
 				}
-				
+
+			}
+			foreach(List<string> s in Series) {
+				SeriesForIndex.Add(s);
+			}
+			for (int i = 0; i < CategoryLabels.Count - Series.Count; i++) {
+				CategoryLabels.RemoveAt(0);
 			}
 		}
 
@@ -116,6 +132,9 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 			SeriesLabels.RemoveAll(x => x.Trim() == "");
 			for (int i = 0; i < SeriesLabels.Count - Series[0].Count; i++) {
 				SeriesLabels.RemoveAt(0);
+			}
+			foreach (List<string> s in Series) {
+				SeriesForIndex.Add(s);
 			}
 		}
 

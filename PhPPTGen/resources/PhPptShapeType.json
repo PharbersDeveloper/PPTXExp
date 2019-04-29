@@ -23,5 +23,19 @@
     "type": "FlowChartTerminator",
     "alpha": "100000",
     "color": "954F72"
+  },
+  "FlowChartTerminatorE7E6E6": {
+    "type": "FlowChartTerminator",
+    "alpha": "100000",
+    "color": "E7E6E6"
+  },
+  "DashRectangle": {
+    "type": "Rectangle",
+    "alpha": "0",
+    "color": "FFFFFF",
+    "lineType": "dash",
+    "lineWidth": "19050",
+    "lineColor": "005598",
+    "lineAlpha": "100000"
   }
 }

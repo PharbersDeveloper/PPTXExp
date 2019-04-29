@@ -27,9 +27,19 @@ namespace PhPPTGen.phOpenxml.PhShapeTreeChilren {
 					new A.Transform2D(new A.Offset() { X = (long)(((double)format["x"]) / 0.00000278), Y = (long)(((double)format["y"]) / 0.00000278) },
 					new A.Extents() { Cx = (long)(((double)format["cx"]) / 0.00000278), Cy = (long)(((double)format["cy"]) / 0.00000278) }),
 					new A.PresetGeometry(new A.AdjustValueList()) { Preset = A.ShapeTypeValues.Rectangle },
-					new A.SolidFill(new A.RgbColorModelHex(new A.Alpha() {
-						Val = int.Parse((string)format["alpha"])
-					}) { Val = (string)format["backColor"] })),
+					new A.SolidFill(
+						new A.RgbColorModelHex(
+							new A.Alpha() { Val = int.Parse((string)format["alpha"]) }
+						) { Val = (string)format["backColor"] }
+					),
+					getLineType((string)format["lineType"] ?? "line", new A.Outline(
+						new A.SolidFill(
+							new A.RgbColorModelHex(
+								new A.Alpha() { Val = int.Parse((string)format["lineAlpha"] ?? "0") }
+							) { Val = (string)format["lineColor"] ?? "000000" }
+						)
+					) { Width = int.Parse((string)format["lineWidth"] ?? "19050") }				
+				)),
 				TextBody = new P.TextBody(new A.BodyProperties() { Rotation = int.Parse((string)format["rotation"] ?? "0"), Anchor = A.TextAnchoringTypeValues.Center },
 					new A.ListStyle())
 			};
@@ -45,6 +55,18 @@ namespace PhPPTGen.phOpenxml.PhShapeTreeChilren {
 				shape.TextBody.Append(paragraph);
 			}
 			return shape;
+		}
+
+		private A.Outline getLineType(string typeName, A.Outline outline) {
+
+			switch (typeName) {
+				case "dash": 
+					outline.Append(new A.PresetDash() { Val = A.PresetLineDashValues.Dash });
+				break;
+				case "line":
+				break;
+			}
+			return outline;
 		}
 	}
 }

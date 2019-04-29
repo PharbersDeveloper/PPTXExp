@@ -15,7 +15,7 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			lineChart.Append(new C.Grouping() { Val = (C.GroupingValues)Enum.Parse(typeof(C.GroupingValues), (string)format["grouping"]) });
 			lineChart.Append(new C.VaryColors() { Val = Boolean.Parse((string)format["varyColors"]) });
 			foreach (List<string> values in content.Series) {
-				lineChart.Append(CreateLineChartSeries((uint)content.Series.IndexOf(values), values, content, format));
+				lineChart.Append(CreateLineChartSeries((uint)content.SeriesForIndex.IndexOf(values), values, content, format));
 			}
 
 			lineChart.Append(new C.Smooth() { Val = Boolean.Parse((string)format["varyColors"]) });
@@ -32,8 +32,10 @@ namespace PhPPTGen.phOpenxml.phExcelChart.PhChartElement {
 			lineChartSeries.Append(new C.Order() { Val = (UInt32Value)index });
 			lineChartSeries.Append(CreateSeriesText(content.CategoryLabels[(int)index], "Sheet1!$A$" + (2 + index)));
 			lineChartSeries.Append(AppendOneElement(content, ((JArray)format["seriesChartShapeProperties"])[(int)index]));
-			lineChartSeries.Append(new C.Marker(new C.Symbol() { Val = (C.MarkerStyleValues)Enum.Parse(typeof(C.MarkerStyleValues), (string)format["marker"]) }));
-			lineChartSeries.Append(new C.CategoryAxisData(CreateStringReference(content.SeriesLabels, "Sheet1!$B$1:$D$1")));
+			lineChartSeries.Append(AppendOneElement(content, ((JArray)format["markets"])[(int)index]));
+			//lineChartSeries.Append(new C.Marker(new C.Symbol() { Val = (C.MarkerStyleValues)Enum.Parse(typeof(C.MarkerStyleValues), (string)format["marker"]) }));
+			//todo: Sheet1!$A$2:$A$6 还需要一致, 要可能会有ppt损坏的问题
+			lineChartSeries.Append(new C.CategoryAxisData(CreateStringReference(content.SeriesLabels, "Sheet1!$A$2:$A$6")));
 			lineChartSeries.Append(new C.Values(CreateNumberReference(values, "Sheet1!$B$2:$D$2", (string)format["numFormat"])));
 			lineChartSeries.Append(new C.Smooth() { Val = Boolean.Parse((string)format["varyColors"]) });
 			lineChartSeries.Append(CreateLineSerExtensionList());

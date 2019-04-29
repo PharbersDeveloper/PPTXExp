@@ -7,9 +7,12 @@
     "LineNoTable": "PhLineNoTable.json",
     "Stacked": "PhStacked.json",
     "Bubble": "PhBubble.json",
-    "ChcLine": "PhChcline.json"
+    "ChcLine": "PhChcline.json",
+    "ChcNationalCombo": "PhChcNationalLineAndColum.json",
+    "ChcColumn": "PhChcColumn.json"
   },
   "excelFormat": "PhFormatConfig.xml",
+  "excelCss": "PhexcelCss.json",
   "pptFormat": {
     "pptParagraphFormat": "PhPPTParagraphFormat.json",
     "pptFontFormat": "PhPPTFontFormat.json",

@@ -40,7 +40,7 @@ namespace PhPPTGen {
 				e2c = new phModel.PhExcel2Chart() {
 					name = "test4 - 副本 - 副本",
 					pos = new int[4] { (int)(254 / 0.000278), (int)(432 / 0.000278), (int)(1947 / 0.000278), (int)(1284 / 0.000278) },
-					chartType = "Column",
+					chartType = "Stacked",
 					slider = 1
 				}
 

@@ -207,6 +207,21 @@
               "color": "FFFFFF",
               "alpha": "100000"
             }
+          },
+          {
+            "factory": "PhPPTGen.phOpenxml.phExcelChart.PhChartElement.PhChartShapePropertiesHasFill",
+            "child": [],
+
+            "solidFill": {
+              "type": "color",
+              "color": "D414F6",
+              "alpha": "100000"
+            },
+            "outline": {
+              "type": "color",
+              "color": "FFFFFF",
+              "alpha": "100000"
+            }
           }
         ],
         "serisDataLables": {

@@ -18,14 +18,13 @@ using PhPPTGen.phkafka;
 namespace PhPPTGen {
 	class Program {
 		static void Main(string[] args) {
-			var msg = File.OpenText(@"D:\alfredyang\msg.txt").ReadToEnd();
-			PhConsumer.PushMsg(msg, "test");
 			PhConfigHandler.GetInstance().path = @"..\..\resources\";
 			phCommandFactory.PhCommandFactory.GetInstance().SeTmpDictionary(@"D:\pptresult\css\");
 			PhConfigHandler.GetInstance().init();
 			phCommon.PhRequestLst lst = phCommon.PhRequestLst.GetInstance();
 			lst.StartChecking();
-			PhConsumer.PullMsg("test");
+			//PhConsumer.GetInstance().PushMsg("1", "ppt-driver-topic", "Url");
+			PhConsumer.GetInstance().PullMsg("ppt-logic-topic");
 		}
 
 		//static void Main(string[] args) {

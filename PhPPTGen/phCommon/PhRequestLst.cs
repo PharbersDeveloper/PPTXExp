@@ -37,7 +37,7 @@ namespace PhPPTGen.phCommon {
 		public void CheckingHandler() {
 
 			while (isRunning) {
-				Thread.Sleep(500);
+				//Thread.Sleep(500);
 				lock (locker) {
 					if (lst.Count > 0) {
 						List<PhRequest>.Enumerator iterator = lst.GetEnumerator();

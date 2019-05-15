@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "url",
+  "namespace": "net.elodina.kafka.metrics",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "data",
+      "type": "string"
+    }
+  ]
+}

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using JsonApiSerializer;
+using Newtonsoft.Json;
+using PhPPTGen.phkafka;
+using PhPPTGen.phModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +31,8 @@ namespace PhPPTGen.phCommand.phPpt {
              */
 
 			PhOss.PhOssHandler.GetInstance().UploadPPT(file_path, jobid);
+
+			PhConsumer.GetInstance().PushMsg(jobid, "ppt-driver-topic", "Url");
 
 			return null;
 		}

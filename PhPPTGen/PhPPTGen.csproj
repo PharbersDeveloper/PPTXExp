@@ -67,14 +67,26 @@
     <Reference Include="Aliyun.OSS, Version=2.9.0.0, Culture=neutral, PublicKeyToken=0ad4175f0dac0b9b, processorArchitecture=MSIL">
       <HintPath>..\..\pptServices\packages\Aliyun.OSS.SDK.2.9.0\lib\Aliyun.OSS.dll</HintPath>
     </Reference>
+    <Reference Include="Confluent.Apache.Avro, Version=1.7.7.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Confluent.Apache.Avro.1.7.7.6\lib\net452\Confluent.Apache.Avro.dll</HintPath>
+    </Reference>
     <Reference Include="Confluent.Kafka, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Users\EDZ\source\repos\WebApplication1\packages\Confluent.Kafka.1.0.0\lib\net46\Confluent.Kafka.dll</HintPath>
+      <HintPath>..\packages\Confluent.Kafka.1.0.0\lib\net46\Confluent.Kafka.dll</HintPath>
+    </Reference>
+    <Reference Include="Confluent.SchemaRegistry, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Confluent.SchemaRegistry.1.0.0\lib\net452\Confluent.SchemaRegistry.dll</HintPath>
+    </Reference>
+    <Reference Include="Confluent.SchemaRegistry.Serdes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Confluent.SchemaRegistry.Serdes.1.0.0\lib\net452\Confluent.SchemaRegistry.Serdes.dll</HintPath>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.8.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.8.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="JsonApiSerializer, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\JsonApiSerializer.1.6.0\lib\net45\JsonApiSerializer.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
@@ -232,6 +244,7 @@
     <Compile Include="phCommand\phText\PhTextContentForXmlCommand.cs" />
     <Compile Include="phCommon\PhRequestLst.cs" />
     <Compile Include="PhConfigHandler.cs" />
+    <Compile Include="phkafka\ex.cs" />
     <Compile Include="phkafka\PhConsumer.cs" />
     <Compile Include="phModel\PhCreateSlider.cs" />
     <Compile Include="phModel\PhResponse.cs" />
@@ -312,6 +325,7 @@
     </None>
     <None Include="PhPPTGen_TemporaryKey.pfx" />
     <Content Include="resources\PhBubble.json" />
+    <None Include="resources\msg\Url.asvc" />
     <None Include="resources\PhChcColumn.json" />
     <None Include="resources\PhChcLine.json" />
     <None Include="resources\PhChcNationalLineAndColum.json" />

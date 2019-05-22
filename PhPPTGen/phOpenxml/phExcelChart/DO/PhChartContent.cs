@@ -64,7 +64,9 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 				Series.Add(serise);
 				SeriesForIndex.Add(serise);
 			}
-			for(int i = 0; i < SeriesLabels.Count - Series[0].Count; i++) {
+			CategoryLabels.RemoveAll(x => x.Trim() == "");
+			Series = Series.Take(CategoryLabels.Count).ToList();
+			for (int i = 0; i < SeriesLabels.Count - Series[0].Count; i++) {
 				SeriesLabels.RemoveAt(0);
 			}
 		}
@@ -93,7 +95,9 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 				}
 
 			}
-			foreach(List<string> s in Series) {
+			CategoryLabels.RemoveAll(x => x.Trim() == "");
+			Series = Series.Take(CategoryLabels.Count).ToList();
+			foreach (List<string> s in Series) {
 				SeriesForIndex.Add(s);
 			}
 			for (int i = 0; i < CategoryLabels.Count - Series.Count; i++) {
@@ -130,6 +134,8 @@ namespace PhPPTGen.phOpenxml.phExcelChart.DO {
 				DataLabels.Add(dataLabel);
 			}
 			SeriesLabels.RemoveAll(x => x.Trim() == "");
+			CategoryLabels.RemoveAll(x => x.Trim() == "");
+			Series = Series.Take(CategoryLabels.Count).ToList();
 			for (int i = 0; i < SeriesLabels.Count - Series[0].Count; i++) {
 				SeriesLabels.RemoveAt(0);
 			}

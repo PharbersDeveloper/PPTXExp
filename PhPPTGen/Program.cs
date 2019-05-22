@@ -23,8 +23,9 @@ namespace PhPPTGen {
 			PhConfigHandler.GetInstance().init();
 			phCommon.PhRequestLst lst = phCommon.PhRequestLst.GetInstance();
 			lst.StartChecking();
-			//PhConsumer.GetInstance().PushMsg("1", "ppt-driver-topic", "Url");
+			//PhConsumer.GetInstance().PushMsg("1", "pull_test", "Url");
 			PhConsumer.GetInstance().PullMsg("ppt-logic-topic");
+			//PhConsumer.GetInstance().PullMsg("push_test");
 		}
 
 		//static void Main(string[] args) {

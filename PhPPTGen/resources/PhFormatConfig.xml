@@ -123,6 +123,27 @@
       <right style="None" color="000000" />
 
     </border>
+    <border id="Thin1CADE4Thin1CADE4Thick1CADE4Thin1CADE4">
+      <top style="Thin" color="1CADE4" />
+      <bottom style="Thin" color="1CADE4" />
+      <left style="Thick" color="1CADE4" />
+      <right style="Thin" color="1CADE4" />
+
+    </border>
+    <border id="Thin1CADE4Thin1CADE4Thin1CADE4Thick1CADE4">
+      <top style="Thin" color="1CADE4" />
+      <bottom style="Thin" color="1CADE4" />
+      <left style="Thin" color="1CADE4" />
+      <right style="Thick" color="1CADE4" />
+
+    </border>
+    <border id="Thin1CADE4Thick1CADE4Thin1CADE4Thin1CADE4">
+      <top style="Thin" color="1CADE4" />
+      <bottom style="Thick" color="1CADE4" />
+      <left style="Thin" color="1CADE4" />
+      <right style="Thin" color="1CADE4" />
+
+    </border>
   </borders>
   <cellformats>
     <cellformat id="*font**fill**num**border**h*Center*v*Center" font="" fill="" numbering="" border="" horizontal="Center" vertical="Center" />

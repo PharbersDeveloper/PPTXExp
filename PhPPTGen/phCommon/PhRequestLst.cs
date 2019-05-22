@@ -53,7 +53,7 @@ namespace PhPPTGen.phCommon {
 								Console.WriteLine("Failed with error info: {0}", ex.Message);
 							}
 
-						lst.Remove(req);
+							lst.Remove(req);
 						}
 					}
 				}

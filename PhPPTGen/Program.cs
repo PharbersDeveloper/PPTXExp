@@ -17,16 +17,16 @@ using PhPPTGen.phkafka;
 
 namespace PhPPTGen {
 	class Program {
-		static void Main(string[] args) {
-			PhConfigHandler.GetInstance().path = @"..\..\resources\";
-			phCommandFactory.PhCommandFactory.GetInstance().SeTmpDictionary(@"D:\pptresult\css\");
-			PhConfigHandler.GetInstance().init();
-			phCommon.PhRequestLst lst = phCommon.PhRequestLst.GetInstance();
-			lst.StartChecking();
-			//PhConsumer.GetInstance().PushMsg("1", "pull_test", "Url");
-			PhConsumer.GetInstance().PullMsg("ppt-logic-topic");
-			//PhConsumer.GetInstance().PullMsg("push_test");
-		}
+		//static void Main(string[] args) {
+		//	PhConfigHandler.GetInstance().path = @"..\..\resources\";
+		//	phCommandFactory.PhCommandFactory.GetInstance().SeTmpDictionary(@"D:\pptresult\css\");
+		//	PhConfigHandler.GetInstance().init();
+		//	phCommon.PhRequestLst lst = phCommon.PhRequestLst.GetInstance();
+		//	lst.StartChecking();
+		//	PhConsumer.GetInstance().PushMsg("1", "ppt-logic-topic", "Url");
+		//	PhConsumer.GetInstance().PullMsg("ppt-logic-topic");
+		//	PhConsumer.GetInstance().PullMsg("fs-connect-test");
+		//}
 
 		//static void Main(string[] args) {
 		//	PhConfigHandler.GetInstance().path = @"..\..\resources\";

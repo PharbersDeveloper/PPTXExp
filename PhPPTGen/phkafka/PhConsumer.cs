@@ -14,48 +14,49 @@ using System.IO;
 
 namespace PhPPTGen.phkafka {
 	public class PhConsumer {
-		//public static void Main(string[] args) {
-		//	PushMsg("test1", "test");
-		//	PushMsg("test2", "test");
-		//	var conf = new ConsumerConfig {
-		//		GroupId = "console-consumer-25919",
-		//		BootstrapServers = "59.110.31.50:9093",
-		//		// Note: The AutoOffsetReset property determines the start offset in the event
-		//		// there are not yet any committed offsets for the consumer group for the
-		//		// topic/partitions of interest. By default, offsets are committed
-		//		// automatically, so in this example, consumption will only start from the
-		//		// earliest message in the topic 'my-topic' the first time you run the program.
-		//		AutoOffsetReset = AutoOffsetReset.Earliest
-		//	};
+		public static void Main(string[] args) {
+			//PushMsg("test1", "test");
+			//PushMsg("test2", "test");
+			var conf = new ConsumerConfig {
+				GroupId = "compose-connect-group",
+				BootstrapServers = "59.110.31.50:9093",
+				// Note: The AutoOffsetReset property determines the start offset in the event
+				// there are not yet any committed offsets for the consumer group for the
+				// topic/partitions of interest. By default, offsets are committed
+				// automatically, so in this example, consumption will only start from the
+				// earliest message in the topic 'my-topic' the first time you run the program.
+				AutoOffsetReset = AutoOffsetReset.Earliest
+			};
 
-		//	using (var c = new ConsumerBuilder<Ignore, string>(conf).Build()) {
-		//		c.Subscribe("test");
+			using (var c = new ConsumerBuilder<Ignore, string>(conf).Build()) {
+				c.Subscribe("fs-connect-test");
 
-		//		CancellationTokenSource cts = new CancellationTokenSource();
-		//		Console.CancelKeyPress += (_, e) => {
-		//			e.Cancel = true; // prevent the process from terminating.
-		//			cts.Cancel();
-		//		};
+				CancellationTokenSource cts = new CancellationTokenSource();
+				Console.CancelKeyPress += (_, e) => {
+					e.Cancel = true; // prevent the process from terminating.
+					cts.Cancel();
+				};
 
-		//		try {
-		//			while (true) {
-		//				try {
-		//					var cr = c.Consume(cts.Token);
-		//					Console.WriteLine($"Consumed message '{cr.Value}' at: '{cr.TopicPartitionOffset}'.");
-		//				} catch (ConsumeException e) {
-		//					Console.WriteLine($"Error occured: {e.Error.Reason}");
-		//				}
-		//			}
-		//		} catch (OperationCanceledException) {
-		//			// Ensure the consumer leaves the group cleanly and final offsets are committed.
-		//			c.Close();
-		//		}
-		//	}
-		//}
+				try {
+					while (true) {
+						try {
+							var cr = c.Consume(cts.Token);
+							Console.WriteLine($"Consumed message '{cr.Value}' at: '{cr.TopicPartitionOffset}'.");
+						} catch (ConsumeException e) {
+							Console.WriteLine($"Error occured: {e.Error.Reason}");
+						}
+					}
+				} catch (OperationCanceledException) {
+					// Ensure the consumer leaves the group cleanly and final offsets are committed.
+					Console.WriteLine("error");
+					c.Close();
+				}
+			}
+		}
 
 		readonly Dictionary<string, string> config = new Dictionary<string, string>() {
 			{ "group.id", "console-consumer-25919" },
-			{ "bootstrap.servers", "59.110.31.50:9093" },
+			{ "bootstrap.servers", "59.110.31.50:9092" },
 			{ "schema.registry.url", "59.110.31.50:8081" },
 			{ "auto.offset.reset", "beginning" }
 		};
@@ -89,7 +90,7 @@ namespace PhPPTGen.phkafka {
 							: $"produced to: {task.Result.TopicPartitionOffset}"));
 
 					producer.Flush(TimeSpan.FromSeconds(30));
-					//Console.WriteLine($"Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
+					Console.WriteLine($"Delivered ");
 				} catch (ProduceException<Null, string> e) {
 					Console.WriteLine($"Delivery failed: {e.Error.Reason}");
 				}

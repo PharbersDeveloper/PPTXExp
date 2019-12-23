@@ -109,30 +109,30 @@ namespace AvroBlogExample {
 		private static void PrintUsage()
 			=> Console.WriteLine("Usage: .. <generic-produce|specific-produce|consume> <bootstrap-servers> <schema-registry-url>");
 
-		static async Task Main(string[] args) {
-			if (args.Length != 3) {
-				PrintUsage();
-				return;
-			}
+		//static async Task Main(string[] args) {
+		//	if (args.Length != 3) {
+		//		PrintUsage();
+		//		return;
+		//	}
 
-			var mode = args[0];
-			var bootstrapServers = args[1];
-			var schemaRegistryUrl = args[2];
+		//	var mode = args[0];
+		//	var bootstrapServers = args[1];
+		//	var schemaRegistryUrl = args[2];
 
-			switch (mode) {
-				case "generic-produce":
-				await ProduceGeneric(bootstrapServers, schemaRegistryUrl);
-				break;
-				case "specific-produce":
-				//await ProduceSpecific(bootstrapServers, schemaRegistryUrl);
-				break;
-				case "consume":
-				ConsumeSpecific(bootstrapServers, schemaRegistryUrl);
-				break;
-				default:
-				PrintUsage();
-				break;
-			}
-		}
+		//	switch (mode) {
+		//		case "generic-produce":
+		//		await ProduceGeneric(bootstrapServers, schemaRegistryUrl);
+		//		break;
+		//		case "specific-produce":
+		//		//await ProduceSpecific(bootstrapServers, schemaRegistryUrl);
+		//		break;
+		//		case "consume":
+		//		ConsumeSpecific(bootstrapServers, schemaRegistryUrl);
+		//		break;
+		//		default:
+		//		PrintUsage();
+		//		break;
+		//	}
+		//}
 	}
 }
